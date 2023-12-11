@@ -1,17 +1,17 @@
 import { OptionsSpec } from '@gamepark/rules-api'
 import { TFunction } from 'i18next'
-import { PlayerColor, playerColors } from './PlayerColor'
+import { Flag, flags } from './material/Flag'
 
 /**
  * This is the options for each player in the game.
  */
-type PlayerOptions = { id: PlayerColor }
+type PlayerOptions = { id: Flag }
 
 /**
  * This is the type of object that the game receives when a new game is started.
  * The first generic parameter, "{}", can be changed to include game options like variants or expansions.
  */
-export type GameTemplateOptions = {
+export type GoldNCashOptions = {
   players: PlayerOptions[]
 }
 
@@ -19,25 +19,21 @@ export type GameTemplateOptions = {
  * This object describes all the options a game can have, and will be used by GamePark website to create automatically forms for you game
  * (forms for friendly games, or forms for matchmaking preferences, for instance).
  */
-export const GameTemplateOptionsSpec: OptionsSpec<GameTemplateOptions> = {
+export const GameTemplateOptionsSpec: OptionsSpec<GoldNCashOptions> = {
   players: {
     id: {
       label: (t: TFunction) => t('Player color'),
-      values: playerColors,
+      values: flags,
       valueSpec: color => ({ label: t => getPlayerName(color, t) })
     }
   }
 }
 
-export function getPlayerName(playerId: PlayerColor, t: TFunction) {
+export function getPlayerName(playerId: Flag, t: TFunction) {
   switch (playerId) {
-    case PlayerColor.Red:
-      return t('Red')
-    case PlayerColor.Blue:
-      return t('Blue')
-    case PlayerColor.Green:
-      return t('Green')
-    case PlayerColor.Yellow:
-      return t('Yellow')
+    case Flag.Poulpirate:
+      return t('Poulpirate')
+    case Flag.Chamourai:
+      return t('Chamouraï')
   }
 }

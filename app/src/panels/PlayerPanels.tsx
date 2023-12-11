@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { PlayerColor } from '@gamepark/game-template/PlayerColor'
+import { Flag } from '@gamepark/gold-n-cash/material/Flag'
 import { PlayerPanel, usePlayers } from '@gamepark/react-game'
 import { FC } from 'react'
 
@@ -22,9 +22,7 @@ const panelPosition = (index: number) => css`
   height: 14em;
 `
 
-export const playerColorCode: Record<PlayerColor, string> = {
-  [PlayerColor.Red]: 'red',
-  [PlayerColor.Blue]: 'blue',
-  [PlayerColor.Green]: 'green',
-  [PlayerColor.Yellow]: 'yellow'
+export const playerColorCode: Record<Flag, string> = {
+  [Flag.Chamourai]: 'red',
+  [Flag.Poulpirate]: 'blue'
 }

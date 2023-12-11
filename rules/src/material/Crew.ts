@@ -1,0 +1,43 @@
+import { isEnumValue } from '@gamepark/rules-api'
+
+export enum Crew {
+  PoulpirateCrew1 = 1,
+  PoulpirateCrew2,
+  PoulpirateCrew3,
+  PoulpirateCrew4,
+  PoulpirateCrew5,
+  PoulpirateCrew6,
+  PoulpirateCrew7,
+  PoulpirateCrew8,
+  PoulpirateCrew9,
+  PoulpirateCrew10,
+  PoulpirateCrew11,
+  PoulpirateCrew12,
+  PoulpirateCrew13,
+  PoulpirateCrew14,
+  PoulpirateCrew15,
+  PoulpirateCrew16,
+  PoulpirateCrew17,
+  PoulpirateCrew18,
+  ChamouraiCrew1 = 100,
+  ChamouraiCrew2,
+  ChamouraiCrew3,
+  ChamouraiCrew4,
+  ChamouraiCrew5,
+  ChamouraiCrew6,
+  ChamouraiCrew7,
+  ChamouraiCrew8,
+  ChamouraiCrew9,
+  ChamouraiCrew10,
+  ChamouraiCrew11,
+  ChamouraiCrew12,
+  ChamouraiCrew13,
+  ChamouraiCrew14,
+  ChamouraiCrew15,
+  ChamouraiCrew16,
+  ChamouraiCrew17,
+  ChamouraiCrew18,
+}
+
+export const poulpirateCrew = Object.values(Crew).filter(isEnumValue).filter((c) => c < Crew.ChamouraiCrew1)
+export const chamouraiCrew = Object.values(Crew).filter(isEnumValue).filter((c) => c >= Crew.ChamouraiCrew1)

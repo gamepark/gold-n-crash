@@ -1,3 +1,13 @@
 export enum RuleId {
-  PlayerTurn
+  PlayerTurn,
+  Bombing,
+  Boarding,
+  Fishing,
+  Strengthen,
+  Secure,
+  CrackTheTreasureChest,
+  Maneuver,
+  Recall,
+  Observe,
+  Loot
 }
