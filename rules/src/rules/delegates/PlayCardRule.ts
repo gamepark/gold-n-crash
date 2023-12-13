@@ -52,9 +52,16 @@ export class PlayCardRule extends PlayerTurnRule {
       .player(this.player)
   }
 
+  get deck() {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.CrewDeck)
+      .player(this.player)
+  }
+
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.Card)(move)) return []
-    this.memorize(Memory.Actions, (action) => (action ?? 0) + 1)
+    this.memorize(Memory.Actions, (action: number | undefined) => (action ?? 0) + 1)
     const card = this.material(MaterialType.Card).getItem(move.itemIndex)!.id.front
 
     if (card) {
@@ -62,6 +69,10 @@ export class PlayCardRule extends PlayerTurnRule {
       if (playEffect) return [this.rules().startPlayerTurn(playEffect, this.player)]
     } else {
       console.error("Moving a card without front ?")
+    }
+
+    if (!this.hand.length && !this.deck.length) {
+      this.memorize(Memory.LastPlayer, this.game.players.find((p) => p !== this.player))
     }
 
     return []

@@ -37,7 +37,8 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
   hidingStrategies = {
     [MaterialType.Card]: {
       [LocationType.Hand]: hideFrontToOthers,
-      [LocationType.CrewDeck]: hideFront
+      [LocationType.CrewDeck]: hideFront,
+      [LocationType.Treasure]: hideFront,
     },
     [MaterialType.ZeppelinCard]: {
       [LocationType.Zeppelins]: hideFrontWhenRotated

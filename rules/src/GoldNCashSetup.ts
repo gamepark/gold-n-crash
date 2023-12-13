@@ -2,7 +2,7 @@ import { MaterialGameSetup } from '@gamepark/rules-api'
 import shuffle from 'lodash/shuffle'
 import { GoldNCashRules } from './GoldNCashRules'
 import { GoldNCashOptions } from './GoldNCashOptions'
-import { Card, chamouraiCrew, ChamouraiDeck, poulpirateCrew, PoulpirateDeck, prestigiousGuests } from './material/Card'
+import { Card, chamouraiCrew, ChamouraiDeck, poulpirateCrew, PoulpirateDeck, PrestigiousGuest, prestigiousGuests } from './material/Card'
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
@@ -85,7 +85,10 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
       .material(MaterialType.Card)
       .createItems(
         playerGuests.map((g, index) => ({
-          id: { front: g, back: playerId },
+          id: {
+            front: g,
+            back: PrestigiousGuest.PrestigiousGuest
+          },
           location: {
             type: LocationType.PrestigiousGuests,
             id: index + 1,

@@ -51,10 +51,21 @@ export class PlayerTurn extends PlayerTurnRule {
     return moves
   }
 
+  get lastPlayer() {
+    return this.remind(Memory.LastPlayer)
+  }
+
   get goToNextPlayerMoves() {
-    console.log("Forget ?")
     this.forget(Memory.Actions)
     this.forget(Memory.Column)
+
+    const last = this.lastPlayer
+    if (last && this.player === last) {
+      return [
+        this.rules().endGame()
+      ]
+    }
+
     return [
       this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer)
     ]

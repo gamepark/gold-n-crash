@@ -1,5 +1,9 @@
 import { isEnumValue } from '@gamepark/rules-api'
 
+export enum PrestigiousGuest {
+  PrestigiousGuest = 3
+}
+
 export enum Card {
   PoulpirateBlueCrew1 = 1,
   PoulpirateBlueCrew2,

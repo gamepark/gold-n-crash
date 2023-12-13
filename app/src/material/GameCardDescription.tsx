@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Card, isPrestigiousGuest } from '@gamepark/gold-n-cash/material/Card'
+import { Card, isPrestigiousGuest, PrestigiousGuest } from '@gamepark/gold-n-cash/material/Card'
 import { Flag } from '@gamepark/gold-n-cash/material/Flag'
 import { CardDescription, ItemContext } from '@gamepark/react-game'
 import ChamouraiBlueCrew1 from '../images/crew/chamourai/ChamouraiBlueCrew1.jpg'
@@ -55,6 +55,7 @@ export class GameCardDescription extends CardDescription {
   backImages = {
     [Flag.Poulpirate]: PoulpirateCrewBack,
     [Flag.Chamourai]: ChamouraiCrewBack,
+    [PrestigiousGuest.PrestigiousGuest]: ChamouraiCrewBack
   }
 
   images = {
