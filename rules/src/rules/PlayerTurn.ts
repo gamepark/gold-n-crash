@@ -28,7 +28,7 @@ export class PlayerTurn extends PlayerTurnRule {
   afterItemMove(move: ItemMove) {
     const moves: MaterialMove[] = []
     if (isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Column) {
-      console.log("???")
+      this.memorize(Memory.Column, move.location.id)
       moves.push(...new PlayCardRule(this.game).afterItemMove(move))
     }
 
@@ -49,6 +49,7 @@ export class PlayerTurn extends PlayerTurnRule {
 
   get goToNextPlayerMoves() {
     this.forget(Memory.Actions)
+    this.forget(Memory.Column)
     return [
       this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer)
     ]

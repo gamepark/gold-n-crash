@@ -1,3 +1,4 @@
 export enum Memory {
-  Actions = 1
+  Actions = 1,
+  Column
 }
