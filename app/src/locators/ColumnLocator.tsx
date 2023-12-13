@@ -8,7 +8,7 @@ export class ColumnLocator extends LineLocator {
   locationDescription = new ColumnDescription()
 
   getDeltaMax({ location }: MaterialItem, { rules, player }: ItemContext): Partial<Coordinates> {
-    return { y: location.player === (player ?? rules.players[0])? 8.4: -8.4}
+    return { y: location.player === (player ?? rules.players[0])? 8.4: -5}
   }
 
   getDelta({ location }: MaterialItem, { rules, player }: ItemContext): Partial<Coordinates> {
@@ -20,7 +20,7 @@ export class ColumnLocator extends LineLocator {
     }
 
     return {
-      y: -2.2,
+      y: -1.2,
       z: 0.05
     }
   }
@@ -30,7 +30,7 @@ export class ColumnLocator extends LineLocator {
     if (location.player === (player ?? rules.players[0])) {
       return {
         x: x + ((zeppelinCardDescription.height + 1) * location.id - 1),
-        y: 21.8,
+        y: 20.5,
         z: 0.05
       }
     }
@@ -38,7 +38,7 @@ export class ColumnLocator extends LineLocator {
     const baseX = x + (zeppelinCardDescription.height * 3 + 2)
     return {
       x: baseX - ((zeppelinCardDescription.height + 1) * (location.id - 1)),
-      y: -21.8,
+      y: -20.5,
       z: 0.05
     }
   }

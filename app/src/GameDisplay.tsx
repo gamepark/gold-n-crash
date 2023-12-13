@@ -13,8 +13,8 @@ export const GameDisplay: FC<GameDisplayProps> = () => {
     <GameTable
       xMin={-50}
       xMax={50}
-      yMin={-35}
-      yMax={35}
+      yMin={-30}
+      yMax={34}
       margin={{ top: 7, left: 0, right: 0, bottom: 0 }}
       css={css`background-color: rgba(255, 255, 255, 0.52)`}
     />

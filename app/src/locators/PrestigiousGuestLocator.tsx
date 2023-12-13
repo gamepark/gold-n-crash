@@ -8,7 +8,7 @@ export class PrestigiousGuestLocator extends ItemLocator {
     if (location.player === (player ?? rules.players[0])) {
       return {
         x: x + ((gameCardDescription.height + 1) * location.id - 1),
-        y: gameCardDescription.height / 2 + 0.5,
+        y: gameCardDescription.height / 2 + 0.2,
         z: 0
       }
     }
@@ -16,7 +16,7 @@ export class PrestigiousGuestLocator extends ItemLocator {
     const baseX = x + (gameCardDescription.height * 3 + 2)
     return {
       x: baseX - ((gameCardDescription.height + 1) * (location.id - 1)),
-      y: -(gameCardDescription.height / 2 + 0.5),
+      y: -(gameCardDescription.height / 2 + 0.2),
       z: 0
     }
   }

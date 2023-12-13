@@ -8,7 +8,7 @@ export class ZeppelinLocator extends ItemLocator {
     if (location.player === (player ?? rules.players[0])) {
       return {
         x: x + ((zeppelinCardDescription.height + 1) * location.id - 1),
-        y: 13.5,
+        y: 12.6,
         z: 0
       }
     }
@@ -16,7 +16,7 @@ export class ZeppelinLocator extends ItemLocator {
     const baseX = x + (zeppelinCardDescription.height * 3 + 2)
     return {
       x: baseX - ((zeppelinCardDescription.height + 1) * (location.id - 1)),
-      y: -13.5,
+      y: -12.6,
       z: 0 }
   }
 }

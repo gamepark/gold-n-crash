@@ -12,6 +12,7 @@ export class ColumnDescription extends LocationDescription {
   height = gameCardDescription.height * 2
   width = gameCardDescription.width + 0.5
   borderRadius = gameCardDescription.borderRadius + 0.1
+  alwaysVisible = true
 
   getExtraCss(_location: Location<number, number>, _context: LocationContext<number, number, number>): Interpolation<Theme> {
     return css`
@@ -31,7 +32,7 @@ export class ColumnDescription extends LocationDescription {
   getCoordinates(location: Location) {
     return {
       x: -18.8 + ((zeppelinCardDescription.height + 1) * location.id - 1),
-      y: 26,
+      y: 24.7,
       z: 0,
     }
   }
