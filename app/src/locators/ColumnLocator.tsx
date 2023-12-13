@@ -14,13 +14,13 @@ export class ColumnLocator extends LineLocator {
   getDelta({ location }: MaterialItem, { rules, player }: ItemContext): Partial<Coordinates> {
     if (location.player === (player ?? rules.players[0])) {
       return {
-        y: 2.2,
+        y: 1.5,
         z: 0.05
       }
     }
 
     return {
-      y: -2.2,
+      y: -1.5,
       z: 0.05
     }
   }

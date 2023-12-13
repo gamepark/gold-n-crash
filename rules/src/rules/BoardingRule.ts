@@ -8,10 +8,10 @@ export class BoardingRule extends PlayerTurnRule {
   onRuleStart() {
     const moves: MaterialMove[] = this.lastOpponentCard
       .maxBy((item) => item.location.x!)
-      .moveItems({
-        type: LocationType.Hand,
-        player: this.player
-      })
+      .moveItems((item) => ({
+        type: LocationType.Discard,
+        player: item.location.player
+      }))
 
     moves.push(
       this.rules().startPlayerTurn(RuleId.PlayerTurn, this.player)
@@ -31,6 +31,7 @@ export class BoardingRule extends PlayerTurnRule {
 
   get opponentColumnIndex() {
     const id = this.remind(Memory.Column)
+    console.log(id)
     if (id === 1) return 3
     if (id === 3) return 1
     return 2

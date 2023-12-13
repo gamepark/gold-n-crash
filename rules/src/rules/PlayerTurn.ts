@@ -40,6 +40,10 @@ export class PlayerTurn extends PlayerTurnRule {
       moves.push(...new DiscardCardRule(this.game).afterItemMove(move))
     }
 
+    if (moves.length) {
+      return moves;
+    }
+
     if (this.actions === 2) {
       moves.push(...this.goToNextPlayerMoves)
     }
@@ -48,6 +52,7 @@ export class PlayerTurn extends PlayerTurnRule {
   }
 
   get goToNextPlayerMoves() {
+    console.log("Forget ?")
     this.forget(Memory.Actions)
     this.forget(Memory.Column)
     return [

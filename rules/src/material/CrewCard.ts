@@ -2,8 +2,8 @@ import { RuleId } from '../rules/RuleId'
 import { Card, isBlue, isBrown, isGreen, isPurple, isRed } from './Card'
 
 export const getPlayEffect = (c: Card) => {
-  if (isRed(c)) return RuleId.Bombing
-  if (isBlue(c)) return RuleId.Bombing
+  //if (isRed(c)) return RuleId.Bombing
+  if (isBlue(c)) return RuleId.Boarding
   if (isPurple(c)) return RuleId.Fishing
   if (isGreen(c)) return RuleId.Strengthen
   if (isBrown(c)) return RuleId.Secure

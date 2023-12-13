@@ -2,7 +2,6 @@ import { DeckLocator, ItemContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 
 export class PlayerDiscardLocator extends DeckLocator {
-
   delta = { x: -0.05, y: -0.05, z: 0.05 }
 
   getCoordinates({ location }: MaterialItem, { rules, player }: ItemContext) {

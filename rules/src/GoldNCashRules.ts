@@ -29,7 +29,8 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
       [LocationType.Hand]: new PositiveSequenceStrategy(),
       [LocationType.Discard]: new PositiveSequenceStrategy(),
       [LocationType.CrewDeck]: new PositiveSequenceStrategy(),
-      [LocationType.Column]: new PositiveSequenceStrategy()
+      [LocationType.Column]: new PositiveSequenceStrategy(),
+      [LocationType.Treasure]: new PositiveSequenceStrategy()
     }
   }
 

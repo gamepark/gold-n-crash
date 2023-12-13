@@ -3,6 +3,7 @@ import { MaterialType } from '@gamepark/gold-n-cash/material/MaterialType'
 import { Flag } from '@gamepark/gold-n-cash/material/Flag'
 import { ItemLocator } from '@gamepark/react-game'
 import { playerHandLocator } from './PlayerHandLocator'
+import { playerTreasureLocator } from './PlayerTreasureLocator'
 import { zeppelinLocator } from './ZeppelinLocator'
 import { crewDeckLocator } from './CrewDeckLocator'
 import { prestigiousGuestLocator } from './PrestigiousGuestLocator'
@@ -18,4 +19,5 @@ export const Locators: Partial<Record<LocationType, ItemLocator<Flag, MaterialTy
   [LocationType.Flag]: flagCardLocator,
   [LocationType.Discard]: playerDiscardLocator,
   [LocationType.Column]: columnLocator,
+  [LocationType.Treasure]: playerTreasureLocator,
 }
