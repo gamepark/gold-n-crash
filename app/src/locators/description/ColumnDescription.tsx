@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { LocationContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
+import { LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { zeppelinCardDescription } from '../../material/ZeppelinCardDescription'
 import { Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
 import times from 'lodash/times'
 import { gameCardDescription } from '../../material/GameCardDescription'
-import { css, Interpolation, Theme } from '@emotion/react'
 
 export class ColumnDescription extends LocationDescription {
 
@@ -13,12 +12,6 @@ export class ColumnDescription extends LocationDescription {
   width = gameCardDescription.width + 0.5
   borderRadius = gameCardDescription.borderRadius + 0.1
   alwaysVisible = true
-
-  getExtraCss(_location: Location<number, number>, _context: LocationContext<number, number, number>): Interpolation<Theme> {
-    return css`
-      background-color: rgba(0, 128, 0, 0.6);
-    `
-  }
 
   getLocations({ player }: MaterialContext): Location[] {
     if (!player) return []

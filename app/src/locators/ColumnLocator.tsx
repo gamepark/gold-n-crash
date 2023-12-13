@@ -8,7 +8,7 @@ export class ColumnLocator extends LineLocator {
   locationDescription = new ColumnDescription()
 
   getDeltaMax({ location }: MaterialItem, { rules, player }: ItemContext): Partial<Coordinates> {
-    return { y: location.player === (player ?? rules.players[0])? 8.4: -5}
+    return { y: location.player === (player ?? rules.players[0])? 8.4: (!player? -8.4: -5)}
   }
 
   getDelta({ location }: MaterialItem, { rules, player }: ItemContext): Partial<Coordinates> {
@@ -20,7 +20,7 @@ export class ColumnLocator extends LineLocator {
     }
 
     return {
-      y: -1.2,
+      y: -2.2,
       z: 0.05
     }
   }

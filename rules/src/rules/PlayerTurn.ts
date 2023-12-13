@@ -10,11 +10,8 @@ import { RuleId } from './RuleId'
 export class PlayerTurn extends PlayerTurnRule {
 
   onRuleStart() {
-    if ((this.actions) === 2) {
-      this.forget(Memory.Actions)
-      return [
-        this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer)
-      ]
+    if (this.actions === 2) {
+      return this.goToNextPlayerMoves
     }
 
     return []
@@ -31,6 +28,7 @@ export class PlayerTurn extends PlayerTurnRule {
   afterItemMove(move: ItemMove) {
     const moves: MaterialMove[] = []
     if (isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Column) {
+      console.log("???")
       moves.push(...new PlayCardRule(this.game).afterItemMove(move))
     }
 
@@ -43,12 +41,17 @@ export class PlayerTurn extends PlayerTurnRule {
     }
 
     if (this.actions === 2) {
-      return [
-        this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer)
-      ]
+      moves.push(...this.goToNextPlayerMoves)
     }
 
-    return []
+    return moves
+  }
+
+  get goToNextPlayerMoves() {
+    this.forget(Memory.Actions)
+    return [
+      this.rules().startPlayerTurn(RuleId.PlayerTurn, this.nextPlayer)
+    ]
   }
 
   get actions() {
