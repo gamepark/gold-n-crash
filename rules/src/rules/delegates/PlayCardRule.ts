@@ -7,7 +7,8 @@ export class PlayCardRule extends PlayerTurnRule {
   getPlayerMoves(): MaterialMove<number, number, number>[] {
     const moves: MaterialMove[] = []
     const hand = this.hand
-    for (let id = 1; id <= 3; id++) {
+    const validColumns = this.validColumns
+    for (const id of validColumns) {
       moves.push(
         ...hand
           .moveItems({
@@ -19,6 +20,28 @@ export class PlayCardRule extends PlayerTurnRule {
     }
 
     return moves
+  }
+
+  get validColumns(): number[] {
+    let columns: number[] = []
+    let minCard: undefined | number = undefined
+    for (let id = 1; id <= 3; id++) {
+      const count = this
+        .material(MaterialType.Card)
+        .location(LocationType.Column)
+        .player(this.player)
+        .locationId(id)
+        .length
+
+      if (minCard === count) {
+        columns.push(id)
+      } else if (minCard === undefined || minCard > count) {
+        minCard = count
+        columns = [id]
+      }
+    }
+
+    return columns
   }
 
   get hand() {
