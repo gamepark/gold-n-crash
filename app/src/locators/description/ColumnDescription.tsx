@@ -11,7 +11,6 @@ export class ColumnDescription extends LocationDescription {
   height = gameCardDescription.height * 2
   width = gameCardDescription.width + 0.5
   borderRadius = gameCardDescription.borderRadius + 0.1
-  alwaysVisible = true
 
   getLocations({ player }: MaterialContext): Location[] {
     if (!player) return []
