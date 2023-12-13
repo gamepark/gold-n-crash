@@ -1,7 +1,8 @@
-import { ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { Memory } from '../Memory'
+import { getPlayEffect } from '../../material/CrewCard'
 
 export class PlayCardRule extends PlayerTurnRule {
   getPlayerMoves(): MaterialMove<number, number, number>[] {
@@ -51,8 +52,18 @@ export class PlayCardRule extends PlayerTurnRule {
       .player(this.player)
   }
 
-  afterItemMove(_move: ItemMove) {
+  afterItemMove(move: ItemMove) {
+    if (!isMoveItemType(MaterialType.Card)(move)) return []
     this.memorize(Memory.Actions, (action) => (action ?? 0) + 1)
+    const card = this.material(MaterialType.Card).getItem(move.itemIndex)!.id.front
+
+    if (card) {
+      const playEffect = getPlayEffect(card)
+      if (playEffect) return [this.rules().startPlayerTurn(playEffect, this.player)]
+    } else {
+      console.error("Moving a card without front ?")
+    }
+
     return []
   }
 }
