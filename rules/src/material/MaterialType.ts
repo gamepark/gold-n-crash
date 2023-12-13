@@ -1,6 +1,5 @@
 export enum MaterialType {
   FlagCard = 1,
-  CrewCard,
+  Card,
   ZeppelinCard,
-  PrestigiousGuestCard
 }

@@ -25,7 +25,7 @@ const hideFrontWhenRotated = (item: MaterialItem) => item.location.rotation? ['i
 export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, LocationType> {
 
   locationsStrategies = {
-    [MaterialType.CrewCard]: {
+    [MaterialType.Card]: {
       [LocationType.Hand]: new PositiveSequenceStrategy(),
       [LocationType.Discard]: new PositiveSequenceStrategy(),
       [LocationType.CrewDeck]: new PositiveSequenceStrategy(),
@@ -34,7 +34,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
   }
 
   hidingStrategies = {
-    [MaterialType.CrewCard]: {
+    [MaterialType.Card]: {
       [LocationType.Hand]: hideFrontToOthers,
       [LocationType.CrewDeck]: hideFront
     },

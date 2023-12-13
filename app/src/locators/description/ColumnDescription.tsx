@@ -4,15 +4,14 @@ import { zeppelinCardDescription } from '../../material/ZeppelinCardDescription'
 import { Location } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
 import times from 'lodash/times'
-import { crewCardDescription } from '../../material/CrewCardDescription'
+import { gameCardDescription } from '../../material/GameCardDescription'
 import { css, Interpolation, Theme } from '@emotion/react'
 
 export class ColumnDescription extends LocationDescription {
 
-  height = crewCardDescription.height * 2
-  width = crewCardDescription.width + 2
-  borderRadius = crewCardDescription.borderRadius
-  alwaysVisible = true
+  height = gameCardDescription.height * 2
+  width = gameCardDescription.width + 0.5
+  borderRadius = gameCardDescription.borderRadius + 0.1
 
   getExtraCss(_location: Location<number, number>, _context: LocationContext<number, number, number>): Interpolation<Theme> {
     return css`

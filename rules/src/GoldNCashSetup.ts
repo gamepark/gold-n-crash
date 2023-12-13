@@ -2,11 +2,10 @@ import { MaterialGameSetup } from '@gamepark/rules-api'
 import shuffle from 'lodash/shuffle'
 import { GoldNCashRules } from './GoldNCashRules'
 import { GoldNCashOptions } from './GoldNCashOptions'
-import { chamouraiCrews, ChamouraiDeck, poulpirateCrews, PoulpirateDeck } from './material/Crew'
+import { Card, chamouraiCrew, ChamouraiDeck, poulpirateCrew, PoulpirateDeck, prestigiousGuests } from './material/Card'
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
-import { PrestigiousGuest, prestigiousGuests } from './material/PrestigiousGuest'
 import { chamouraiZeppelins, poulpirateZeppelins } from './material/Zeppelin'
 import { RuleId } from './rules/RuleId'
 
@@ -25,14 +24,14 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
     return options.players.forEach((player) => this.setupPlayer(player.id, guests))
   }
 
-  setupPlayer(playerId: Flag, guests: PrestigiousGuest[]) {
+  setupPlayer(playerId: Flag, guests: Card[]) {
     this.setupZeppelins(playerId)
     this.setupGuests(playerId, guests)
     this.setupCrew(playerId)
   }
 
   setupCrew(playerId: Flag) {
-    const crews = playerId === Flag.Poulpirate ? poulpirateCrews : chamouraiCrews
+    const crews = playerId === Flag.Poulpirate ? poulpirateCrew : chamouraiCrew
     const deck = playerId === Flag.Poulpirate ? PoulpirateDeck : ChamouraiDeck
     const cards = crews
       .flatMap((c) => Array
@@ -50,12 +49,12 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
         ),
       )
 
-    this.material(MaterialType.CrewCard).createItems(cards)
-    this.material(MaterialType.CrewCard).player(playerId).shuffle()
+    this.material(MaterialType.Card).createItems(cards)
+    this.material(MaterialType.Card).location(LocationType.CrewDeck).player(playerId).shuffle()
 
     // DISCARD 5 CARDS
     this
-      .material(MaterialType.CrewCard)
+      .material(MaterialType.Card)
       .location(LocationType.CrewDeck)
       .player(playerId)
       .sort(card => -card.location.x!)
@@ -67,7 +66,7 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
 
     // DRAW 5 CARDS
     this
-      .material(MaterialType.CrewCard)
+      .material(MaterialType.Card)
       .location(LocationType.CrewDeck)
       .player(playerId)
       .sort(card => -card.location.x!)
@@ -80,13 +79,13 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
 
   }
 
-  setupGuests(playerId: Flag, guests: PrestigiousGuest[]) {
+  setupGuests(playerId: Flag, guests: Card[]) {
     const playerGuests = guests.splice(0, 3)
     this
-      .material(MaterialType.PrestigiousGuestCard)
+      .material(MaterialType.Card)
       .createItems(
         playerGuests.map((g, index) => ({
-          id: g,
+          id: { front: g, back: playerId },
           location: {
             type: LocationType.PrestigiousGuests,
             id: index + 1,

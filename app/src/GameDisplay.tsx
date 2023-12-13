@@ -15,7 +15,7 @@ export const GameDisplay: FC<GameDisplayProps> = () => {
       xMax={50}
       yMin={-35}
       yMax={35}
-      margin={{ top: 7, left: 0, right: 30, bottom: 0 }}
+      margin={{ top: 7, left: 0, right: 0, bottom: 0 }}
       css={css`background-color: rgba(255, 255, 255, 0.52)`}
     />
     <PlayerPanels/>
