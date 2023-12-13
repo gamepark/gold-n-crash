@@ -1,25 +1,37 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Flag } from '@gamepark/gold-n-cash/material/Flag'
-import { PlayerPanel, usePlayers } from '@gamepark/react-game'
+import { PlayerPanel, usePlayerId, usePlayers } from '@gamepark/react-game'
 import { FC } from 'react'
 
 export const PlayerPanels: FC<any> = () => {
+  const playerId = usePlayerId() ?? Flag.Poulpirate
   const players = usePlayers({ sortFromMe: true })
   return (
     <>
-      {players.map((player, index) =>
-        <PlayerPanel key={player.id} playerId={player.id} color={playerColorCode[player.id]} css={panelPosition(index)}/>
+      {players.map((player) =>
+        <PlayerPanel key={player.id} playerId={player.id} color={playerColorCode[player.id]} css={[panelPosition, player.id === playerId? bottomPosition: topPosition ]}/>
       )}
     </>
   )
 }
-const panelPosition = (index: number) => css`
+
+const panelPosition = css`
   position: absolute;
   right: 1em;
-  top: ${8.5 + index * 16}em;
   width: 28em;
   height: 14em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`
+
+const topPosition = css`
+  top: 8.5em;
+`
+
+const bottomPosition = css`
+  top: 85em;
 `
 
 export const playerColorCode: Record<Flag, string> = {

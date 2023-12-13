@@ -7,6 +7,8 @@ export enum PrestigiousGuest {
   PrestigiousGuest4,
   PrestigiousGuest5,
   PrestigiousGuest6,
+  PrestigiousGuest7,
+  PrestigiousGuest8,
 }
 
 export const prestigiousGuests = Object.values(PrestigiousGuest).filter(isEnumValue)

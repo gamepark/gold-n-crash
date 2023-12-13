@@ -2,7 +2,7 @@ import { MaterialGameSetup } from '@gamepark/rules-api'
 import shuffle from 'lodash/shuffle'
 import { GoldNCashRules } from './GoldNCashRules'
 import { GoldNCashOptions } from './GoldNCashOptions'
-import { chamouraiCrew, poulpirateCrew } from './material/Crew'
+import { chamouraiCrews, ChamouraiDeck, poulpirateCrews, PoulpirateDeck } from './material/Crew'
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
@@ -32,20 +32,26 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
   }
 
   setupCrew(playerId: Flag) {
-    const crew = shuffle(playerId === Flag.Chamourai ? chamouraiCrew : poulpirateCrew)
-
-    // DECK
-    this
-      .material(MaterialType.CrewCard)
-      .createItems(
-        crew.map((c) => ({
-          id: { front: c, back: playerId },
-          location: {
-            type: LocationType.CrewDeck,
-            player: playerId
-          }
-        }))
+    const crews = playerId === Flag.Poulpirate ? poulpirateCrews : chamouraiCrews
+    const deck = playerId === Flag.Poulpirate ? PoulpirateDeck : ChamouraiDeck
+    const cards = crews
+      .flatMap((c) => Array
+        .from(Array(deck[c]))
+        .map(() => ({
+            id: {
+              front: c,
+              back: playerId,
+            },
+            location: {
+              type: LocationType.CrewDeck,
+              player: playerId,
+            },
+          }),
+        ),
       )
+
+    this.material(MaterialType.CrewCard).createItems(cards)
+    this.material(MaterialType.CrewCard).player(playerId).shuffle()
 
     // DISCARD 5 CARDS
     this
@@ -56,7 +62,7 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
       .limit(5)
       .moveItems({
         type: LocationType.Discard,
-        player: playerId
+        player: playerId,
       })
 
     // DRAW 5 CARDS
@@ -68,7 +74,7 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
       .limit(5)
       .moveItems({
         type: LocationType.Hand,
-        player: playerId
+        player: playerId,
       })
 
 
@@ -79,13 +85,14 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
     this
       .material(MaterialType.PrestigiousGuestCard)
       .createItems(
-        playerGuests.map((g) => ({
+        playerGuests.map((g, index) => ({
           id: g,
           location: {
             type: LocationType.PrestigiousGuests,
-            player: playerId
-          }
-        }))
+            id: index + 1,
+            player: playerId,
+          },
+        })),
       )
   }
 
@@ -94,14 +101,15 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
     this
       .material(MaterialType.ZeppelinCard)
       .createItems(
-        zeppelins.map((z) => ({
+        zeppelins.map((z, index) => ({
           id: { front: z, back: playerId },
           location: {
             type: LocationType.Zeppelins,
+            id: index + 1,
             player: playerId,
-            rotation: true
-          }
-        }))
+            rotation: true,
+          },
+        })),
       )
   }
 
