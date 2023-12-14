@@ -4,5 +4,6 @@ export enum Memory {
   LastPlayer,
   PlayedCards ,
   NumberOfEffect,
-  EffectPlayed
+  EffectPlayed,
+  Observation
 }

@@ -71,7 +71,7 @@ export class PlaceCardRule extends PlayerTurnRule {
     this.incrementPlayedCard()
     const card = this.material(MaterialType.Card).getItem(move.itemIndex)!.id.front
     const moves = []
-    if (!this.hand.length && !this.deck.length) {
+    if (!this.deck.length) {
       this.memorize(Memory.LastPlayer, this.game.players.find((p) => p !== this.player))
     }
 

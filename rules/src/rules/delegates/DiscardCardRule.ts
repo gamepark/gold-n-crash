@@ -16,7 +16,7 @@ export class DiscardCardRule extends PlayerTurnRule {
 
       if (card.length) {
         const discardEffectRule = new DiscardEffectRule(this.game, id)
-        if (!discardEffectRule.canDiscard(card.getItem()!.id.front)) return []
+        if (!discardEffectRule.canDiscard(card.getItem()!.id.front)) continue
 
         moves.push(
           card.moveItem({
@@ -26,6 +26,7 @@ export class DiscardCardRule extends PlayerTurnRule {
         )
       }
     }
+
 
     return moves
   }
