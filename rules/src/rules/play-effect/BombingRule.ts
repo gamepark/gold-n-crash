@@ -12,11 +12,6 @@ export class BombingRule extends PlayerTurnRule {
     const moves: MaterialMove[] = []
     const zeppelin = this.zeppelin
     moves.push(zeppelin.rotateItem(ZeppelinState.PENDING_REVELATION))
-
-    if (!moves.length) {
-      moves.push(this.rules().startRule(RuleId.CardPlaced))
-    }
-
     return moves;
   }
 
@@ -32,19 +27,25 @@ export class BombingRule extends PlayerTurnRule {
       if (zeppelinStrength === undefined) return []
       if (zeppelinStrength <= strength) {
         moves.push(zeppelin.rotateItem(ZeppelinState.VISIBLE))
+        if (this.destroyedZeppelins === 2) {
+          moves.push(this.rules().endGame())
+          return moves;
+        }
       } else {
         moves.push(zeppelin.rotateItem(ZeppelinState.VISIBLE_BY_ME))
       }
     }
 
-    // If opponent zeppelins are crashed, the attacker wins
-    if (!this.opponentZeppelins.rotation(ZeppelinState.VISIBLE).length) {
-      moves.push(this.rules().endGame())
-    } else {
+    if (this.destroyedZeppelins < 3) {
+      // If opponent zeppelins are crashed, the attacker wins
       moves.push(this.rules().startRule(RuleId.CardPlaced))
     }
 
     return moves
+  }
+
+  get destroyedZeppelins() {
+    return this.opponentZeppelins.rotation(ZeppelinState.VISIBLE).length
   }
 
   get opponentZeppelins() {
