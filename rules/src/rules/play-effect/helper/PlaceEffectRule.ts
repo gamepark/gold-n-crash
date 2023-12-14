@@ -3,6 +3,7 @@ import { Card, isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '../../.
 import { getOpponentColumnIndex } from '../../../material/GetOpponentColumn'
 import { LocationType } from '../../../material/LocationType'
 import { MaterialType } from '../../../material/MaterialType'
+import { ZeppelinState } from '../../../material/Zeppelin'
 
 export class PlaceEffectRule extends PlayerTurnRule {
 
@@ -22,12 +23,12 @@ export class PlaceEffectRule extends PlayerTurnRule {
   }
 
   get isRedActivable() {
-    return !!this
+    return this
       .material(MaterialType.ZeppelinCard)
       .location(LocationType.Zeppelins)
       .locationId(getOpponentColumnIndex(this.column))
       .player((player) => player !== this.player)
-      .getItem()?.location.rotation
+      .getItem()?.location.rotation !== ZeppelinState.VISIBLE
   }
 
   get isBlueActivable() {

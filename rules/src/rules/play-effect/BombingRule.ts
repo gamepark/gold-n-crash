@@ -3,24 +3,15 @@ import { isRed } from '../../material/Card'
 import { getOpponentColumnIndex } from '../../material/GetOpponentColumn'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { getZeppelinStrength } from '../../material/Zeppelin'
+import { getZeppelinStrength, ZeppelinState } from '../../material/Zeppelin'
 import { Memory } from '../Memory'
 import { RuleId } from '../RuleId'
 
 export class BombingRule extends PlayerTurnRule {
   onRuleStart() {
     const moves: MaterialMove[] = []
-
     const zeppelin = this.zeppelin
-    const strength = this.strength
-    const zeppelinStrength = getZeppelinStrength(zeppelin.getItem()!.id.front)
-    if (zeppelinStrength === undefined) {
-      return []
-    }
-
-    if (zeppelinStrength <= strength) {
-      moves.push(zeppelin.rotateItem(false))
-    }
+    moves.push(zeppelin.rotateItem(ZeppelinState.PENDING_REVELATION))
 
     if (!moves.length) {
       moves.push(this.rules().startRule(RuleId.CardPlaced))
@@ -33,8 +24,21 @@ export class BombingRule extends PlayerTurnRule {
     if (!isMoveItemType(MaterialType.ZeppelinCard)(move)) return []
 
     const moves: MaterialMove[] = []
+
+    if (move.location.rotation === ZeppelinState.PENDING_REVELATION) {
+      const zeppelin = this.zeppelin
+      const strength = this.strength
+      const zeppelinStrength = getZeppelinStrength(zeppelin.getItem()!.id.front)
+      if (zeppelinStrength === undefined) return []
+      if (zeppelinStrength <= strength) {
+        moves.push(zeppelin.rotateItem(ZeppelinState.VISIBLE))
+      } else {
+        moves.push(zeppelin.rotateItem(ZeppelinState.VISIBLE_BY_ME))
+      }
+    }
+
     // If opponent zeppelins are crashed, the attacker wins
-    if (!this.opponentZeppelins.rotation(true).length) {
+    if (!this.opponentZeppelins.rotation(ZeppelinState.VISIBLE).length) {
       moves.push(this.rules().endGame())
     } else {
       moves.push(this.rules().startRule(RuleId.CardPlaced))

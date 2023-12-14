@@ -1,4 +1,4 @@
-import { isBlue, isBrown, isGold, isGreen } from '../../material/Card'
+import { isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '../../material/Card'
 import { AbstractPrestigiousGuestRule } from './AbstractPrestigiousGuestRule'
 
 export class PrestigiousGuest5Rule extends AbstractPrestigiousGuestRule {
@@ -15,7 +15,7 @@ export class PrestigiousGuest5Rule extends AbstractPrestigiousGuestRule {
   }
 
   get hasPurple(): number {
-    return this.columnCards.filter((item) => isGreen(item.id.front)).length? 1: 0
+    return this.columnCards.filter((item) => isPurple(item.id.front)).length? 1: 0
   }
 
   get hasBrown(): number {
@@ -23,7 +23,7 @@ export class PrestigiousGuest5Rule extends AbstractPrestigiousGuestRule {
   }
 
   get hasRed(): number {
-    return this.columnCards.filter((item) => isBrown(item.id.front)).length? 1: 0
+    return this.columnCards.filter((item) => isRed(item.id.front)).length? 1: 0
   }
 
   get hasGold(): number {

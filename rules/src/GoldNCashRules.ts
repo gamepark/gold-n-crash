@@ -2,6 +2,7 @@ import { hideFront, hideFrontToOthers, MaterialItem, PositiveSequenceStrategy, S
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
+import { ZeppelinState } from './material/Zeppelin'
 import { CrackTheTreasureChestRule } from './rules/CrackTheTreasureChestRule'
 import { LootRule } from './rules/LootRule'
 import { ManeuverRule } from './rules/ManeuverRule'
@@ -16,8 +17,19 @@ import { PlayerTurn } from './rules/PlayerTurn'
 import { RecallRule } from './rules/RecallRule'
 import { RuleId } from './rules/RuleId'
 
+const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
+  switch (item.location.rotation) {
+    case ZeppelinState.PENDING_REVELATION:
+      return player === item.location.player? []: ['id.front']
+    case ZeppelinState.VISIBLE_BY_ME:
+      return player === item.location.player? []: ['id.front']
+    case ZeppelinState.VISIBLE:
+      return []
+    default:
+      return ['id.front']
+  }
+}
 
-const hideFrontWhenRotated = (item: MaterialItem) => item.location.rotation? ['id.front']: []
 
 /**
  * This class implements the rules of the board game.
@@ -42,7 +54,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
       [LocationType.Treasure]: hideFront,
     },
     [MaterialType.ZeppelinCard]: {
-      [LocationType.Zeppelins]: hideFrontWhenRotated
+      [LocationType.Zeppelins]: zeppelinStrategy
     }
   }
 

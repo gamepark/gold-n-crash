@@ -9,6 +9,13 @@ export enum Zeppelin {
   ChamouraiZeppelin3,
 }
 
+export enum ZeppelinState {
+  INVISIBLE = 1,
+  PENDING_REVELATION,
+  VISIBLE_BY_ME,
+  VISIBLE
+}
+
 export const getZeppelinStrength = (zeppelin: Zeppelin) => {
   if (zeppelin === undefined) return undefined
   return zeppelin % 50
