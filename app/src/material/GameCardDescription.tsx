@@ -46,6 +46,7 @@ import PrestigiousGuest5 from '../images/prestigious-guest/PrestigiousGuest5.jpg
 import PrestigiousGuest6 from '../images/prestigious-guest/PrestigiousGuest6.jpg'
 import PrestigiousGuest7 from '../images/prestigious-guest/PrestigiousGuest7.jpg'
 import PrestigiousGuest8 from '../images/prestigious-guest/PrestigiousGuest8.jpg'
+import PrestigiousGuestBack from '../images/prestigious-guest/PrestigiousGuestBack.jpg'
 import { MaterialItem } from '@gamepark/rules-api'
 
 export class GameCardDescription extends CardDescription {
@@ -55,7 +56,7 @@ export class GameCardDescription extends CardDescription {
   backImages = {
     [Flag.Poulpirate]: PoulpirateCrewBack,
     [Flag.Chamourai]: ChamouraiCrewBack,
-    [PrestigiousGuest.PrestigiousGuest]: ChamouraiCrewBack
+    [PrestigiousGuest.PrestigiousGuest]: PrestigiousGuestBack
   }
 
   images = {

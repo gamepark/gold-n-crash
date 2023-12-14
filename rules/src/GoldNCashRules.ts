@@ -2,18 +2,19 @@ import { hideFront, hideFrontToOthers, MaterialItem, PositiveSequenceStrategy, S
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
-import { BoardingRule } from './rules/BoardingRule'
-import { BombingRule } from './rules/BombingRule'
 import { CrackTheTreasureChestRule } from './rules/CrackTheTreasureChestRule'
-import { FishingRule } from './rules/FishingRule'
 import { LootRule } from './rules/LootRule'
 import { ManeuverRule } from './rules/ManeuverRule'
 import { ObserveRule } from './rules/ObserveRule'
+import { BoardingRule } from './rules/play-effect/BoardingRule'
+import { BombingRule } from './rules/play-effect/BombingRule'
+import { CardPlacedRule } from './rules/play-effect/CardPlacedRule'
+import { FishingRule } from './rules/play-effect/FishingRule'
+import { SecureRule } from './rules/play-effect/SecureRule'
+import { StrengthenRule } from './rules/play-effect/StrengthenRule'
 import { PlayerTurn } from './rules/PlayerTurn'
 import { RecallRule } from './rules/RecallRule'
 import { RuleId } from './rules/RuleId'
-import { SecureRule } from './rules/SecureRule'
-import { StrengthenRule } from './rules/StrengthenRule'
 
 
 const hideFrontWhenRotated = (item: MaterialItem) => item.location.rotation? ['id.front']: []
@@ -56,6 +57,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [RuleId.Maneuver]: ManeuverRule,
     [RuleId.Recall]: RecallRule,
     [RuleId.Observe]: ObserveRule,
-    [RuleId.Loot]: LootRule
+    [RuleId.Loot]: LootRule,
+    [RuleId.CardPlaced]: CardPlacedRule
   }
 }

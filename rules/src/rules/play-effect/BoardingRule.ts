@@ -1,21 +1,22 @@
 import { MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { LocationType } from '../material/LocationType'
-import { RuleId } from './RuleId'
-import { Memory } from './Memory'
-import { MaterialType } from '../material/MaterialType'
+import { getOpponentColumnIndex } from '../../material/GetOpponentColumn'
+import { LocationType } from '../../material/LocationType'
+import { MaterialType } from '../../material/MaterialType'
+import { Memory } from '../Memory'
+import { RuleId } from '../RuleId'
 
 export class BoardingRule extends PlayerTurnRule {
   onRuleStart() {
+    const times = this.times
     const moves: MaterialMove[] = this.lastOpponentCard
-      .maxBy((item) => item.location.x!)
+      .sort((item) => -item.location.x!)
+      .limit(times)
       .moveItems((item) => ({
         type: LocationType.Discard,
         player: item.location.player
       }))
 
-    moves.push(
-      this.rules().startPlayerTurn(RuleId.PlayerTurn, this.player)
-    )
+    moves.push(this.rules().startRule(RuleId.CardPlaced))
 
     return moves
   }
@@ -24,17 +25,17 @@ export class BoardingRule extends PlayerTurnRule {
     return this
       .material(MaterialType.Card)
       .location(LocationType.Column)
-      .locationId(this.opponentColumnIndex)
+      .locationId(getOpponentColumnIndex(this.column))
       .player((player) => player !== this.player)
       .maxBy((item) => item.location.x!)
   }
 
-  get opponentColumnIndex() {
-    const id = this.remind(Memory.Column)
-    console.log(id)
-    if (id === 1) return 3
-    if (id === 3) return 1
-    return 2
+  get times() {
+    return this.remind(Memory.NumberOfEffect) ?? 1
+  }
+
+  get column() {
+    return this.remind(Memory.Column)
   }
 
   onRuleEnd() {

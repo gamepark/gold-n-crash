@@ -8,38 +8,38 @@ export enum Card {
   PoulpirateBlueCrew1 = 1,
   PoulpirateBlueCrew2,
   PoulpirateBlueCrew3,
-  PoulpirateGreenCrew1 = 10,
+  PoulpirateGreenCrew1 = 11,
   PoulpirateGreenCrew2,
   PoulpirateGreenCrew3,
-  PoulpirateBrownCrew1 = 20,
+  PoulpirateBrownCrew1 = 21,
   PoulpirateBrownCrew2,
   PoulpirateBrownCrew3,
-  PoulpiratePurpleCrew1 = 30,
+  PoulpiratePurpleCrew1 = 31,
   PoulpiratePurpleCrew2,
   PoulpiratePurpleCrew3,
-  PoulpirateRedCrew1 = 40,
+  PoulpirateRedCrew1 = 41,
   PoulpirateRedCrew2,
   PoulpirateRedCrew3,
-  PoulpirateGold4 = 50,
+  PoulpirateGold4 = 51,
   PoulpirateGold6 ,
-  ChamouraiBlueCrew1 = 100,
+  ChamouraiBlueCrew1 = 101,
   ChamouraiBlueCrew2,
   ChamouraiBlueCrew3,
-  ChamouraiGreenCrew1 = 110,
+  ChamouraiGreenCrew1 = 111,
   ChamouraiGreenCrew2,
   ChamouraiGreenCrew3,
-  ChamouraiBrownCrew1 = 120,
+  ChamouraiBrownCrew1 = 121,
   ChamouraiBrownCrew2,
   ChamouraiBrownCrew3,
-  ChamouraiPurpleCrew1 = 130,
+  ChamouraiPurpleCrew1 = 131,
   ChamouraiPurpleCrew2,
   ChamouraiPurpleCrew3,
-  ChamouraiRedCrew1 = 140,
+  ChamouraiRedCrew1 = 141,
   ChamouraiRedCrew2,
   ChamouraiRedCrew3,
-  ChamouraiGold4 = 150,
+  ChamouraiGold4 = 151,
   ChamouraiGold6 ,
-  PrestigiousGuest1 = 500,
+  PrestigiousGuest1 = 501,
   PrestigiousGuest2,
   PrestigiousGuest3,
   PrestigiousGuest4,
@@ -49,12 +49,12 @@ export enum Card {
   PrestigiousGuest8,
 }
 
-export const isBlue = (c: Card) => c % 100 >= 1 && c % 100 < 10
-export const isGreen = (c: Card) => c % 100 >= 10 && c % 100 < 20
-export const isBrown = (c: Card) => c % 100 >= 20 && c % 100 < 30
-export const isPurple = (c: Card) => c % 100 >= 30 && c % 100 < 40
-export const isRed = (c: Card) => c % 100 >= 40 && c % 100 < 50
-export const isGold = (c: Card) => c % 100 >= 50 && c % 100 < 60
+export const isBlue = (c: Card) => c % 100 > 0 && c % 100 <= 10
+export const isGreen = (c: Card) => c % 100 > 10 && c % 100 <= 20
+export const isBrown = (c: Card) => c % 100 > 20 && c % 100 <= 30
+export const isPurple = (c: Card) => c % 100 > 30 && c % 100 <= 40
+export const isRed = (c: Card) => c % 100 > 40 && c % 100 <= 50
+export const isGold = (c: Card) => c % 100 > 50 && c % 100 <= 60
 
 export const isPoulpirateCrew = (c: Card) => c < Card.ChamouraiBlueCrew1
 export const poulpirateCrew = Object.values(Card).filter(isEnumValue).filter(isPoulpirateCrew)

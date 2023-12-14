@@ -1,24 +1,27 @@
 import { MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { RuleId } from './RuleId'
-import { MaterialType } from '../material/MaterialType'
-import { LocationType } from '../material/LocationType'
+import { LocationType } from '../../material/LocationType'
+import { MaterialType } from '../../material/MaterialType'
+import { Memory } from '../Memory'
+import { RuleId } from '../RuleId'
 
 export class FishingRule extends PlayerTurnRule {
   onRuleStart() {
     const discard = this.discard
+    const times = this.times
 
     const moves: MaterialMove[] = discard
-      .limit(1)
+      .limit(times)
       .moveItems({
         type: LocationType.Hand,
         player: this.player
       })
 
-    moves.push(
-      this.rules().startPlayerTurn(RuleId.PlayerTurn, this.player)
-    )
-
+    moves.push(this.rules().startRule(RuleId.CardPlaced))
     return moves
+  }
+
+  get times() {
+    return this.remind(Memory.NumberOfEffect) ?? 1
   }
 
   get discard() {

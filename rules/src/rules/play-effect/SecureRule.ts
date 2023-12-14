@@ -1,21 +1,10 @@
 import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { LocationType } from '../material/LocationType'
-import { MaterialType } from '../material/MaterialType'
-import { Memory } from './Memory'
-import { RuleId } from './RuleId'
+import { LocationType } from '../../material/LocationType'
+import { MaterialType } from '../../material/MaterialType'
+import { Memory } from '../Memory'
+import { RuleId } from '../RuleId'
 
 export class SecureRule extends PlayerTurnRule {
-
-  onRuleStart() {
-    const moves = this.getPlayerMoves()
-    if (!moves.length) {
-      return [
-        this.rules().startPlayerTurn(RuleId.PlayerTurn, this.player)
-      ]
-    }
-
-    return []
-  }
 
   getPlayerMoves(): MaterialMove<number, number, number>[] {
     const moves: MaterialMove[] = []
@@ -42,7 +31,7 @@ export class SecureRule extends PlayerTurnRule {
 
   get otherColumns() {
     const columns = []
-    for (let id = 0; id <= 3; id++) {
+    for (let id = 1; id <= 3; id++) {
       if (id !== this.column && Math.abs(id - this.column) === 1) {
         columns.push(id)
       }
@@ -57,13 +46,24 @@ export class SecureRule extends PlayerTurnRule {
 
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.Card)(move) || move.location.type !== LocationType.Treasure) return []
+    this.memorize(Memory.EffectPlayed, (e) => (e ?? 0) + 1)
+    if (this.times !== this.effectPlayed && this.getPlayerMoves().length > 0) return []
+
     return [
-      this.rules().startPlayerTurn(RuleId.PlayerTurn, this.player)
+      this.rules().startRule(RuleId.CardPlaced)
     ]
+  }
+  get times() {
+    return this.remind(Memory.NumberOfEffect) ?? 1
+  }
+
+  get effectPlayed() {
+    return this.remind(Memory.EffectPlayed) ?? 0
   }
 
   onRuleEnd() {
-    this.forget(Memory.Column)
+    this.forget(Memory.EffectPlayed)
+    this.forget(Memory.NumberOfEffect)
     return []
   }
 }

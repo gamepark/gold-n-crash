@@ -9,5 +9,6 @@ export enum RuleId {
   Maneuver,
   Recall,
   Observe,
-  Loot
+  Loot,
+  CardPlaced
 }

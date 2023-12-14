@@ -25,7 +25,7 @@ export class ColumnDescription extends LocationDescription {
     return {
       x: -18.8 + ((zeppelinCardDescription.height + 1) * location.id - 1),
       y: 24.7,
-      z: 0,
+      z: 20,
     }
   }
 }

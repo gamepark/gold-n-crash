@@ -1,5 +1,8 @@
 export enum Memory {
   Actions = 1,
   Column,
-  LastPlayer
+  LastPlayer,
+  PlayedCards ,
+  NumberOfEffect,
+  EffectPlayed
 }

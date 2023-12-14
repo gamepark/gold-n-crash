@@ -9,14 +9,14 @@ export class PlayerTreasureLocator extends DeckLocator {
 
   getCoordinates({ location }: MaterialItem, { rules, player }: ItemContext) {
     if (location.player === (player ?? rules.players[0])) {
-      return { x: -33, y: -8.5, z: 0 }
+      return { x: -33, y: -8.5, z: 0.05 }
     }
 
-    return { x: 33, y: 8.5, z: 0 }
+    return { x: 33, y: 8.5, z: 0.05 }
   }
 
   getRotateZ({ location }: MaterialItem, { rules, player }: ItemContext) {
-    return (location.player === (player ?? rules.players[0]))? 90: -90
+    return (location.player === (player ?? rules.players[0]))? -90: 90
   }
 }
 
