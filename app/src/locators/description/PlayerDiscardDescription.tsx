@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
-import { LocationDescription, MaterialContext } from '@gamepark/react-game'
+import { ItemContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
 import { gameCardDescription } from '../../material/GameCardDescription'
 
@@ -10,13 +10,19 @@ export class PlayerDiscardDescription extends LocationDescription {
   width = gameCardDescription.width + 1.5
   borderRadius = gameCardDescription.borderRadius
 
-  getLocations({ player }: MaterialContext): Location[] {
+  getLocations({ rules, player }: MaterialContext): Location[] {
     if (!player) return []
-    return [{
+    return rules.players.map((p) => ({
       type: LocationType.Discard,
-      player
-    }]
+      player: p
+    }))
   }
 
-  coordinates = { x: -23, y: 0, z: 20 }
+  getCoordinates(location: Location, { rules, player }: ItemContext) {
+    if (location.player === (player ?? rules.players[0])) {
+      return { x: -23, y: 0, z: 20 }
+    }
+
+    return { x: 23, y: -0, z: 20 }
+  }
 }

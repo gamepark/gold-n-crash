@@ -1,10 +1,12 @@
 import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { LocationType } from '../material/LocationType'
-import { MaterialType } from '../material/MaterialType'
-import { Memory } from './Memory'
-import { PrestigiousGuestRule } from './prestigious-guests/PrestigiousGuestRule'
+import { LocationType } from '../../material/LocationType'
+import { MaterialType } from '../../material/MaterialType'
+import { DiscardColumn } from '../helper/DiscardColumn'
+import { PrestigiousGuestRule } from '../prestigious-guests/PrestigiousGuestRule'
+import { RuleId } from '../RuleId'
 
 export class ManeuverRule extends PlayerTurnRule {
+
   getPlayerMoves(): MaterialMove<number, number, number>[] {
     const moves: MaterialMove[] = []
     const columns = [1, 2, 3]
@@ -34,12 +36,12 @@ export class ManeuverRule extends PlayerTurnRule {
   }
 
   afterItemMove(move: ItemMove) {
-    if (!isMoveItemType(MaterialType.Card)(move)) return []
-    this.memorize(Memory.Column, move.location.id)
-    return new PrestigiousGuestRule(this.game).secureGuestMoves
-  }
+    if (!isMoveItemType(MaterialType.Card)(move) || move.location.type !== LocationType.Column) return []
+    const moves: MaterialMove[] = []
+    moves.push(...new PrestigiousGuestRule(this.game, move.location.id).secureGuestMoves)
+    moves.push(...new DiscardColumn(this.game, move.location.id).discardMoves)
+    moves.push(this.rules().startRule(RuleId.PlayerTurn))
 
-  incrementPlayedCard() {
-    this.memorize(Memory.PlayedCards, (played: number | undefined) => (played ?? 0) + 1)
+    return moves
   }
 }

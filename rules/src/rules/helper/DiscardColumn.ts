@@ -1,29 +1,19 @@
-import { MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { MaterialGame, PlayerTurnRule } from '@gamepark/rules-api'
 import { isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '../../material/Card'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { Memory } from '../Memory'
-import { PrestigiousGuestRule } from '../prestigious-guests/PrestigiousGuestRule'
-import { RuleId } from '../RuleId'
 
-export class CardPlacedRule extends PlayerTurnRule {
-  onRuleStart() {
-    const moves: MaterialMove[] = []
-    moves.push(...this.secureGuest)
-    moves.push(...this.discardMoves)
-    moves.push(this.rules().startRule(RuleId.PlayerTurn))
-    return moves
-  }
+export class DiscardColumn extends PlayerTurnRule {
 
-  get secureGuest() {
-    return new PrestigiousGuestRule(this.game).secureGuestMoves
+  constructor(game: MaterialGame, readonly column: number) {
+    super(game)
   }
 
   get discardMoves() {
     const columnCard = this
       .material(MaterialType.Card)
       .location(LocationType.Column)
-      .locationId(this.remind(Memory.Column))
+      .locationId(this.column)
       .player(this.player)
 
     const red = columnCard.filter((item) => isRed(item.id.front)).length >= 3
@@ -47,9 +37,5 @@ export class CardPlacedRule extends PlayerTurnRule {
         type: LocationType.Discard,
         player: this.player
       })
-  }
-
-  get column() {
-    return this.remind(Memory.Column)
   }
 }

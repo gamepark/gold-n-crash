@@ -11,36 +11,40 @@ export class PlaceEffectRule extends PlayerTurnRule {
     super(game)
   }
 
-  isActivableCard(c: Card) {
+  canPlace(c: Card) {
     if (isGold(c)) return true
-    if (isRed(c)) return this.isRedActivable
-    if (isBlue(c)) return this.isBlueActivable
-    if (isPurple(c)) return this.isPurpleActivable
-    if (isGreen(c)) return this.isGreenActivable
-    if (isBrown(c)) return this.isBrownActivable
+    if (isRed(c)) return this.canActivateRed
+    if (isBlue(c)) return this.canActivateBlue
+    if (isPurple(c)) return this.canActivatePurple
+    if (isGreen(c)) return this.canActivateGreen
+    if (isBrown(c)) return this.canActivateBrown
 
     return false
   }
 
-  get isRedActivable() {
+  get canActivateRed() {
     return this
       .material(MaterialType.ZeppelinCard)
       .location(LocationType.Zeppelins)
-      .locationId(getOpponentColumnIndex(this.column))
+      .locationId(this.opponentColumn)
       .player((player) => player !== this.player)
       .getItem()?.location.rotation !== ZeppelinState.VISIBLE
   }
 
-  get isBlueActivable() {
+  get opponentColumn() {
+    return getOpponentColumnIndex(this.column)
+  }
+
+  get canActivateBlue() {
     return this
       .material(MaterialType.Card)
       .location(LocationType.Column)
-      .locationId(getOpponentColumnIndex(this.column))
+      .locationId(this.opponentColumn)
       .player((player) => player !== this.player)
       .length > 0
   }
 
-  get isGreenActivable() {
+  get canActivateGreen() {
     return this
       .material(MaterialType.Card)
       .location(LocationType.CrewDeck)
@@ -48,7 +52,7 @@ export class PlaceEffectRule extends PlayerTurnRule {
       .length > 0
   }
 
-  get isPurpleActivable() {
+  get canActivatePurple() {
     return this
       .material(MaterialType.Card)
       .location(LocationType.Discard)
@@ -56,7 +60,7 @@ export class PlaceEffectRule extends PlayerTurnRule {
       .length > 0
   }
 
-  get isBrownActivable() {
+  get canActivateBrown() {
     return this
       .material(MaterialType.Card)
       .location(LocationType.Column)

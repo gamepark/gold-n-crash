@@ -17,7 +17,7 @@ export class StrengthenRule extends PlayerTurnRule {
         type: LocationType.Hand,
         player: this.player
       })
-    moves.push(this.rules().startRule(RuleId.CardPlaced))
+    moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
 
     return moves
   }

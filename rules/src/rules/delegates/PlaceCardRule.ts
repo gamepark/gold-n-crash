@@ -16,7 +16,7 @@ export class PlaceCardRule extends PlayerTurnRule {
       const playCardRule = new PlaceEffectRule(this.game, id)
       moves.push(
         ...hand
-          .filter((item) => playCardRule.isActivableCard(item.id.front))
+          .filter((item) => playCardRule.canPlace(item.id.front))
           .moveItems({
             type: LocationType.Column,
             id,
@@ -80,7 +80,7 @@ export class PlaceCardRule extends PlayerTurnRule {
       if (playEffect) {
         moves.push(this.rules().startRule(playEffect))
       } else if (isGold(card)) {
-        moves.push(this.rules().startRule(RuleId.CardPlaced))
+        moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
       }
     } else {
       console.error("Moving a card without front ?")

@@ -1,6 +1,8 @@
-import { ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { getDiscardEffect } from '../../material/CrewCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
+import { DiscardEffectRule } from '../discard-effect/helper/DiscardEffectRule'
 import { Memory } from '../Memory'
 
 export class DiscardCardRule extends PlayerTurnRule {
@@ -13,6 +15,9 @@ export class DiscardCardRule extends PlayerTurnRule {
         .maxBy((item) => item.location.x!)
 
       if (card.length) {
+        const discardEffectRule = new DiscardEffectRule(this.game, id)
+        if (!discardEffectRule.canDiscard(card.getItem()!.id.front)) return []
+
         moves.push(
           card.moveItem({
             type: LocationType.Discard,
@@ -29,8 +34,16 @@ export class DiscardCardRule extends PlayerTurnRule {
     return this.material(MaterialType.Card).location(LocationType.Column).player(this.player)
   }
 
-  afterItemMove(_move: ItemMove) {
+  afterItemMove(move: ItemMove) {
+    if (!isMoveItemType(MaterialType.Card)(move)) return []
     this.memorize(Memory.Actions, (action) => (action ?? 0) + 1)
+    const item = this.material(MaterialType.Card).getItem(move.itemIndex)!
+    const discardRule =  getDiscardEffect(item.id.front)
+    if (discardRule) {
+      return [
+        this.rules().startRule(discardRule)
+      ]
+    }
     return []
   }
 }

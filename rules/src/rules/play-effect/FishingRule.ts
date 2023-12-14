@@ -16,7 +16,7 @@ export class FishingRule extends PlayerTurnRule {
         player: this.player
       })
 
-    moves.push(this.rules().startRule(RuleId.CardPlaced))
+    moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
     return moves
   }
 

@@ -1,11 +1,10 @@
 import { MaterialGame, PlayerTurnRule } from '@gamepark/rules-api'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
-import { Memory } from '../Memory'
 
 export abstract class AbstractPrestigiousGuestRule extends PlayerTurnRule {
 
-  constructor(game: MaterialGame) {
+  constructor(game: MaterialGame, readonly column: number) {
     super(game)
   }
 
@@ -21,12 +20,8 @@ export abstract class AbstractPrestigiousGuestRule extends PlayerTurnRule {
     return this
       .material(MaterialType.Card)
       .location(LocationType.PrestigiousGuests)
-      .locationId(this.remind(Memory.Column))
+      .locationId(this.column)
       .player(this.player)
-  }
-
-  get column() {
-    return this.remind(Memory.Column)
   }
 
   get columnCards() {

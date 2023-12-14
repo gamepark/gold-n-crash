@@ -16,7 +16,7 @@ export class BoardingRule extends PlayerTurnRule {
         player: item.location.player
       }))
 
-    moves.push(this.rules().startRule(RuleId.CardPlaced))
+    moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
 
     return moves
   }

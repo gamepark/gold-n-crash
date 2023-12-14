@@ -3,18 +3,18 @@ import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { ZeppelinState } from './material/Zeppelin'
-import { CrackTheTreasureChestRule } from './rules/CrackTheTreasureChestRule'
-import { LootRule } from './rules/LootRule'
-import { ManeuverRule } from './rules/ManeuverRule'
-import { ObserveRule } from './rules/ObserveRule'
+import { CrackTheTreasureChestRule } from './rules/discard-effect/CrackTheTreasureChestRule'
+import { LootRule } from './rules/discard-effect/LootRule'
+import { ManeuverRule } from './rules/discard-effect/ManeuverRule'
+import { ObserveRule } from './rules/discard-effect/ObserveRule'
 import { BoardingRule } from './rules/play-effect/BoardingRule'
 import { BombingRule } from './rules/play-effect/BombingRule'
-import { CardPlacedRule } from './rules/play-effect/CardPlacedRule'
+import { EndOfCardResolutionRule } from './rules/play-effect/EndOfCardResolutionRule'
 import { FishingRule } from './rules/play-effect/FishingRule'
 import { SecureRule } from './rules/play-effect/SecureRule'
 import { StrengthenRule } from './rules/play-effect/StrengthenRule'
 import { PlayerTurn } from './rules/PlayerTurn'
-import { RecallRule } from './rules/RecallRule'
+import { RecallRule } from './rules/discard-effect/RecallRule'
 import { RuleId } from './rules/RuleId'
 
 const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
@@ -70,6 +70,6 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [RuleId.Recall]: RecallRule,
     [RuleId.Observe]: ObserveRule,
     [RuleId.Loot]: LootRule,
-    [RuleId.CardPlaced]: CardPlacedRule
+    [RuleId.EndOfCardResolution]: EndOfCardResolutionRule
   }
 }
