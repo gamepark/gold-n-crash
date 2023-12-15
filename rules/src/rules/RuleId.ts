@@ -10,5 +10,6 @@ export enum RuleId {
   Recall,
   Observe,
   Loot,
-  EndOfCardResolution
+  EndOfCardResolution,
+  Scoring
 }

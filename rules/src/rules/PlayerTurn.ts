@@ -65,7 +65,7 @@ export class PlayerTurn extends PlayerTurnRule {
     const last = this.lastPlayer
     if (last && this.player === last) {
       return [
-        this.rules().endGame()
+        this.rules().startRule(RuleId.Scoring)
       ]
     }
 

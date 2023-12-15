@@ -1,4 +1,13 @@
-import { hideFront, hideFrontToOthers, MaterialItem, PositiveSequenceStrategy, SecretMaterialRules } from '@gamepark/rules-api'
+import {
+  CompetitiveRank,
+  hideFront,
+  hideFrontToOthers,
+  MaterialGame,
+  MaterialItem,
+  MaterialMove,
+  PositiveSequenceStrategy,
+  SecretMaterialRules
+} from '@gamepark/rules-api'
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
@@ -7,6 +16,7 @@ import { CrackTheTreasureChestRule } from './rules/discard-effect/CrackTheTreasu
 import { LootRule } from './rules/discard-effect/LootRule'
 import { ManeuverRule } from './rules/discard-effect/ManeuverRule'
 import { ObserveRule } from './rules/discard-effect/ObserveRule'
+import { Score } from './rules/helper/Score'
 import { BoardingRule } from './rules/play-effect/BoardingRule'
 import { BombingRule } from './rules/play-effect/BombingRule'
 import { EndOfCardResolutionRule } from './rules/play-effect/EndOfCardResolutionRule'
@@ -16,6 +26,7 @@ import { StrengthenRule } from './rules/play-effect/StrengthenRule'
 import { PlayerTurn } from './rules/PlayerTurn'
 import { RecallRule } from './rules/discard-effect/RecallRule'
 import { RuleId } from './rules/RuleId'
+import { ScoringRule } from './rules/ScoringRule'
 
 const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
   switch (item.location.rotation) {
@@ -35,7 +46,16 @@ const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
  * This class implements the rules of the board game.
  * It must follow Game Park "Rules" API so that the Game Park server can enforce the rules.
  */
-export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, LocationType> {
+export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, LocationType>
+  implements CompetitiveRank<MaterialGame<Flag, MaterialType, LocationType>, MaterialMove<Flag, MaterialType, LocationType>, Flag>{
+  rankPlayers(playerA: Flag, playerB: Flag): number {
+    const playerAScore = new Score(this.game, playerA)
+    const playerBScore = new Score(this.game, playerB)
+
+    if (playerBScore.hasAllZeppelinDestroyed) return -1
+    if (playerAScore.hasAllZeppelinDestroyed) return 1
+    return playerBScore.gold - playerAScore.gold
+  }
 
   locationsStrategies = {
     [MaterialType.Card]: {
@@ -70,6 +90,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [RuleId.Recall]: RecallRule,
     [RuleId.Observe]: ObserveRule,
     [RuleId.Loot]: LootRule,
-    [RuleId.EndOfCardResolution]: EndOfCardResolutionRule
+    [RuleId.EndOfCardResolution]: EndOfCardResolutionRule,
+    [RuleId.Scoring]: ScoringRule
   }
 }

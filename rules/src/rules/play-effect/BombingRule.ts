@@ -28,7 +28,7 @@ export class BombingRule extends PlayerTurnRule {
       if (zeppelinStrength <= strength) {
         moves.push(zeppelin.rotateItem(ZeppelinState.VISIBLE))
         if (this.destroyedZeppelins === 2) {
-          moves.push(this.rules().endGame())
+          moves.push(this.rules().startRule(RuleId.Scoring))
           return moves;
         }
       } else {
