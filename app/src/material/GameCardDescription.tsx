@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { Card, isPrestigiousGuest, PrestigiousGuest } from '@gamepark/gold-n-cash/material/Card'
-import { Flag } from '@gamepark/gold-n-cash/material/Flag'
+import { Card, isPrestigiousGuest, PrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { CardDescription, ItemContext } from '@gamepark/react-game'
 import ChamouraiBlueCrew1 from '../images/crew/chamourai/ChamouraiBlueCrew1.jpg'
 import ChamouraiBlueCrew2 from '../images/crew/chamourai/ChamouraiBlueCrew2.jpg'
@@ -51,7 +51,7 @@ import { MaterialItem } from '@gamepark/rules-api'
 
 export class GameCardDescription extends CardDescription {
   height = 8.89
-  borderRadius = 0.5
+  borderRadius = 0.6
 
   backImages = {
     [Flag.Poulpirate]: PoulpirateCrewBack,

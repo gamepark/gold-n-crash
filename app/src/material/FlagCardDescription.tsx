@@ -2,13 +2,13 @@
 import { CardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
 import Poulpirate from '../images/flag/poulpirate/PoulpirateFlag.jpg'
 import Chamourai from '../images/flag/chamourai/ChamouraiFlag.jpg'
-import { Flag } from '@gamepark/gold-n-cash/material/Flag'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialItem } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
+import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 
 export class FlagCardDescription extends CardDescription {
   height = 8.89
-  borderRadius = 0.5
+  borderRadius = 0.6
 
   getStaticItems(context: MaterialContext): MaterialItem[] {
     const { rules: { players } } = context

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Flag } from '@gamepark/gold-n-cash/material/Flag'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { PlayerPanel, usePlayerId, usePlayers } from '@gamepark/react-game'
 import { FC } from 'react'
 

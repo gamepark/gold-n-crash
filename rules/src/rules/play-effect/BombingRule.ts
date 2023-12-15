@@ -37,7 +37,6 @@ export class BombingRule extends PlayerTurnRule {
       if (this.destroyedZeppelins < 3) {
         // If opponent zeppelins are crashed, the attacker wins
         moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
-        console.log(move, moves)
       }
 
       return moves

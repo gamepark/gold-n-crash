@@ -1,7 +1,8 @@
 import {
   CompetitiveRank,
   hideFront,
-  hideFrontToOthers, HidingStrategy,
+  hideFrontToOthers,
+  HidingStrategy,
   MaterialGame,
   MaterialItem,
   MaterialMove,
@@ -14,8 +15,9 @@ import { MaterialType } from './material/MaterialType'
 import { ZeppelinState } from './material/Zeppelin'
 import { CrackTheTreasureChestRule } from './rules/discard-effect/CrackTheTreasureChestRule'
 import { LootRule } from './rules/discard-effect/LootRule'
-import { ManeuverRule } from './rules/discard-effect/ManeuverRule'
+import { ManoeuvreRule } from './rules/discard-effect/ManoeuvreRule'
 import { ObserveRule } from './rules/discard-effect/ObserveRule'
+import { RecallRule } from './rules/discard-effect/RecallRule'
 import { Score } from './rules/helper/Score'
 import { BoardingRule } from './rules/play-effect/BoardingRule'
 import { BombingRule } from './rules/play-effect/BombingRule'
@@ -24,7 +26,6 @@ import { FishingRule } from './rules/play-effect/FishingRule'
 import { SecureRule } from './rules/play-effect/SecureRule'
 import { StrengthenRule } from './rules/play-effect/StrengthenRule'
 import { PlayerTurn } from './rules/PlayerTurn'
-import { RecallRule } from './rules/discard-effect/RecallRule'
 import { RuleId } from './rules/RuleId'
 import { ScoringRule } from './rules/ScoringRule'
 
@@ -90,7 +91,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [RuleId.Strengthen]: StrengthenRule,
     [RuleId.Secure]: SecureRule,
     [RuleId.CrackTheTreasureChest]: CrackTheTreasureChestRule,
-    [RuleId.Maneuver]: ManeuverRule,
+    [RuleId.Manoeuvre]: ManoeuvreRule,
     [RuleId.Recall]: RecallRule,
     [RuleId.Observe]: ObserveRule,
     [RuleId.Loot]: LootRule,

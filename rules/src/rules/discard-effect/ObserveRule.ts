@@ -25,8 +25,9 @@ export class ObserveRule extends PlayerTurnRule {
   getPlayerMoves(): MaterialMove<number, number, number>[] {
     const observations = this
       .material(MaterialType.Card)
+      .location(LocationType.Hand)
       .player(this.player)
-      .index((index) => this.observations.includes(index))
+      .indexes(this.observations)
 
     return [
       // BOTTOM

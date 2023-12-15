@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
+import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { Location } from '@gamepark/rules-api'
 import { gameCardDescription } from '../../material/GameCardDescription'

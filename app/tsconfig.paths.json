@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gamepark/gold-n-cash/*": ["../rules/src/*"]
+      "@gamepark/gold-n-crash/*": ["../rules/src/*"]
     }
   }
 }

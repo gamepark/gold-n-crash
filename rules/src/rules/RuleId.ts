@@ -6,7 +6,7 @@ export enum RuleId {
   Strengthen,
   Secure,
   CrackTheTreasureChest,
-  Maneuver,
+  Manoeuvre,
   Recall,
   Observe,
   Loot,

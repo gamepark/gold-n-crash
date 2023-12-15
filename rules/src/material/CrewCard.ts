@@ -13,7 +13,7 @@ export const getPlayEffect = (c: Card) => {
 
 export const getDiscardEffect = (c: Card) => {
   if (isRed(c)) return RuleId.CrackTheTreasureChest
-  if (isBlue(c)) return RuleId.Maneuver
+  if (isBlue(c)) return RuleId.Manoeuvre
   if (isPurple(c)) return RuleId.Recall
   if (isGreen(c)) return RuleId.Observe
   if (isBrown(c)) return RuleId.Loot

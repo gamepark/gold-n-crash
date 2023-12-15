@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Flag } from '@gamepark/gold-n-cash/material/Flag'
-import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
-import { MaterialType } from '@gamepark/gold-n-cash/material/MaterialType'
-import { Memory } from '@gamepark/gold-n-cash/rules/Memory'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
+import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
+import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
+import { Memory } from '@gamepark/gold-n-crash/rules/Memory'
 import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useGame, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isMoveItemType, MaterialGame, MaterialRules, MoveItem } from '@gamepark/rules-api'
 import { useState } from 'react'
@@ -19,12 +19,16 @@ export const ObserveHeader = () => {
   const playerName = usePlayerName(game.rule!.player!)
   const [dialogOpen, setDialogOpen] = useState(legalMoves.length > 0)
 
+  console.log(legalMoves)
   if (player && rules.getActivePlayer() === player) {
     return <>
-      <Trans defaults="You must <0>decide</0> where to place your observations"><ThemeButton onClick={() => setDialogOpen(true)}/></Trans>
+      <Trans defaults="header.observe.me">
+        <strong />
+        <ThemeButton onClick={() => setDialogOpen(true)}/>
+      </Trans>
       <RulesDialog open={dialogOpen} close={() => setDialogOpen(false)}>
         <div css={rulesCss}>
-          <h2><Trans defaults="You must decide where to place your observations"><span/></Trans></h2>
+          <h2><Trans defaults="header.observe.me"><span/></Trans></h2>
           <ul css={observationListCss}>
           {cards.map((card) => {
             const item = rules.material(MaterialType.Card).getItem(card)!
@@ -32,10 +36,10 @@ export const ObserveHeader = () => {
               <li key={card}>
                 <MaterialComponent css={css`font-size: 2em`} type={MaterialType.Card} itemId={item.id.front}/>
                 <PlayMoveButton move={legalMoves.find(move => move.itemIndex === card && move.location.x === undefined)}>
-                  {t(`Place on top of crew deck`)}
+                  {t(`header.observe.me.top`)}
                 </PlayMoveButton>
                 <PlayMoveButton move={legalMoves.find(move => move.itemIndex === card && move.location.x === 0)}>
-                  {t(`Place at the bottom of crew deck`)}
+                  {t(`header.observe.me.bottom`)}
                 </PlayMoveButton>
               </li>
             )
@@ -45,7 +49,12 @@ export const ObserveHeader = () => {
       </RulesDialog>
       </>
   } else {
-    return <>{t('{player} must choose where to place its observations', { player: playerName })}</>
+    return (
+      <Trans defaults="header.observe" values={{ player: playerName}}>
+        <strong />
+      </Trans>
+
+    )
   }
 }
 

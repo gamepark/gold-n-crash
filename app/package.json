@@ -1,5 +1,5 @@
 {
-  "name": "@gamepark/gold-n-cash-app",
+  "name": "@gamepark/gold-n-crash-app",
   "version": "0.0.0",
   "private": true,
   "description": "The user interface of Gold N Cash  adaptation for Game Park",
@@ -41,7 +41,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "deploy": "yarn build && rclone sync build gold-n-cash:gold-n-cash.game-park.com --progress --s3-acl=public-read"
+    "deploy": "yarn build && rclone sync build gold-n-crash:gold-n-crash.game-park.com --progress --s3-acl=public-read"
   },
   "eslintConfig": {
     "extends": [
@@ -63,7 +63,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^@gamepark/gold-n-cash/(.*)$": "<rootDir>/../rules/src/$1"
+      "^@gamepark/gold-n-crash/(.*)$": "<rootDir>/../rules/src/$1"
     }
   }
 }

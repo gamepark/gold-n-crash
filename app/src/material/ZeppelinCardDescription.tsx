@@ -9,13 +9,13 @@ import ChamouraiZeppelin2 from '../images/zeppelin/chamourai/ChamouraiZeppelin2.
 import ChamouraiZeppelin3 from '../images/zeppelin/chamourai/ChamouraiZeppelin3.jpg'
 import ChamouraiZeppelinBack from '../images/zeppelin/chamourai/ChamouraiZeppelinBack.jpg'
 
-import { Flag } from '@gamepark/gold-n-cash/material/Flag'
-import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-cash/material/Zeppelin'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
+import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { MaterialItem } from '@gamepark/rules-api'
 
 export class ZeppelinCardDescription extends CardDescription {
   height = 8.89
-  borderRadius = 0.5
+  borderRadius = 0.6
 
   backImages = {
     [Flag.Poulpirate]: PoulpirateZeppelinBack,

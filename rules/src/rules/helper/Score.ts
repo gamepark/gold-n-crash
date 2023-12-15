@@ -24,9 +24,10 @@ export class Score extends MaterialRulesPart {
     const items = this
       .material(MaterialType.Card)
       .location(LocationType.Treasure)
+      .player(this.player)
       .rotation(false)
       .getItems()
-
+    
     return sumBy(items, (item) => CardGold[item.id.front])
   }
 

@@ -5,7 +5,7 @@ import { DiscardColumn } from '../helper/DiscardColumn'
 import { PrestigiousGuestRule } from '../prestigious-guests/PrestigiousGuestRule'
 import { RuleId } from '../RuleId'
 
-export class ManeuverRule extends PlayerTurnRule {
+export class ManoeuvreRule extends PlayerTurnRule {
 
   getPlayerMoves(): MaterialMove<number, number, number>[] {
     const moves: MaterialMove[] = []

@@ -1,4 +1,4 @@
-import { MaterialType } from '@gamepark/gold-n-cash/material/MaterialType'
+import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { MaterialDescription } from '@gamepark/react-game'
 import { gameCardDescription } from './GameCardDescription'
 import { zeppelinCardDescription } from './ZeppelinCardDescription'

@@ -2,7 +2,7 @@
 import { LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { zeppelinCardDescription } from '../../material/ZeppelinCardDescription'
 import { Location } from '@gamepark/rules-api'
-import { LocationType } from '@gamepark/gold-n-cash/material/LocationType'
+import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import times from 'lodash/times'
 import { gameCardDescription } from '../../material/GameCardDescription'
 
