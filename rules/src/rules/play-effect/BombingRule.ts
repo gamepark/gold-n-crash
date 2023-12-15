@@ -36,6 +36,18 @@ export class BombingRule extends PlayerTurnRule {
       }
     }
 
+    if (move.location.rotation === ZeppelinState.VISIBLE) {
+      const prestigiousGuest = this
+        .material(MaterialType.Card)
+        .location(LocationType.PrestigiousGuests)
+        .locationId(move.location.id)
+        .player(move.location.player)
+
+      if (prestigiousGuest.length) {
+        moves.push(prestigiousGuest.deleteItem())
+      }
+    }
+
     if (this.destroyedZeppelins < 3) {
       // If opponent zeppelins are crashed, the attacker wins
       moves.push(this.rules().startRule(RuleId.EndOfCardResolution))

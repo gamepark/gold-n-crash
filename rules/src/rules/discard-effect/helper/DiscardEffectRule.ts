@@ -10,7 +10,6 @@ export class DiscardEffectRule extends PlayerTurnRule {
   }
 
   canDiscard(c: Card) {
-    console.log(c, isGreen(c))
     if (isGold(c)) return false
     if (isRed(c)) return this.isRedActivable
     if (isBlue(c)) return this.canDiscardBlue
@@ -48,11 +47,6 @@ export class DiscardEffectRule extends PlayerTurnRule {
   }
 
   get canDiscardGreen() {
-    console.log(this
-      .material(MaterialType.Card)
-      .location(LocationType.CrewDeck)
-      .player(this.player)
-      .length)
     return this
       .material(MaterialType.Card)
       .location(LocationType.CrewDeck)

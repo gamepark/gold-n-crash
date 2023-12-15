@@ -38,7 +38,6 @@ export class ZeppelinCardDescription extends CardDescription {
       case ZeppelinState.VISIBLE:
         return false
       case ZeppelinState.PENDING_REVELATION:
-        console.log(context.player, item.location?.player)
         return !context.player || (context.player !== item.location?.player)
       case ZeppelinState.VISIBLE_BY_ME:
         return true

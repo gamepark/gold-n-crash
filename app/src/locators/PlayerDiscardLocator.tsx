@@ -1,10 +1,11 @@
 import { DeckLocator, ItemContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
+import { gameCardDescription } from '../material/GameCardDescription'
 import { PlayerDiscardDescription } from './description/PlayerDiscardDescription'
 
 export class PlayerDiscardLocator extends DeckLocator {
   limit = 10
-  delta = { x: -0.05, y: -0.05, z: 0.05 }
+  delta = { x: -0.05, y: -0.05, z: gameCardDescription.thickness }
 
   locationDescription = new PlayerDiscardDescription()
 

@@ -19,7 +19,6 @@ export const ObserveHeader = () => {
   const playerName = usePlayerName(game.rule!.player!)
   const [dialogOpen, setDialogOpen] = useState(legalMoves.length > 0)
 
-  console.log(rules.getActivePlayer())
   if (player && rules.getActivePlayer() === player) {
     return <>
       <Trans defaults="You must <0>decide</0> where to place your observations"><ThemeButton onClick={() => setDialogOpen(true)}/></Trans>

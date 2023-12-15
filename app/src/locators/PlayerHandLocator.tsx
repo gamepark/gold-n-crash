@@ -6,10 +6,10 @@ export class PlayerHandLocator extends HandLocator {
   locationDescription = new PlayerHandDescription()
   getCoordinates(location: Location, { rules, player }: ItemContext) {
     if (location.player === (player ?? rules.players[0])) {
-      return { x: -33, y: 20, z: 0 }
+      return { x: -33, y: 20, z: 0.05 }
     }
 
-    return { x: 33, y: -20, z: 0 }
+    return { x: 33, y: -20, z: 0.05 }
   }
 
   getBaseAngle(item: MaterialItem, { player, rules }: ItemContext): number {

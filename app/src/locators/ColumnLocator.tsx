@@ -1,5 +1,6 @@
 import { ItemContext, LineLocator } from '@gamepark/react-game'
 import { Coordinates, MaterialItem } from '@gamepark/rules-api'
+import { gameCardDescription } from '../material/GameCardDescription'
 import { zeppelinCardDescription } from '../material/ZeppelinCardDescription'
 import { ColumnDescription } from './description/ColumnDescription'
 
@@ -15,13 +16,13 @@ export class ColumnLocator extends LineLocator {
     if (location.player === (player ?? rules.players[0])) {
       return {
         y: 1.5,
-        z: 0.05
+        z: gameCardDescription.thickness
       }
     }
 
     return {
       y: -1.5,
-      z: 0.05
+      z: gameCardDescription.thickness
     }
   }
 
