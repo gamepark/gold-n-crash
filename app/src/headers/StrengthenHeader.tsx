@@ -7,8 +7,9 @@ import { Trans } from 'react-i18next'
 export const StrengthenHeader = () => {
   const rules = useRules<MaterialRules>()!
   const playerId = usePlayerId()
-  const me = playerId && rules.getActivePlayer() === playerId
-  const name = usePlayerName(rules.getActivePlayer())
+  const player = rules.getActivePlayer()
+  const me = player === playerId
+  const name = usePlayerName(player)
 
   if (me) {
     return <Trans defaults="header.strengthen.me"><strong /></Trans>

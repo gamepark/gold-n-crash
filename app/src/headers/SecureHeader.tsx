@@ -8,8 +8,8 @@ export const SecureHeader = () => {
   const rules = useRules<MaterialRules>()!
   const playerId = usePlayerId()
   const player = rules.getActivePlayer()
-  const me = playerId && player === playerId
-  const name = usePlayerName(rules.getActivePlayer())
+  const me = player === playerId
+  const name = usePlayerName(player)
 
 
   if (me) {
