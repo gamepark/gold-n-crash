@@ -1,7 +1,7 @@
 import {
   CompetitiveRank,
   hideFront,
-  hideFrontToOthers,
+  hideFrontToOthers, HidingStrategy,
   MaterialGame,
   MaterialItem,
   MaterialMove,
@@ -41,6 +41,10 @@ const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
   }
 }
 
+export const hideCardWhenRotated: HidingStrategy = (item: MaterialItem) => {
+  return item.location.rotation? ['id.front']: []
+}
+
 
 /**
  * This class implements the rules of the board game.
@@ -71,7 +75,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [MaterialType.Card]: {
       [LocationType.Hand]: hideFrontToOthers,
       [LocationType.CrewDeck]: hideFront,
-      [LocationType.Treasure]: hideFront,
+      [LocationType.Treasure]: hideCardWhenRotated,
     },
     [MaterialType.ZeppelinCard]: {
       [LocationType.Zeppelins]: zeppelinStrategy
