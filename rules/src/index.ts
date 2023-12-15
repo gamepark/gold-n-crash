@@ -1,3 +1,3 @@
 export { GoldNCashRules } from './GoldNCashRules'
-export { GameTemplateOptionsSpec } from './GoldNCashOptions'
+export { GoldNCashOptionsSpec } from './GoldNCashOptions'
 export { GoldNCashSetup } from './GoldNCashSetup'

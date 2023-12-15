@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { GameTemplateOptionsSpec } from '@gamepark/gold-n-crash/GoldNCashOptions'
+import { GoldNCashOptionsSpec } from '@gamepark/gold-n-crash/GoldNCashOptions'
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { GoldNCashSetup } from '@gamepark/gold-n-crash/GoldNCashSetup'
 import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepark/react-game'
@@ -17,7 +17,7 @@ ReactDOM.render(
     <GameProvider
       game="gold-n-crash"
       Rules={GoldNCashRules}
-      optionsSpec={GameTemplateOptionsSpec}
+      optionsSpec={GoldNCashOptionsSpec}
       GameSetup={GoldNCashSetup}
       material={Material}
       locators={Locators}

@@ -19,7 +19,7 @@ export type GoldNCashOptions = {
  * This object describes all the options a game can have, and will be used by GamePark website to create automatically forms for you game
  * (forms for friendly games, or forms for matchmaking preferences, for instance).
  */
-export const GameTemplateOptionsSpec: OptionsSpec<GoldNCashOptions> = {
+export const GoldNCashOptionsSpec: OptionsSpec<GoldNCashOptions> = {
   players: {
     id: {
       label: (t: TFunction) => t('Player color'),
