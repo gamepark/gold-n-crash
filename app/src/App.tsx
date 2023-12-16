@@ -16,7 +16,7 @@ export default function App() {
   return (
     <>
       { !!game && <GameDisplay players={game.players.length} /> }
-      <LoadingScreen display={loading} author="Someone" artist="Somebody" publisher="Nobody" developer="You"/>
+      <LoadingScreen display={loading} author="Antoine Bauza, Corentin Lebrat, Ludovic Maublanc et Théo Rivière" artist="Camille Chaussy et Valériane Holley" publisher="GRRRE GAMES" developer="Game Park"/>
       <MaterialHeader rulesStepsHeaders={Headers} loading={loading}/>
       <Menu/>
       <FailuresDialog/>
