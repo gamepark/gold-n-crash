@@ -10,9 +10,7 @@ export const PlayerPanels: FC<any> = () => {
   return (
     <>
       {players.map((player) =>
-        <PlayerPanel key={player.id} playerId={player.id} color={playerColorCode[player.id]} css={[panelPosition, player.id === playerId? bottomPosition: topPosition ]}>
-          <div css={css`height: 100%;position: absolute;width: 100%; font-size: 4em; align-items: center; justify-content: center; display: flex`}>{getComputedStyle(document.documentElement).getPropertyValue("--sal")} {}</div>
-        </PlayerPanel>
+        <PlayerPanel key={player.id} playerId={player.id} color={playerColorCode[player.id]} css={[panelPosition, player.id === playerId? bottomPosition: topPosition ]} />
       )}
     </>
   )
