@@ -23,7 +23,7 @@ const panelPosition = css`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  right: max(env(safe-area-inset-right), 1em) !important;
+  right: 1em;
 `
 
 const topPosition = css`
