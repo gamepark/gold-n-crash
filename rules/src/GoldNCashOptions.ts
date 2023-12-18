@@ -22,18 +22,9 @@ export type GoldNCashOptions = {
 export const GoldNCashOptionsSpec: OptionsSpec<GoldNCashOptions> = {
   players: {
     id: {
-      label: (t: TFunction) => t('Player color'),
+      label: (t: TFunction) => t('crew.choice'),
       values: flags,
-      valueSpec: color => ({ label: t => getPlayerName(color, t) })
+      valueSpec: flag => ({ label: t => t(`player.${flag}`) })
     }
-  }
-}
-
-export function getPlayerName(playerId: Flag, t: TFunction) {
-  switch (playerId) {
-    case Flag.Poulpirate:
-      return t('Poulpirate')
-    case Flag.Chamourai:
-      return t('Chamouraï')
   }
 }
