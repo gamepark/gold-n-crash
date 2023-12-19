@@ -15,7 +15,8 @@ export class LootRule extends PlayerTurnRule {
     moves.push(
       topTreasure.moveItem({
         type: LocationType.Treasure,
-        player: this.player
+        player: this.player,
+        rotation: true
       })
     )
 

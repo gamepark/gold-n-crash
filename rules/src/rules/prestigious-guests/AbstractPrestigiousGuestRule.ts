@@ -12,7 +12,8 @@ export abstract class AbstractPrestigiousGuestRule extends PlayerTurnRule {
     if ((this.guest.getItem()!.location?.id !== this.column) || !this.isInvited()) return []
     return this.guest.moveItems({
       type: LocationType.Treasure,
-      player: this.player
+      player: this.player,
+      rotation: true
     })
   }
 
