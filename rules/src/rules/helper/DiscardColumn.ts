@@ -32,7 +32,7 @@ export class DiscardColumn extends PlayerTurnRule {
       .location(LocationType.Column)
       .locationId(this.column)
       .player(this.player)
-      .sort((item) => -item.location.x!)
+      .sort((item) => item.location.x!)
       .moveItems({
         type: LocationType.Discard,
         player: this.player
