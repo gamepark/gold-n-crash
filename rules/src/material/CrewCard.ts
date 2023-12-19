@@ -11,6 +11,16 @@ export const getPlayEffect = (c: Card) => {
   return undefined
 }
 
+export const getCardColorFinder = (c: Card) => {
+  if (isRed(c)) return isRed
+  if (isBlue(c)) return isBlue
+  if (isPurple(c)) return isPurple
+  if (isGreen(c)) return isGreen
+  if (isBrown(c)) return isBrown
+
+  return () => false
+}
+
 export const getDiscardEffect = (c: Card) => {
   if (isRed(c)) return RuleId.CrackTheTreasureChest
   if (isBlue(c)) return RuleId.Manoeuvre

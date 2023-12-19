@@ -15,6 +15,13 @@ export class DrawCardRule extends PlayerTurnRule {
       })
   }
 
+  get deck() {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.CrewDeck)
+      .player(this.player)
+  }
+
   get crewDeck() {
     return this
       .material(MaterialType.Card)
@@ -24,6 +31,14 @@ export class DrawCardRule extends PlayerTurnRule {
 
   afterItemMove(_move: ItemMove) {
     this.memorize(Memory.Actions, (action) => (action ?? 0) + 1)
+    if (!this.deck.length && !this.lastPlayer) {
+      this.memorize(Memory.LastPlayer, this.game.players.find((p) => p !== this.player))
+    }
     return []
   }
+
+  get lastPlayer() {
+    return this.remind(Memory.LastPlayer)
+  }
 }
+

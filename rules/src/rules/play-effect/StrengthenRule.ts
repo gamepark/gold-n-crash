@@ -26,10 +26,22 @@ export class StrengthenRule extends PlayerTurnRule {
     return this.remind(Memory.NumberOfEffect) ?? 1
   }
 
+  afterItemMove() {
+    if (!this.deck.length && !this.lastPlayer) {
+      this.memorize(Memory.LastPlayer, this.game.players.find((p) => p !== this.player))
+    }
+
+    return []
+  }
+
   get deck() {
     return this
       .material(MaterialType.Card)
       .location(LocationType.CrewDeck)
       .player(this.player)
+  }
+
+  get lastPlayer() {
+    return this.remind(Memory.LastPlayer)
   }
 }
