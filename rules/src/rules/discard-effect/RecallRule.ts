@@ -10,7 +10,7 @@ export class RecallRule extends PlayerTurnRule {
     for (let id = 1; id <= 3; id++) {
       const card = columnCards
         .locationId(id)
-        .maxBy((item) => item.location.x!)
+        .sort((item) => -item.location.x!)
 
       if (card.length) {
         moves.push(
