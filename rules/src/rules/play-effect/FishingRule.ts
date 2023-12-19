@@ -29,5 +29,6 @@ export class FishingRule extends PlayerTurnRule {
       .material(MaterialType.Card)
       .location(LocationType.Discard)
       .player(this.player)
+      .sort((item) => -item.location.x!)
   }
 }
