@@ -8,7 +8,11 @@ import { RuleId } from '../RuleId'
 export class BoardingRule extends PlayerTurnRule {
   onRuleStart() {
     const times = this.times
-    const moves: MaterialMove[] = this.lastOpponentCard
+    const moves: MaterialMove[] = this
+      .material(MaterialType.Card)
+      .location(LocationType.Column)
+      .locationId(getOpponentColumnIndex(this.column))
+      .player((player) => player !== this.player)
       .sort((item) => -item.location.x!)
       .limit(times)
       .moveItems((item) => ({
@@ -19,15 +23,6 @@ export class BoardingRule extends PlayerTurnRule {
     moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
 
     return moves
-  }
-
-  get lastOpponentCard() {
-    return this
-      .material(MaterialType.Card)
-      .location(LocationType.Column)
-      .locationId(getOpponentColumnIndex(this.column))
-      .player((player) => player !== this.player)
-      .maxBy((item) => item.location.x!)
   }
 
   get times() {
