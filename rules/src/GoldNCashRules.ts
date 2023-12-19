@@ -42,7 +42,8 @@ const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
   }
 }
 
-export const hideCardWhenRotated: HidingStrategy = (item: MaterialItem) => {
+export const hideCardWhenRotated: HidingStrategy = (item: MaterialItem, player?: Flag) => {
+  if (player && player === item.location.player) return []
   return item.location.rotation? ['id.front']: []
 }
 
