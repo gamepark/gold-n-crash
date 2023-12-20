@@ -35,6 +35,6 @@ const bottomPosition = css`
 `
 
 export const playerColorCode: Record<Flag, string> = {
-  [Flag.Chamourai]: 'red',
-  [Flag.Poulpirate]: 'blue'
+  [Flag.Chamourai]: '#f49833',
+  [Flag.Poulpirate]: '#3ab5b0'
 }
