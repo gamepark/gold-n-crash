@@ -22,6 +22,14 @@ ReactDOM.render(
       material={Material}
       locators={Locators}
       animations={new MaterialGameAnimations()}
+      theme={{
+        root: {
+          background: {
+            image: process.env.PUBLIC_URL + '/background.jpg',
+            overlay: 'rgba(0, 0, 0, 0.8)'
+          }
+        }
+      }}
     >
       <App/>
     </GameProvider>
