@@ -6,6 +6,7 @@ import { MaterialType } from '../../material/MaterialType'
 import { Memory } from '../Memory'
 import { PlaceEffectRule } from '../play-effect/helper/PlaceEffectRule'
 import { RuleId } from '../RuleId'
+import max from 'lodash/max'
 
 export class PlaceCardRule extends PlayerTurnRule {
   getPlayerMoves(): MaterialMove<number, number, number>[] {
@@ -20,8 +21,8 @@ export class PlaceCardRule extends PlayerTurnRule {
           .moveItems({
             type: LocationType.Column,
             id,
-            player: this.player,
-          }),
+            player: this.player
+          })
       )
     }
 
@@ -29,25 +30,28 @@ export class PlaceCardRule extends PlayerTurnRule {
   }
 
   get validColumns(): number[] {
-    let columns: number[] = []
-    let minCard: undefined | number = undefined
+    const allColumns = [1, 2, 3]
+    const maxCard = max(allColumns.map((column) => this.countCard(column))) ?? 0
+    const columns = []
     for (let id = 1; id <= 3; id++) {
-      const count = this
-        .material(MaterialType.Card)
-        .location(LocationType.Column)
-        .player(this.player)
-        .locationId(id)
-        .length
-
-      if (minCard === count) {
+      const count = this.countCard(id)
+      if (count < maxCard) {
         columns.push(id)
-      } else if (minCard === undefined || minCard > count) {
-        minCard = count
-        columns = [id]
       }
     }
 
+    if (!columns.length) return allColumns
+
     return columns
+  }
+
+  countCard(column: number) {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.Column)
+      .player(this.player)
+      .locationId(column)
+      .length
   }
 
   get hand() {
