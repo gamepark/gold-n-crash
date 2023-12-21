@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { css, Global } from '@emotion/react'
 import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, Menu, useGame } from '@gamepark/react-game'
 import { MaterialGame } from '@gamepark/rules-api'
 import { useEffect, useState } from 'react'
+import { getLCP } from 'web-vitals'
 import { GameDisplay } from './GameDisplay'
 import { Headers } from './headers/Headers'
 
@@ -20,6 +22,14 @@ export default function App() {
       <Menu/>
       <FailuresDialog/>
       <FullscreenDialog/>
+      <Global styles={globalStyle} />
     </>
   )
 }
+
+
+const globalStyle = css`
+  #root {
+    touch-action: none;
+  }
+`
