@@ -18,11 +18,15 @@ export class PlayerTurn extends PlayerTurnRule {
   }
 
   getPlayerMoves() {
-    return [
+    const moves = [
       ...new DiscardCardRule(this.game).getPlayerMoves(),
       ...new DrawCardRule(this.game).getPlayerMoves(),
       ...new PlaceCardRule(this.game).getPlayerMoves()
     ]
+
+    if (!moves.length) return this.goToNextPlayerMoves
+
+    return moves
   }
 
   afterItemMove(move: ItemMove) {

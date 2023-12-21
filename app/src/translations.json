@@ -3,7 +3,7 @@
     "translation": {
       "Name": "Gold'n'Crash",
       "player.1": "Poulpirate",
-      "player.2": "Chamourai",
+      "player.2": "Chamouraï",
       "header.play-turn.all.me": "You must <0>Draw a card</0>, Discard a column card or Place a card",
       "header.play-turn.draw-discard.me": "You must <0>Draw a card</0> or Discard a column card",
       "header.play-turn.draw-place.me": "You must <0>Draw a card</0> or Place a card",
@@ -40,6 +40,7 @@
       "header.loot": "<0>Loot</0>: The first card of {opponent}'s discard is placed in {player}'s treasure",
       "header.secure-guest": "Securing the prestigious guest",
       "header.discard-column": "Discarding the column's cards",
+      "header.play-turn.pass.me": "No action possible, you must <0>pass</0>",
       "Menu": "Menu",
       "OK": "OK",
       "Validate": "Validate",
@@ -155,7 +156,7 @@
     "translation": {
       "Name": "Gold'n'Crash",
       "player.1": "Poulpirate",
-      "player.2": "Chamourai",
+      "player.2": "Chamouraï",
       "header.play-turn.all.me": "Vous devez <0>Piocher une carte</0>, Défaussez une carte d'une colonne ou Placer une carte",
       "header.play-turn.draw-discard.me": "Vous devez <0>Piocher une carte</0>",
       "header.play-turn.draw-place.me": "Vous devez <0>Piocher une carte</0> ou Placer une carte",
@@ -192,6 +193,7 @@
       "header.loot": "<0>Loot</0>: La première carte de la défausse de {opponent} est placée dans le trésor de {player}",
       "header.secure-guest": "Sécurisation de l'invité prestigieux",
       "header.discard-column": "Défausse des cartes de la colonne",
+      "header.play-turn.pass.me": "Aucune action possible, vous devez <0>passer</0>",
       "Menu": "Menu",
       "OK": "OK",
       "Validate": "Valider",

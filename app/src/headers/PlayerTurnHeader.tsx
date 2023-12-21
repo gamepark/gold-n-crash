@@ -3,7 +3,7 @@ import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { Memory } from '@gamepark/gold-n-crash/rules/Memory'
 import { PlayMoveButton, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
-import { isMoveItemType, MaterialRules } from '@gamepark/rules-api'
+import { isMoveItemType, isStartPlayerTurn, isStartRule, MaterialRules } from '@gamepark/rules-api'
 import { FC, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -19,8 +19,12 @@ export const PlayerTurnHeader: FC = () => {
   const me = playerId && rules.getActivePlayer() === playerId
   const name = usePlayerName(rules.getActivePlayer())
   const action = 2 - (rules.remind(Memory.Actions) ?? 0)
+  const passMove = legalMoves.find((move) => isStartRule(move) || isStartPlayerTurn(move))
 
   if (!me) return <>{t('header.player-turn.other', { player: name, action })}</>
+
+  // IN RARE CASE, NO ACTION POSSIBLE
+  if (passMove) return <Trans defaults="header.play-turn.pass.me"><PlayMoveButton move={passMove}/></Trans>
 
   // DRAW, DISCARD & PLACE
   if (drawMove && discardMove && placeMove) return <Trans defaults="header.play-turn.all.me"><PlayMoveButton move={drawMove}/></Trans>
