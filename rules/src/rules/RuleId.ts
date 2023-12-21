@@ -1,5 +1,5 @@
 export enum RuleId {
-  PlayerTurn,
+  PlayerTurn = 1,
   Bombing,
   Boarding,
   Fishing,
