@@ -32,9 +32,4 @@ export class BoardingRule extends PlayerTurnRule {
   get column() {
     return this.remind(Memory.Column)
   }
-
-  onRuleEnd() {
-    this.forget(Memory.Column)
-    return []
-  }
 }
