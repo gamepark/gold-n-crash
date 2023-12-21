@@ -21,7 +21,7 @@ export class ManoeuvreRule extends PlayerTurnRule {
       if (cards.length) {
         moves.push(
           ...columns
-            .filter((c) => c !== column)
+            .filter((c) => c !== column && Math.abs(c - column) === 1)
             .map((c) => cards.moveItem({
               type: LocationType.Column,
               player: this.player,
