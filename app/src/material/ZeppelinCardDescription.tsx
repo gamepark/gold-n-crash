@@ -47,8 +47,8 @@ export class ZeppelinCardDescription extends CardDescription {
   }
 
   getRotateZ(item: MaterialItem, context: ItemContext): number {
-    const { player } = context
-    return player === item.location.player? -90: 90
+    const { player, rules } = context
+    return (item.location.player === (player ?? rules.players[0]))? -90: 90
   }
 }
 
