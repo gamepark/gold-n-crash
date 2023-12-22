@@ -99,7 +99,6 @@ const StrengthenHelp: FC<MaterialHelpProps> = () => {
 
 const SecureHelp: FC<MaterialHelpProps> = () => {
   return (
-    <>
       <div css={effectGrid}>
         <div css={image}>
           <Picture src={SecureIcon} />
@@ -110,13 +109,11 @@ const SecureHelp: FC<MaterialHelpProps> = () => {
           </Trans>
         </div>
       </div>
-    </>
   )
 }
 
 const GoldHelp: FC<MaterialHelpProps> = () => {
   return (
-    <>
       <div css={effectGrid}>
         <div css={image}>
           <Picture src={GoldIcon} />
@@ -127,7 +124,6 @@ const GoldHelp: FC<MaterialHelpProps> = () => {
           </Trans>
         </div>
       </div>
-    </>
   )
 }
 

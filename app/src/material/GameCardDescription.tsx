@@ -58,6 +58,14 @@ import ManoeuvreIcon from '../images/help/icons/discard/manoeuvre.jpg'
 import RecallIcon from '../images/help/icons/discard/recall.jpg'
 import ObserveIcon from '../images/help/icons/discard/observe.jpg'
 import LootIcon from '../images/help/icons/discard/loot.jpg'
+import IconGuest1 from '../images/help/icons/guest/guest1.jpg'
+import IconGuest2 from '../images/help/icons/guest/guest2.jpg'
+import IconGuest3 from '../images/help/icons/guest/guest3.jpg'
+import IconGuest4 from '../images/help/icons/guest/guest4.jpg'
+import IconGuest5 from '../images/help/icons/guest/guest5.jpg'
+import IconGuest6 from '../images/help/icons/guest/guest6.jpg'
+import IconGuest7 from '../images/help/icons/guest/guest7.jpg'
+import IconGuest8 from '../images/help/icons/guest/guest8.jpg'
 import { MaterialItem } from '@gamepark/rules-api'
 import { GameCardHelp } from './help/GameCardHelp'
 
@@ -138,7 +146,14 @@ export class GameCardDescription extends CardDescription {
     images.push(RecallIcon)
     images.push(ObserveIcon)
     images.push(LootIcon)
-
+    images.push(IconGuest1)
+    images.push(IconGuest2)
+    images.push(IconGuest3)
+    images.push(IconGuest4)
+    images.push(IconGuest5)
+    images.push(IconGuest6)
+    images.push(IconGuest7)
+    images.push(IconGuest8)
     return images
   }
 }

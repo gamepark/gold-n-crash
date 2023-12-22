@@ -34,7 +34,7 @@ export const TreasureHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { t } = useTranslation()
   const { item, me, name } = props
   const rules = useRules<GoldNCashRules>()!
-  const cards = rules.material(MaterialType.Card).location(LocationType.CrewDeck).player(item.location?.player).length
+  const cards = rules.material(MaterialType.Card).location(LocationType.Treasure).player(item.location?.player).length
   return (
     <div css={italic}>
       <Trans defaults={me? "help.location.treasure.me": "help.location.treasure"} values={{ player: name, cards }}>

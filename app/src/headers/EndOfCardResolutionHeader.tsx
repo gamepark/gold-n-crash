@@ -12,8 +12,8 @@ export const EndOfCardResolutionHeader = () => {
   const { t } = useTranslation()
   const rules = useRules<MaterialRules>()!
   const column = rules.remind(Memory.Column)
-  const securingGuest = useMemo(() => new PrestigiousGuestRule(rules.game, column), [rules.game])
-  const discardColumn = useMemo(() => new DiscardColumn(rules.game, column), [rules.game])
+  const securingGuest = useMemo(() => new PrestigiousGuestRule(rules.game, column), [rules.game, column])
+  const discardColumn = useMemo(() => new DiscardColumn(rules.game, column), [rules.game, column])
 
   if (securingGuest.secureGuestMoves.length) {
     return <>{t('header.secure-guest')}</>
