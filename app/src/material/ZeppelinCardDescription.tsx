@@ -12,6 +12,7 @@ import ChamouraiZeppelinBack from '../images/zeppelin/chamourai/ChamouraiZeppeli
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { MaterialItem } from '@gamepark/rules-api'
+import { ZeppelinCardHelp } from './help/ZeppelinCardHelp'
 
 export class ZeppelinCardDescription extends CardDescription {
   height = 8.89
@@ -50,6 +51,8 @@ export class ZeppelinCardDescription extends CardDescription {
     const { player, rules } = context
     return (item.location.player === (player ?? rules.players[0]))? -90: 90
   }
+
+  help = ZeppelinCardHelp
 }
 
 export const zeppelinCardDescription = new ZeppelinCardDescription()

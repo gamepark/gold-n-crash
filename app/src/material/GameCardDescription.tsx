@@ -47,7 +47,19 @@ import PrestigiousGuest6 from '../images/prestigious-guest/PrestigiousGuest6.jpg
 import PrestigiousGuest7 from '../images/prestigious-guest/PrestigiousGuest7.jpg'
 import PrestigiousGuest8 from '../images/prestigious-guest/PrestigiousGuest8.jpg'
 import PrestigiousGuestBack from '../images/prestigious-guest/PrestigiousGuestBack.jpg'
+import BombardPlayIcon from '../images/help/icons/play/bombard.jpg'
+import BoardingPlayIcon from '../images/help/icons/play/boarding.jpg'
+import FishingPlayIcon from '../images/help/icons/play/fishing.jpg'
+import SecurePlayIcon from '../images/help/icons/play/secure.jpg'
+import StrengthenPlayIcon from '../images/help/icons/play/strengthen.jpg'
+import GoldPlayIcon from '../images/help/icons/play/gold.jpg'
+import CrackIcon from '../images/help/icons/discard/crack.jpg'
+import ManoeuvreIcon from '../images/help/icons/discard/manoeuvre.jpg'
+import RecallIcon from '../images/help/icons/discard/recall.jpg'
+import ObserveIcon from '../images/help/icons/discard/observe.jpg'
+import LootIcon from '../images/help/icons/discard/loot.jpg'
 import { MaterialItem } from '@gamepark/rules-api'
+import { GameCardHelp } from './help/GameCardHelp'
 
 export class GameCardDescription extends CardDescription {
   height = 8.89
@@ -109,6 +121,25 @@ export class GameCardDescription extends CardDescription {
 
     const { player } = context
     return player === item.location.player? 0: 180
+  }
+
+  help = GameCardHelp
+
+  getImages(): string[] {
+    const images = super.getImages()
+    images.push(BombardPlayIcon)
+    images.push(BoardingPlayIcon)
+    images.push(FishingPlayIcon)
+    images.push(SecurePlayIcon)
+    images.push(StrengthenPlayIcon)
+    images.push(GoldPlayIcon)
+    images.push(CrackIcon)
+    images.push(ManoeuvreIcon)
+    images.push(RecallIcon)
+    images.push(ObserveIcon)
+    images.push(LootIcon)
+
+    return images
   }
 }
 
