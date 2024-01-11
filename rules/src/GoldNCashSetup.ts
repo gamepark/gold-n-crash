@@ -1,13 +1,21 @@
-import { MaterialGameSetup } from '@gamepark/rules-api'
+import {MaterialGameSetup} from '@gamepark/rules-api'
 import shuffle from 'lodash/shuffle'
-import { GoldNCashRules } from './GoldNCashRules'
-import { GoldNCashOptions } from './GoldNCashOptions'
-import { Card, chamouraiCrew, ChamouraiDeck, poulpirateCrew, PoulpirateDeck, PrestigiousGuest, prestigiousGuests } from './material/Card'
-import { Flag } from './material/Flag'
-import { LocationType } from './material/LocationType'
-import { MaterialType } from './material/MaterialType'
-import { chamouraiZeppelins, poulpirateZeppelins } from './material/Zeppelin'
-import { RuleId } from './rules/RuleId'
+import {GoldNCashRules} from './GoldNCashRules'
+import {GoldNCashOptions} from './GoldNCashOptions'
+import {
+  Card,
+  chamouraiCrew,
+  ChamouraiDeck,
+  poulpirateCrew,
+  PoulpirateDeck,
+  PrestigiousGuest,
+  prestigiousGuests
+} from './material/Card'
+import {Flag} from './material/Flag'
+import {LocationType} from './material/LocationType'
+import {MaterialType} from './material/MaterialType'
+import {chamouraiZeppelins, poulpirateZeppelins} from './material/Zeppelin'
+import {RuleId} from './rules/RuleId'
 
 /**
  * This class creates a new Game based on the game options
@@ -30,7 +38,7 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
     this.setupCrew(playerId)
   }
 
-  setupCrew(playerId: Flag) {
+  setupCrewDeck(playerId: Flag) {
     const crews = playerId === Flag.Poulpirate ? poulpirateCrew : chamouraiCrew
     const deck = playerId === Flag.Poulpirate ? PoulpirateDeck : ChamouraiDeck
     const cards = crews
@@ -51,6 +59,9 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
 
     this.material(MaterialType.Card).createItems(cards)
     this.material(MaterialType.Card).location(LocationType.CrewDeck).player(playerId).shuffle()
+  }
+
+  setupDiscard(playerId: Flag) {
 
     // DISCARD 5 CARDS
     this
@@ -64,6 +75,9 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
         player: playerId,
       })
 
+  }
+
+  setupHand(playerId: Flag) {
     // DRAW 5 CARDS
     this
       .material(MaterialType.Card)
@@ -75,8 +89,12 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
         type: LocationType.Hand,
         player: playerId,
       })
+  }
 
-
+  setupCrew(playerId: Flag) {
+    this.setupCrewDeck(playerId)
+    this.setupDiscard(playerId)
+    this.setupHand(playerId)
   }
 
   setupGuests(playerId: Flag, guests: Card[]) {
@@ -98,13 +116,17 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
       )
   }
 
+  getZeppelin(playerId: Flag) {
+    return shuffle(playerId === Flag.Chamourai ? chamouraiZeppelins : poulpirateZeppelins)
+  }
+
   setupZeppelins(playerId: Flag) {
-    const zeppelins = shuffle(playerId === Flag.Chamourai ? chamouraiZeppelins : poulpirateZeppelins)
+    const zeppelins = this.getZeppelin(playerId)
     this
       .material(MaterialType.ZeppelinCard)
       .createItems(
         zeppelins.map((z, index) => ({
-          id: { front: z, back: playerId },
+          id: {front: z, back: playerId},
           location: {
             type: LocationType.Zeppelins,
             id: index + 1,

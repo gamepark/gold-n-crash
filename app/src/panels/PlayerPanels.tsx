@@ -18,12 +18,13 @@ export const PlayerPanels: FC<any> = () => {
 
 const panelPosition = css`
   position: absolute;
+  right: 1em;
   width: 28em;
-  height: 14em;
+  height: 6.7em;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  right: 1em;
+  border-radius: 3em 1.5em 1.5em 3.2em;
 `
 
 const topPosition = css`
