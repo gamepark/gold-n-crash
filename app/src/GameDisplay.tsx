@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {GameTable, usePlayerId} from '@gamepark/react-game'
+import { GameTable, GameTableNavigation, usePlayerId } from '@gamepark/react-game'
 import {FC} from 'react'
 import {PlayerPanels} from './panels/PlayerPanels'
 
@@ -16,7 +16,9 @@ export const GameDisplay: FC<GameDisplayProps> = () => {
       yMin={!playerId? -34: -30}
       yMax={34}
       margin={{ top: 7, left: 0, right: 0, bottom: 0 }}
-    />
+    >
+      <GameTableNavigation />
+    </GameTable>
     <PlayerPanels/>
   </>
 }
