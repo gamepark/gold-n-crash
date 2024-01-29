@@ -1,10 +1,11 @@
-import {Flag} from "@gamepark/gold-n-crash/material/Flag";
-import {GoldNCashSetup} from "@gamepark/gold-n-crash/GoldNCashSetup";
-import {Card} from "@gamepark/gold-n-crash/material/Card";
-import {MaterialType} from "@gamepark/gold-n-crash/material/MaterialType";
-import {LocationType} from "@gamepark/gold-n-crash/material/LocationType";
-import {Zeppelin} from "@gamepark/gold-n-crash/material/Zeppelin";
-import {shuffle} from "lodash";
+import { GoldNCashOptions } from '@gamepark/gold-n-crash/GoldNCashOptions'
+import { GoldNCashSetup } from '@gamepark/gold-n-crash/GoldNCashSetup'
+import { Card, prestigiousGuests } from '@gamepark/gold-n-crash/material/Card'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
+import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
+import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
+import { Zeppelin } from '@gamepark/gold-n-crash/material/Zeppelin'
+import { shuffle } from 'lodash'
 
 const me = Flag.Chamourai
 const myHand = [Card.ChamouraiGold4, Card.ChamouraiPurpleCrew1, Card.ChamouraiBrownCrew2, Card.ChamouraiGreenCrew2, Card.ChamouraiGreenCrew3]
@@ -74,5 +75,14 @@ export class TutorialSetup extends GoldNCashSetup {
           player: playerId
         })
     }
+  }
+
+  setupPlayers(options: GoldNCashOptions) {
+    const guests = shuffle(prestigiousGuests)
+    const ordered = [
+      guests.find((g) => g === Card.PrestigiousGuest3)!,
+      ...guests.filter((g) => g !== Card.PrestigiousGuest3)
+    ]
+    return options.players.forEach((player) => this.setupPlayer(player.id, ordered))
   }
 }

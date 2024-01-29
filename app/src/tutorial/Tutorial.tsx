@@ -389,11 +389,13 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest.secure"><strong /></Trans>
+        text: () => <Trans defaults="tuto.guest.secure"><strong /></Trans>,
+        position: { x: 50, y: -20 }
       },
       focus: (game) => [
         this.material(game, MaterialType.Card)
           .location(LocationType.PrestigiousGuests)
+          .id((id: any) => id.front === Card.PrestigiousGuest3)
       ],
     },
     {
