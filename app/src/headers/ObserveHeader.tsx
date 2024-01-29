@@ -19,7 +19,6 @@ export const ObserveHeader = () => {
   const playerName = usePlayerName(game.rule!.player!)
   const [dialogOpen, setDialogOpen] = useState(legalMoves.length > 0)
 
-  console.log(legalMoves)
   if (player && rules.getActivePlayer() === player) {
     return <>
       <Trans defaults="header.observe.me">
