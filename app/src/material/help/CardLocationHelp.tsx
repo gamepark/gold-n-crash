@@ -101,11 +101,11 @@ export const HandHelp: FC<MaterialLocationHelpProps> = (props) => {
 
 export const ColumnHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { t } = useTranslation()
-  const { item, closeDialog } = props
+  const { item, itemIndex, closeDialog } = props
   const { me, name } = props
   const moves = useLegalMoves<MaterialMove>(isMoveItemType(MaterialType.Card))
-  const discard = moves.find((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Discard)
-  const secure = moves.find((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Treasure)
+  const discard = moves.find((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Discard && move.itemIndex === itemIndex)
+  const secure = moves.find((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Treasure && move.itemIndex === itemIndex)
   return (
     <>
       <div css={italic}>
