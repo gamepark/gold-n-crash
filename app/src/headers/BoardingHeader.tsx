@@ -16,7 +16,7 @@ export const BoardingHeader = () => {
   }
 
   if (!playerId || me) {
-    return <Trans defaults="header.boarding" values={{ player: opponent }}><strong /></Trans>
+    return <Trans defaults="header.boarding" values={{ opponent: opponent }}><strong /></Trans>
   }
   return null
 }

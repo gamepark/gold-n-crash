@@ -12,7 +12,7 @@ const me = Flag.Chamourai
 const opponent = Flag.Poulpirate
 
 export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType> {
-  version = 1
+  version = 2
   options = { players: [{ id: me }, { id: opponent }] }
   setup = new TutorialSetup()
 

@@ -7,14 +7,15 @@ import { Trans } from 'react-i18next'
 export const FishingHeader = () => {
   const rules = useRules<ManoeuvreRule>()!
   const playerId = usePlayerId()
-  const me = playerId && rules.getActivePlayer() === playerId
-  const opponent = usePlayerName(rules.game.players.find((p) => p !== rules.getActivePlayer()))
+  const activePlayer = rules.getActivePlayer()
+  const me = playerId && activePlayer === playerId
+  const player = usePlayerName(activePlayer)
 
 
   if (me) {
-    return <Trans defaults="header.fishing.me" values={{ player: opponent }}><strong /></Trans>
+    return <Trans defaults="header.fishing.me"><strong /></Trans>
   }
 
-  return <Trans defaults="header.fishing"><strong /></Trans>
+  return <Trans defaults="header.fishing" values={{ player: player }}><strong /></Trans>
 
 }
