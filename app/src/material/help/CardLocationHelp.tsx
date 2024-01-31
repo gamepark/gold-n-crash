@@ -4,7 +4,7 @@ import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { isPrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHelpProps, PlayMoveButton, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
+import { MaterialHelpProps, PlayMoveButton, useLegalMove, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isMoveItemType, MaterialMove, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -64,15 +64,20 @@ export const DiscardHelp: FC<MaterialLocationHelpProps> = (props) => {
 }
 
 export const CrewDeckHelp: FC<MaterialLocationHelpProps> = (props) => {
-  const { item, me, name } = props
+  const { t } = useTranslation()
+  const { item, itemIndex, me, name, closeDialog } = props
   const rules = useRules<GoldNCashRules>()!
   const cards = rules.material(MaterialType.Card).location(LocationType.CrewDeck).player(item.location?.player).length
+  const draw = useLegalMove<MoveItem>((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Hand && move.itemIndex === itemIndex)
   return (
-    <div css={italic}>
-      <Trans defaults={me ? 'help.location.crew-deck.me' : 'help.location.crew-deck'} values={{ player: name, cards }}>
-        <strong/>
-      </Trans>
-    </div>
+    <>
+      <div css={italic}>
+        <Trans defaults={me ? 'help.location.crew-deck.me' : 'help.location.crew-deck'} values={{ player: name, cards }}>
+          <strong/>
+        </Trans>
+      </div>
+      {draw && <div css={helpButton}><PlayMoveButton move={draw} onPlay={closeDialog}>{t('help.move.draw')}</PlayMoveButton></div>}
+    </>
   )
 }
 
