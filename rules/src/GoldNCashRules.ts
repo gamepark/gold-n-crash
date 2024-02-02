@@ -7,7 +7,8 @@ import {
   MaterialItem,
   MaterialMove,
   PositiveSequenceStrategy,
-  SecretMaterialRules
+  SecretMaterialRules,
+  TimeLimit
 } from '@gamepark/rules-api'
 import { Flag } from './material/Flag'
 import { LocationType } from './material/LocationType'
@@ -32,9 +33,9 @@ import { ScoringRule } from './rules/ScoringRule'
 const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
   switch (item.location.rotation) {
     case ZeppelinState.PENDING_REVELATION:
-      return player === item.location.player? []: ['id.front']
+      return player === item.location.player ? [] : ['id.front']
     case ZeppelinState.VISIBLE_BY_ME:
-      return player === item.location.player? []: ['id.front']
+      return player === item.location.player ? [] : ['id.front']
     case ZeppelinState.VISIBLE:
       return []
     default:
@@ -44,7 +45,7 @@ const zeppelinStrategy = (item: MaterialItem, player?: Flag) => {
 
 export const hideCardWhenRotated: HidingStrategy = (item: MaterialItem, player?: Flag) => {
   if (player && player === item.location.player) return []
-  return item.location.rotation? ['id.front']: []
+  return item.location.rotation ? ['id.front'] : []
 }
 
 
@@ -53,7 +54,9 @@ export const hideCardWhenRotated: HidingStrategy = (item: MaterialItem, player?:
  * It must follow Game Park "Rules" API so that the Game Park server can enforce the rules.
  */
 export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, LocationType>
-  implements CompetitiveRank<MaterialGame<Flag, MaterialType, LocationType>, MaterialMove<Flag, MaterialType, LocationType>, Flag>{
+  implements CompetitiveRank<MaterialGame<Flag, MaterialType, LocationType>, MaterialMove<Flag, MaterialType, LocationType>, Flag>,
+    TimeLimit<MaterialGame<Flag, MaterialType, LocationType>, MaterialMove<Flag, MaterialType, LocationType>, Flag> {
+
   rankPlayers(playerA: Flag, playerB: Flag): number {
     const playerAScore = new Score(this.game, playerA)
     const playerBScore = new Score(this.game, playerB)
@@ -77,7 +80,7 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [MaterialType.Card]: {
       [LocationType.Hand]: hideFrontToOthers,
       [LocationType.CrewDeck]: hideFront,
-      [LocationType.Treasure]: hideCardWhenRotated,
+      [LocationType.Treasure]: hideCardWhenRotated
     },
     [MaterialType.ZeppelinCard]: {
       [LocationType.Zeppelins]: zeppelinStrategy
@@ -98,5 +101,9 @@ export class GoldNCashRules extends SecretMaterialRules<Flag, MaterialType, Loca
     [RuleId.Loot]: LootRule,
     [RuleId.EndOfCardResolution]: EndOfCardResolutionRule,
     [RuleId.Scoring]: ScoringRule
+  }
+
+  giveTime(): number {
+    return 60
   }
 }
