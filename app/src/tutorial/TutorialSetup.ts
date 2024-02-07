@@ -5,7 +5,7 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { Zeppelin } from '@gamepark/gold-n-crash/material/Zeppelin'
-import { shuffle } from 'lodash'
+import shuffle from 'lodash/shuffle'
 
 const me = Flag.Chamourai
 const myHand = [Card.ChamouraiGold4, Card.ChamouraiPurpleCrew1, Card.ChamouraiBrownCrew2, Card.ChamouraiGreenCrew2, Card.ChamouraiGreenCrew3]
