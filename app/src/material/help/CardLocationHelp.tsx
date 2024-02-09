@@ -4,10 +4,12 @@ import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { isPrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
+import { Score } from '@gamepark/gold-n-crash/rules/helper/Score'
 import { MaterialHelpProps, PlayMoveButton, useLegalMove, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isMoveItemType, MaterialMove, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import IconGold from '../../images/help/icons/gold.png'
 
 export const CardLocationHelp: FC<MaterialHelpProps> = (props) => {
   const { item } = props
@@ -40,13 +42,18 @@ type MaterialLocationHelpProps = MaterialHelpProps & {
 export const TreasureHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { t } = useTranslation()
   const { item, me, name } = props
+  const playerId = usePlayerId()
   const rules = useRules<GoldNCashRules>()!
   const cards = rules.material(MaterialType.Card).location(LocationType.Treasure).player(item.location?.player).length
+  const itsMine = playerId && item.location?.player === playerId
+  const isOver = rules.game.rule === undefined
+
   return (
     <div css={italic}>
       <Trans defaults={me ? 'help.location.treasure.me' : 'help.location.treasure'} values={{ player: name, cards }}>
         <strong/>
       </Trans>
+      {isOver && <div css={goldIndicator}><p>{t(itsMine?'help.treasure.coins.me': 'help.treasure.coins', { player: name, coins: new Score(rules.game, item.location!.player!).gold })}</p></div>}
       {isPrestigiousGuest(item.id.back) && <div css={alertStyle}>{t('help.location.treasure.safe')}</div>}
     </div>
   )
@@ -146,6 +153,25 @@ export const alertStyle = css`
   font-style: italic;
   font-size: 0.9em;
   color: red;
+`
+
+const goldIndicator = css`
+  font-style: italic;
+  color: green;
+  margin-top: 1em;
+  padding-left: 1.5em;
+  height: 1.3em;
+  display: flex;
+  align-items: center;
+  
+  
+  background-image: url(${IconGold});
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+  > p {
+    font-size: 0.9em;
+  }
 `
 
 export const helpButton = css`

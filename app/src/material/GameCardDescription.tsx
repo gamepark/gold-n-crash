@@ -66,6 +66,7 @@ import IconGuest5 from '../images/help/icons/guest/guest5.jpg'
 import IconGuest6 from '../images/help/icons/guest/guest6.jpg'
 import IconGuest7 from '../images/help/icons/guest/guest7.jpg'
 import IconGuest8 from '../images/help/icons/guest/guest8.jpg'
+import IconGold from '../images/help/icons/gold.png'
 import { MaterialItem } from '@gamepark/rules-api'
 import { GameCardHelp } from './help/GameCardHelp'
 
@@ -154,6 +155,7 @@ export class GameCardDescription extends CardDescription {
     images.push(IconGuest6)
     images.push(IconGuest7)
     images.push(IconGuest8)
+    images.push(IconGold)
     return images
   }
 }
