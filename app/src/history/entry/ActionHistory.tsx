@@ -1,20 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { HistoryEntry, HistoryEntryContext, Picture, PlayerHistoryEntry } from '@gamepark/react-game'
 import { FC } from 'react'
+import { playerColorCode } from '../../panels/PlayerPanels'
 
 type ActionHistoryProps = {
   consequence?: boolean
-  picture: string
+  picture?: string
   pictureCss?: any
   context: HistoryEntryContext
 }
+
 
 export const ActionHistory: FC<ActionHistoryProps> = (props) => {
   const { consequence, picture, pictureCss, context, children } = props
   const Component = consequence? HistoryEntry: PlayerHistoryEntry
   return (
-    <Component border context={context}>
+    <Component context={context} css={color(context.action.playerId)}>
       <div css={flex}>
         <div css={growth}>
           {children}
@@ -43,6 +46,10 @@ const pictureStyle = css`
   height: 2.5em; 
   border-radius: 0.5em; 
   border: 0.1em solid black
+`
+
+const color = (flag: Flag) => css`
+  background-color: ${playerColorCode[flag]}20;
 `
 
 const actionPicture = css`

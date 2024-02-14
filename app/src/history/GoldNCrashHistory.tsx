@@ -27,7 +27,7 @@ export const GoldNCrashHistory: FC<MaterialHistoryProps<MaterialGame, MaterialMo
   const { move, context } = props
   const game = context.game
 
-  if (isStartPlayerTurn(move) && move.id === RuleId.PlayerTurn && game.rule?.player === game.players[0]) {
+  if (isStartPlayerTurn(move) && move.id === RuleId.PlayerTurn && move.player === game.players[0]) {
     return <NewRoundHistory />
   }
 

@@ -2,12 +2,13 @@
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, PlayerHistoryEntry, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { displayMaterialHelp, isMoveItemType, MoveItem } from '@gamepark/rules-api'
 import { FC, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { getColorText } from '../../utils/color.utils'
 import { rulesLinkButton } from '../GoldNCrashHistory'
+import { ActionHistory } from './ActionHistory'
 
 export type PlayerTurnRuleHistoryProps = {
 
@@ -33,31 +34,31 @@ export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => 
 
     if (move.location.type === LocationType.Column) {
       return (
-        <PlayerHistoryEntry border context={context}>
+        <ActionHistory context={context}>
           <Trans defaults={itsMe? 'history.player-turn.place.me': 'history.player-turn.place'} values={{ player: name, color: getColorText(t, itemId), column: move.location.id }}>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>
           </Trans>
-        </PlayerHistoryEntry>
+        </ActionHistory>
       )
     }
 
     if (move.location.type === LocationType.Discard) {
       return (
-        <PlayerHistoryEntry border context={context}>
+        <ActionHistory context={context}>
           <Trans defaults={itsMe? 'history.player-turn.discard.me': 'history.player-turn.discard'} values={{ player: name, color: getColorText(t, itemId)}}>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>
           </Trans>
-        </PlayerHistoryEntry>
+        </ActionHistory>
       )
     }
 
     if (move.location.type === LocationType.Hand) {
       return (
-        <PlayerHistoryEntry border context={context}>
+        <ActionHistory context={context}>
           <Trans defaults={itsMe? 'history.player-turn.draw.me': itemId? 'history.player-turn.draw.visible': 'history.player-turn.draw'} values={itemId? { player: name, color: getColorText(t, itemId)}: { player: name }}>
             {itemId && <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>}
           </Trans>
-        </PlayerHistoryEntry>
+        </ActionHistory>
       )
     }
 
