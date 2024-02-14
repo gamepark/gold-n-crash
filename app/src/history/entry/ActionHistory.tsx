@@ -7,6 +7,7 @@ import { playerColorCode } from '../../panels/PlayerPanels'
 
 type ActionHistoryProps = {
   consequence?: boolean
+  depth?: number
   picture?: string
   pictureCss?: any
   context: HistoryEntryContext
@@ -14,13 +15,13 @@ type ActionHistoryProps = {
 
 
 export const ActionHistory: FC<ActionHistoryProps> = (props) => {
-  const { consequence, picture, pictureCss, context, children } = props
+  const { consequence, depth, picture, pictureCss, context, children } = props
   const Component = consequence? HistoryEntry: PlayerHistoryEntry
   return (
     <Component context={context} css={[color(context.action.playerId)]}>
       <div css={flex}>
         {consequence && (
-          <div css={consequenceIcon}>⤷</div>
+          <div css={consequenceIcon(depth)}>⤷</div>
         )}
         <div css={growth}>
           {children}
@@ -46,7 +47,7 @@ const growth = css`
 `
 
 const pictureStyle = css`
-  height: 2.5em; 
+  height: 2.2em; 
   border-radius: 0.5em; 
   border: 0.1em solid black
 `
@@ -60,8 +61,8 @@ const actionPicture = css`
   border-radius: 0.5em;
 `
 
-const consequenceIcon = css`
+const consequenceIcon = (times: number = 1) => css`
   font-size: 1.5em;
   margin-right: 0.4em;
-  margin-left: 0.5em;
+  margin-left: ${0.5 * times}em;
 `

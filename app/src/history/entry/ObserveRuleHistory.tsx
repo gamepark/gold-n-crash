@@ -74,7 +74,7 @@ const PlaceOnTopHistory: FC<MoveItemHistoryProps> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
 
   return (
-    <ActionHistory consequence picture={IconObserve} context={context}>
+    <ActionHistory consequence context={context}>
       <Trans defaults={itsMyAction ? 'history.observe.top.me' : 'history.observe.top'} values={{
         player: playerName
       }}>
@@ -92,7 +92,7 @@ const PlaceAtBottomHistory: FC<MoveItemHistoryProps> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
 
   return (
-    <ActionHistory consequence picture={IconObserve} context={context}>
+    <ActionHistory consequence depth={2} context={context}>
       <Trans defaults={itsMyAction ? 'history.observe.bottom.me' : 'history.observe.bottom'} values={{
         player: playerName
       }}>
