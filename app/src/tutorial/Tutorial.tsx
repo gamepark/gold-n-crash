@@ -13,7 +13,7 @@ const me = Flag.Chamourai
 const opponent = Flag.Poulpirate
 
 export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType> {
-  version = 2
+  version = 3
   options = { players: [{ id: me }, { id: opponent }] }
   setup = new TutorialSetup()
 
@@ -148,6 +148,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
         player: me,
         filter: (move, game) => isMoveItemType(MaterialType.Card)(move)
           && move.location.type === LocationType.Column
+          && move.location.id === 1
           && game.items[MaterialType.Card]![move.itemIndex].location.type === LocationType.Hand && game.items[MaterialType.Card]![move.itemIndex].id.front === Card.ChamouraiGreenCrew3
       }
     },
