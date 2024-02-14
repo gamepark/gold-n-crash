@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
-import { isMoveItemType } from '@gamepark/rules-api/dist/material/moves/items/MoveItem'
+import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconRecall from '../../images/help/icons/discard/recall.jpg'

@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { isPrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
+import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { RuleId } from '@gamepark/gold-n-crash/rules/RuleId'
 import { linkButtonCss, MaterialHistoryProps } from '@gamepark/react-game'
-import { isStartPlayerTurn, isStartRule, MaterialGame, MaterialMove, MoveKind, RuleMoveType } from '@gamepark/rules-api'
+import { isMoveItemType, isStartPlayerTurn, isStartRule, MaterialGame, MaterialMove, MoveKind, RuleMoveType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { BoardingRuleHistory } from './entry/BoardingRuleHistory'
 import { BombingRuleHistory } from './entry/BombingRuleHistory'
@@ -12,10 +14,11 @@ import { EndGameHistory } from './entry/EndGameHistory'
 import { FishingRuleHistory } from './entry/FishingRuleHistory'
 import { LootRuleHistory } from './entry/LootRuleHistory'
 import { ManoeuvreRuleHistory } from './entry/ManoeuvreRuleHistory'
-import { ObserveRuleHistory } from './entry/ObserveRuleHistory'
 import { NewRoundHistory } from './entry/NewRoundHistory'
+import { ObserveRuleHistory } from './entry/ObserveRuleHistory'
 import { PlayerTurnRuleHistory } from './entry/PlayerTurnRuleHIstory'
 import { RecallRuleHistory } from './entry/RecallRuleHistory'
+import { SecureGuestHistory } from './entry/SecureGuestHistory'
 import { SecureRuleHistory } from './entry/SecureRuleHistory'
 import { StrengthenRuleHistory } from './entry/StrengthenRuleHistory'
 
@@ -29,6 +32,14 @@ export const GoldNCrashHistory: FC<MaterialHistoryProps<MaterialGame, MaterialMo
 
   if (isStartPlayerTurn(move) && move.id === RuleId.PlayerTurn && move.player === game.players[0]) {
     return <NewRoundHistory />
+  }
+
+  if (isMoveItemType(MaterialType.Card)(move)) {
+    const item = game.items[move.itemType]![move.itemIndex]
+    if (isPrestigiousGuest(item.id?.front)) {
+      console.log("GUEST")
+      return <SecureGuestHistory move={move} context={context} />
+    }
   }
 
   if (isStartRule(move) && move.id === RuleId.Strengthen) {
