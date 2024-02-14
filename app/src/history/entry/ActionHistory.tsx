@@ -17,8 +17,11 @@ export const ActionHistory: FC<ActionHistoryProps> = (props) => {
   const { consequence, picture, pictureCss, context, children } = props
   const Component = consequence? HistoryEntry: PlayerHistoryEntry
   return (
-    <Component context={context} css={color(context.action.playerId)}>
+    <Component context={context} css={[color(context.action.playerId)]}>
       <div css={flex}>
+        {consequence && (
+          <div css={consequenceIcon}>⤷</div>
+        )}
         <div css={growth}>
           {children}
         </div>
@@ -55,4 +58,10 @@ const color = (flag: Flag) => css`
 const actionPicture = css`
   padding-left: 0.3em;
   border-radius: 0.5em;
+`
+
+const consequenceIcon = css`
+  font-size: 1.5em;
+  margin-right: 0.4em;
+  margin-left: 0.5em;
 `
