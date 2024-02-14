@@ -65,10 +65,12 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
         position: { x: 0, y: 33 }
       },
       focus: (game) => ({
-        materials: [this.material(game, MaterialType.Card)
-          .player(me)
-          .location(LocationType.Discard)
-          .limit(10)],
+        materials: [
+          this.material(game, MaterialType.Card)
+            .player(me)
+            .location(LocationType.Discard)
+            .limit(10)
+        ],
         margin: { bottom: 5 }
       })
     },
@@ -134,10 +136,10 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
       focus: (game) => ({
         materials: [
           this.material(game, MaterialType.Card)
-          .player(me)
-          .location(LocationType.Hand)
-          .id((id: any) => id.front === Card.ChamouraiGreenCrew3)
-          .limit(1)
+            .player(me)
+            .location(LocationType.Hand)
+            .id((id: any) => id.front === Card.ChamouraiGreenCrew3)
+            .limit(1)
         ],
         locations: [this.location(LocationType.Column).id(1).player(me).location],
         margin: { top: 1 }
@@ -209,7 +211,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
             && game.items[MaterialType.Card]![move.itemIndex].id.front === Card.PoulpirateBrownCrew3
         }
       },
-      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game),
+      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game)
     },
     {
       popup: {
@@ -261,7 +263,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
-            .id((id: any) => id.front === Card.ChamouraiRedCrew1),
+            .id((id: any) => id.front === Card.ChamouraiRedCrew1)
         ],
         locations: [this.location(LocationType.Column).player(me).id(2).location],
         margin: { left: 2, right: 2, top: 1 }
@@ -275,7 +277,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
             && game.items[MaterialType.Card]![move.itemIndex].id.front === Card.ChamouraiRedCrew1
         },
         interrupt: (move) => isStartRule(move) && move.id === RuleId.Bombing
-      },
+      }
     },
     {
       popup: {
@@ -304,7 +306,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
             .locationId(2)
         ],
         margin: { top: 1, bottom: 10 }
-      }),
+      })
     },
     {
       popup: {

@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { Card, isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '@gamepark/gold-n-crash/material/Card'
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
-import { TFunction } from 'i18next'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { getColorText } from '../../utils/color.utils'
 import { CardLocationHelp } from './CardLocationHelp'
 import { DiscardEffectHelp } from './DiscardEffectHelp'
 import { PlayEffectHelp } from './PlayEffectHelp'
@@ -52,7 +51,7 @@ export const CrewCardHelp: FC<MaterialHelpProps> = (props) => {
   const playerId = usePlayerId()
   const me = item.id.back === playerId
   const name = usePlayerName(item.id.back)
-  const color = getColor(t, item.id.front)
+  const color = getColorText(t, item.id.front)
 
   if (me) {
     return (
@@ -85,15 +84,4 @@ export const CrewCardHelp: FC<MaterialHelpProps> = (props) => {
       <CardLocationHelp { ...props }/>
     </>
   )
-}
-
-const getColor = (t: TFunction, c: Card) => {
-  if (isGold(c)) return t('color.gold')
-  if (isGreen(c)) return t('color.green')
-  if (isRed(c)) return t('color.red')
-  if (isBlue(c)) return t('color.blue')
-  if (isPurple(c)) return t('color.purple')
-  if (isBrown(c)) return t('color.brown')
-
-  return ''
 }

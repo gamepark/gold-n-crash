@@ -6,6 +6,7 @@ import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepar
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import { GoldNCrashHistory } from './history/GoldNCrashHistory'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
 import translations from './translations.json'
@@ -22,6 +23,7 @@ ReactDOM.render(
       GameSetup={GoldNCashSetup}
       material={Material}
       locators={Locators}
+      MaterialHistory={GoldNCrashHistory}
       animations={new MaterialGameAnimations()}
       tutorial={new Tutorial()}
       theme={{

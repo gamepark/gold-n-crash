@@ -137,6 +137,7 @@ const image = css`
   & > Picture > img {
     max-width: 7em;
     border: 0.1em solid black;
+    border-radius: 0.5em;
   }
 `
 
