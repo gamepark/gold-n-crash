@@ -4,7 +4,7 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconCrack from '../../images/help/icons/discard/crack.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
@@ -22,9 +22,7 @@ export const CrackTheTreasureRuleHistory: FC<CrackTheTreasureRuleHistoryProps> =
   const opponent = context.game.players.find((p: Flag) => p !== actionPlayer)
   const opponentName = usePlayerName(opponent)
   const rules = new GoldNCashRules(context.game)
-  useEffect(() => {
-    rules.play(move);
-  }, [])
+  rules.play(move)
   if (!isMoveItemType(MaterialType.Card)(move)) return null
 
   const card = context.game.items[MaterialType.Card][move.itemIndex]!

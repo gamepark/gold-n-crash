@@ -4,7 +4,7 @@ import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { displayMaterialHelp, isMoveItemType, MoveItem } from '@gamepark/rules-api'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { getColorText } from '../../utils/color.utils'
 import { rulesLinkButton } from '../GoldNCrashHistory'
@@ -22,9 +22,7 @@ export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => 
   const itsMe = playerId && actionPlayer === playerId
   const name = usePlayerName(actionPlayer)
   const rules = new GoldNCashRules(context.game)
-  useEffect(() => {
-    rules.play(move);
-  }, [])
+  rules.play(move);
 
   if (isMoveItemType(MaterialType.Card)(move)) {
     const game = context.game

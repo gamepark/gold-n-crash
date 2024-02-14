@@ -5,7 +5,7 @@ import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconBomb from '../../images/help/icons/play/bombard.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
@@ -22,14 +22,12 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
   const name = usePlayerName(actionPlayer)
   const opponentName = usePlayerName(context.game.players.find((p: Flag) => p !== actionPlayer))
   const rules = new GoldNCashRules(context.game)
-  useEffect(() => {
-    rules.play(move)
-  }, [])
+  rules.play(move)
   if (isMoveItemType(MaterialType.ZeppelinCard)(move)) {
     const zeppelin = context.game.items[MaterialType.ZeppelinCard][move.itemIndex]!
     const imTheTarget = playerId && zeppelin.location.player === playerId
 
-    if (move.location.rotation === ZeppelinState.PENDING_REVELATION) {
+    if (zeppelin.location.rotation === ZeppelinState.PENDING_REVELATION) {
       if (imTheTarget) {
         return (
           <ActionHistory consequence picture={IconBomb} context={context}>
@@ -51,7 +49,9 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
       )
     }
 
-    if (move.location.rotation === ZeppelinState.VISIBLE) {
+    zeppelin.location.player === Flag.Chamourai && console.log("Zep", zeppelin)
+
+    if (zeppelin.location.rotation === ZeppelinState.VISIBLE) {
 
       if (imTheTarget) {
         return (
@@ -63,6 +63,7 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
           </ActionHistory>
         )
       }
+
       return (
         <ActionHistory consequence depth={2} context={context}>
           <Trans defaults={itsMyAction ? 'history.bombing.opponent.destroy.me' : 'history.bombing.opponent.destroy'}
