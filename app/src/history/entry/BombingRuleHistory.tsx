@@ -55,7 +55,7 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
 
       if (imTheTarget) {
         return (
-          <ActionHistory consequence picture={IconBomb} context={context}>
+          <ActionHistory consequence depth={2} context={context}>
             <Trans defaults="history.bombing.me.destroy" values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
               <strong/>
               <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.ZeppelinCard, zeppelin)} local/>
@@ -64,7 +64,7 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
         )
       }
       return (
-        <ActionHistory consequence picture={IconBomb} context={context}>
+        <ActionHistory consequence depth={2} context={context}>
           <Trans defaults={itsMyAction ? 'history.bombing.opponent.destroy.me' : 'history.bombing.opponent.destroy'}
                  values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
             <strong/>

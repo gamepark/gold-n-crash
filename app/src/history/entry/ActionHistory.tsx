@@ -64,5 +64,5 @@ const actionPicture = css`
 const consequenceIcon = (times: number = 1) => css`
   font-size: 1.5em;
   margin-right: 0.4em;
-  margin-left: ${0.5 * times}em;
+  margin-left: ${0.5 + (1.5 * (times - 1))}em;
 `
