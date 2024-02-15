@@ -49,8 +49,6 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
       )
     }
 
-    zeppelin.location.player === Flag.Chamourai && console.log("Zep", zeppelin)
-
     if (zeppelin.location.rotation === ZeppelinState.VISIBLE) {
 
       if (imTheTarget) {

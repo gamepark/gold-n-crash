@@ -91,7 +91,10 @@ export const CrewDeckHelp: FC<MaterialLocationHelpProps> = (props) => {
 export const HandHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { t } = useTranslation()
   const { me, name, itemIndex, closeDialog } = props
-  const moves = useLegalMoves<MoveItem>((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Column && move.itemIndex === itemIndex)
+  const legalMoves = useLegalMoves()
+  const moveToColumn: MoveItem[] = legalMoves.filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Column && move.itemIndex === itemIndex)
+  const moveToDeck: MoveItem[] = legalMoves.filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.CrewDeck && move.itemIndex === itemIndex)
+  console.log(moveToDeck)
   return (
     <>
       <div css={italic}>
@@ -100,12 +103,18 @@ export const HandHelp: FC<MaterialLocationHelpProps> = (props) => {
         </Trans>
       </div>
       <div>
-        {moves.map((move, index) => (
+        {moveToColumn.map((move, index) => (
           <div css={helpButton} key={index}>
             <PlayMoveButton move={move} onPlay={closeDialog}>{t('help.move.place', { column: move.location.id })}</PlayMoveButton>
           </div>
         ))}
-
+        {moveToDeck.map((move, index) => (
+          <div css={helpButton} key={index}>
+            <PlayMoveButton move={move} onPlay={closeDialog}>
+              {t(move.location.x === undefined? `header.observe.me.top`: `header.observe.me.bottom`)}
+            </PlayMoveButton>
+          </div>
+        ))}
       </div>
     </>
   )
