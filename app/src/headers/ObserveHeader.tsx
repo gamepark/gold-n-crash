@@ -17,7 +17,7 @@ export const ObserveHeader = () => {
   const legalMoves = useLegalMoves<MoveItem>(isMoveItemType(MaterialType.Card))
   const cards = rules.remind<number[]>(Memory.Observation) ?? []
   const playerName = usePlayerName(game.rule!.player!)
-  const [dialogOpen, setDialogOpen] = useState(legalMoves.length > 0)
+  const [dialogOpen, setDialogOpen] = useState(true)
 
   if (player && rules.getActivePlayer() === player) {
     return <>
