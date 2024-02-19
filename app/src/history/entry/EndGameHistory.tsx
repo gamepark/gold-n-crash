@@ -10,10 +10,10 @@ export const EndGameHistory: FC<MaterialHistoryProps> = (props) => {
   const { t } = useTranslation()
   const playerId = usePlayerId()
   const [playerA, playerB] = context.game.players
-  const score = new GoldNCashRules(context.game).rankPlayers(playerA, playerB)
+  const rules = new GoldNCashRules(context.game)
+  const score = rules.rankPlayers(playerA, playerB)
   const winner = score < 0 ? playerA : playerB
   const winnerName = usePlayerName(winner)
-  const rules = new GoldNCashRules(context.game)
   rules.play(move)
 
   if (score !== 0 && winner === playerId) {
