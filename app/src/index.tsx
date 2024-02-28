@@ -10,7 +10,7 @@ import { GoldNCrashHistory } from './history/GoldNCrashHistory'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
 import translations from './translations.json'
-import {Tutorial} from "./tutorial/Tutorial";
+import { Tutorial } from './tutorial/Tutorial'
 
 setupTranslation(translations, { debug: false })
 

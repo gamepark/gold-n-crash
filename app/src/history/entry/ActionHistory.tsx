@@ -14,4 +14,4 @@ export const ActionHistory: FC<ActionHistoryEntryProps> = (props) => {
   )
 }
 
-const getColor = (flag: Flag) => playerColorCode[flag]
+const getColor = (flag: Flag) => playerColorCode[flag] + '20'

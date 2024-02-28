@@ -37,7 +37,6 @@ export const GoldNCrashHistory: FC<MaterialHistoryProps<MaterialGame, MaterialMo
   if (isMoveItemType(MaterialType.Card)(move)) {
     const item = game.items[move.itemType]![move.itemIndex]
     if (isPrestigiousGuest(item.id?.front)) {
-      console.log("GUEST")
       return <SecureGuestHistory move={move} context={context} />
     }
   }
