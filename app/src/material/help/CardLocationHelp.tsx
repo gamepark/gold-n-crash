@@ -94,7 +94,6 @@ export const HandHelp: FC<MaterialLocationHelpProps> = (props) => {
   const legalMoves = useLegalMoves()
   const moveToColumn: MoveItem[] = legalMoves.filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Column && move.itemIndex === itemIndex)
   const moveToDeck: MoveItem[] = legalMoves.filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.CrewDeck && move.itemIndex === itemIndex)
-  console.log(moveToDeck)
   return (
     <>
       <div css={italic}>
