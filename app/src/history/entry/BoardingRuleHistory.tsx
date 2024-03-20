@@ -7,7 +7,8 @@ import { isMoveItemType, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconBoarding from '../../images/help/icons/play/boarding.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type BoardingRuleHistoryProps = {
 
@@ -32,7 +33,7 @@ export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
   const firstDiscard = context.game.items[discards[0].itemType][discards[0].itemIndex]!
   if (imTheTarget) {
     return (
-      <ActionHistory consequence picture={IconBoarding} context={context}>
+      <PictureHistoryEntry depth={1} picture={IconBoarding} backgroundColor={getFlagColor(actionPlayer)}>
         <Trans defaults="history.boarding.target.me" values={{
           player: name,
           count: discardCount,
@@ -41,12 +42,12 @@ export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
         }}>
           <strong />
         </Trans>
-      </ActionHistory>
+      </PictureHistoryEntry>
     )
   }
 
   return (
-    <ActionHistory consequence picture={IconBoarding} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconBoarding} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.boarding.me' : 'history.boarding'} values={{
         player: name,
         count: discardCount,
@@ -55,6 +56,6 @@ export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

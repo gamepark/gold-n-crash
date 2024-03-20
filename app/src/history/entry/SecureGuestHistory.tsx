@@ -6,8 +6,9 @@ import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/reac
 import { isMoveItemType, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
 import PrestigiousGuestBack from '../../images/prestigious-guest/PrestigiousGuestBack.jpg'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type SecureGuestHistoryProps = {
   move: MoveItem
@@ -24,13 +25,13 @@ export const SecureGuestHistory: FC<SecureGuestHistoryProps> = (props) => {
   const depth = context.game.rule?.id === RuleId.EndOfCardResolution? 1: 2
 
   return (
-    <ActionHistory consequence depth={depth} picture={PrestigiousGuestBack} pictureCss={guestIcon} context={context}>
+    <PictureHistoryEntry depth={depth} picture={PrestigiousGuestBack} pictureCss={guestIcon} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.secure-guest.me' : 'history.secure-guest'} values={{
         player: name
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }
 

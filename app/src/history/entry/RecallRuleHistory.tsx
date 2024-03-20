@@ -5,7 +5,8 @@ import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconRecall from '../../images/help/icons/discard/recall.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type RecallRuleHistoryProps = {
 
@@ -21,13 +22,13 @@ export const RecallRuleHistory: FC<RecallRuleHistoryProps> = (props) => {
   if (!isMoveItemType(MaterialType.Card)(move)) return null
   const item = context.game.items[move.itemType][move.itemIndex]
   return (
-    <ActionHistory consequence picture={IconRecall} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconRecall} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.recall.me' : 'history.recall'} values={{
         player: name,
         column: item.location.id
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

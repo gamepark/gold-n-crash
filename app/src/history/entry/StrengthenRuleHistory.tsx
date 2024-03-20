@@ -6,7 +6,8 @@ import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import StrengthenPlayIcon from '../../images/help/icons/play/strengthen.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type StrengthenRuleHistoryProps = {
 
@@ -26,10 +27,10 @@ export const StrengthenRuleHistory: FC<StrengthenRuleHistoryProps> = (props) => 
   if (!drawnCount) return null
 
   return (
-    <ActionHistory consequence picture={StrengthenPlayIcon} context={context}>
+    <PictureHistoryEntry depth={1} picture={StrengthenPlayIcon} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.strengthen.me' : 'history.strengthen'} values={{ player: name, count: drawnCount }}>
         <strong />
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

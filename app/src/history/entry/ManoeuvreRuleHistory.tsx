@@ -6,7 +6,8 @@ import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconManoeuvre from '../../images/help/icons/discard/manoeuvre.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type ManoeuvreRuleHistoryProps = {
 
@@ -25,7 +26,7 @@ export const ManoeuvreRuleHistory: FC<ManoeuvreRuleHistoryProps> = (props) => {
   const item = context.game.items[move.itemType][move.itemIndex]
 
   return (
-    <ActionHistory consequence picture={IconManoeuvre} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconManoeuvre} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.manoeuvre.me' : 'history.manoeuvre'} values={{
         player: name,
         opponent: opponentName,
@@ -34,6 +35,6 @@ export const ManoeuvreRuleHistory: FC<ManoeuvreRuleHistoryProps> = (props) => {
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

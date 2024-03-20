@@ -5,7 +5,8 @@ import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconSecure from '../../images/help/icons/play/secure.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type SecureRuleHistoryProps = {
 
@@ -22,13 +23,13 @@ export const SecureRuleHistory: FC<SecureRuleHistoryProps> = (props) => {
   const item = context.game.items[move.itemType][move.itemIndex]
 
   return (
-    <ActionHistory consequence picture={IconSecure} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconSecure} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.secure.me' : 'history.secure'} values={{
         player: name,
         column: item.location.id
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

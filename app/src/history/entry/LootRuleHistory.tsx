@@ -7,7 +7,8 @@ import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconCrack from '../../images/help/icons/discard/crack.jpg'
 import IconLoot from '../../images/help/icons/discard/loot.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type LootRuleHistoryProps = {
 
@@ -26,25 +27,25 @@ export const LootRuleHistory: FC<LootRuleHistoryProps> = (props) => {
 
   if (opponent === playerId) {
     return (
-      <ActionHistory consequence picture={IconCrack} context={context}>
+      <PictureHistoryEntry depth={1} picture={IconCrack} backgroundColor={getFlagColor(actionPlayer)}>
         <Trans defaults={'history.loot.target.me'} values={{
           player: name,
           opponent: opponentName
         }}>
           <strong/>
         </Trans>
-      </ActionHistory>
+      </PictureHistoryEntry>
     )
   }
 
   return (
-    <ActionHistory consequence picture={IconLoot} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconLoot} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.loot.me' : 'history.loot'} values={{
         player: name,
         opponent: opponentName
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

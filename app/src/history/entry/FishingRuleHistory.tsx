@@ -6,7 +6,8 @@ import { isMoveItemType, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconFishing from '../../images/help/icons/play/fishing.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type FishingRuleHistoryProps = {
 
@@ -24,13 +25,13 @@ export const FishingRuleHistory: FC<FishingRuleHistoryProps> = (props) => {
   if (!fishing.length) return null
 
   return (
-    <ActionHistory consequence picture={IconFishing} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconFishing} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.fishing.me' : 'history.fishing'} values={{
         player: name,
         count: fishing.length,
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }

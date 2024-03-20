@@ -3,13 +3,14 @@ import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
-import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { HistoryEntry, MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconBomb from '../../images/help/icons/play/bombard.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type BombingRuleHistoryProps = {} & MaterialHistoryProps
 
@@ -30,22 +31,22 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
     if (zeppelin.location.rotation === ZeppelinState.PENDING_REVELATION) {
       if (imTheTarget) {
         return (
-          <ActionHistory consequence picture={IconBomb} context={context}>
+          <PictureHistoryEntry depth={1} picture={IconBomb} backgroundColor={getFlagColor(actionPlayer)}>
             <Trans defaults="history.bombing.me" values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
               <strong/>
               <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.ZeppelinCard, zeppelin)} local/>
             </Trans>
-          </ActionHistory>
+          </PictureHistoryEntry>
         )
       }
       return (
-        <ActionHistory consequence picture={IconBomb} context={context}>
+        <PictureHistoryEntry depth={1} picture={IconBomb} backgroundColor={getFlagColor(actionPlayer)}>
           <Trans defaults={itsMyAction ? 'history.bombing.opponent.me' : 'history.bombing.opponent'}
                  values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
             <strong/>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.ZeppelinCard, zeppelin)} local/>
           </Trans>
-        </ActionHistory>
+        </PictureHistoryEntry>
       )
     }
 
@@ -53,23 +54,23 @@ export const BombingRuleHistory: FC<BombingRuleHistoryProps> = (props) => {
 
       if (imTheTarget) {
         return (
-          <ActionHistory consequence depth={2} context={context}>
+          <HistoryEntry depth={2} backgroundColor={getFlagColor(actionPlayer)}>
             <Trans defaults="history.bombing.me.destroy" values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
               <strong/>
               <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.ZeppelinCard, zeppelin)} local/>
             </Trans>
-          </ActionHistory>
+          </HistoryEntry>
         )
       }
 
       return (
-        <ActionHistory consequence depth={2} context={context}>
+        <HistoryEntry depth={2} backgroundColor={getFlagColor(actionPlayer)}>
           <Trans defaults={itsMyAction ? 'history.bombing.opponent.destroy.me' : 'history.bombing.opponent.destroy'}
                  values={{ player: name, opponent: opponentName, column: zeppelin.location.id }}>
             <strong/>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.ZeppelinCard, zeppelin)} local/>
           </Trans>
-        </ActionHistory>
+        </HistoryEntry>
       )
 
     }

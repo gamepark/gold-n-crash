@@ -3,18 +3,17 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { RuleId } from '@gamepark/gold-n-crash/rules/RuleId'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { HistoryEntry, MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType, isStartRule, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconObserve from '../../images/help/icons/discard/observe.jpg'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
-export type ObserveRuleHistoryProps = {
+export type ObserveRuleHistoryProps = {} & MaterialHistoryProps
 
-} & MaterialHistoryProps
-
-export const  ObserveRuleHistory: FC<ObserveRuleHistoryProps> = (props) => {
+export const ObserveRuleHistory: FC<ObserveRuleHistoryProps> = (props) => {
   const { move, context } = props
   const action = context.action
   const actionPlayer = action.playerId
@@ -23,7 +22,7 @@ export const  ObserveRuleHistory: FC<ObserveRuleHistoryProps> = (props) => {
   const opponentName = usePlayerName(opponent)
 
   if (isStartRule(move) && move.id === RuleId.Observe) {
-    return <StartManoeuvreRuleHistory move={move} context={context} playerName={name} />
+    return <StartManoeuvreRuleHistory move={move} context={context} playerName={name}/>
   }
 
   if (isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.CrewDeck && move.location.x === 0) {
@@ -31,7 +30,7 @@ export const  ObserveRuleHistory: FC<ObserveRuleHistoryProps> = (props) => {
       return <PlaceAtBottomHistory move={move} context={context} playerName={name} opponentName={opponentName}/>
     }
 
-    return <PlaceOnTopHistory move={move} context={context} playerName={name} opponentName={opponentName} />
+    return <PlaceOnTopHistory move={move} context={context} playerName={name} opponentName={opponentName}/>
   }
 
   return null
@@ -49,14 +48,14 @@ const StartManoeuvreRuleHistory: FC<StartObserveRuleHistory> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
 
   return (
-    <ActionHistory consequence picture={IconObserve} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconObserve} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.observe.me' : 'history.observe'} values={{
         player: playerName,
         count: action.consequences.filter((m) => isMoveItemType(MaterialType.Card)(m) && m.location.type === LocationType.Hand).length
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }
 
@@ -74,13 +73,13 @@ const PlaceOnTopHistory: FC<MoveItemHistoryProps> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
 
   return (
-    <ActionHistory consequence context={context}>
+    <HistoryEntry depth={1} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.observe.top.me' : 'history.observe.top'} values={{
         player: playerName
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </HistoryEntry>
   )
 }
 
@@ -92,12 +91,12 @@ const PlaceAtBottomHistory: FC<MoveItemHistoryProps> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
 
   return (
-    <ActionHistory consequence depth={2} context={context}>
+    <HistoryEntry depth={2} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.observe.bottom.me' : 'history.observe.bottom'} values={{
         player: playerName
       }}>
         <strong/>
       </Trans>
-    </ActionHistory>
+    </HistoryEntry>
   )
 }

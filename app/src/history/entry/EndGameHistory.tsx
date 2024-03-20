@@ -19,8 +19,8 @@ export const EndGameHistory: FC<MaterialHistoryProps> = (props) => {
   if (score !== 0 && winner === playerId) {
     return (
       <>
-        <HistoryEntry border css={winnerStyle}>{t('result.comp.victory')}</HistoryEntry>
-        <HistoryEntry border css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
+        <HistoryEntry borderBottom css={winnerStyle}>{t('result.comp.victory')}</HistoryEntry>
+        <HistoryEntry css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
       </>
     )
   }
@@ -28,16 +28,16 @@ export const EndGameHistory: FC<MaterialHistoryProps> = (props) => {
   if (score === 0) {
     return (
       <>
-        <HistoryEntry border css={winnerStyle}>{t('result.comp.tie.all')}</HistoryEntry>
-        <HistoryEntry border css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
+        <HistoryEntry borderBottom css={winnerStyle}>{t('result.comp.tie.all')}</HistoryEntry>
+        <HistoryEntry css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
       </>
     )
   }
 
   return (
     <>
-      <HistoryEntry border css={winnerStyle}>{t('result.comp.winner', { player: winnerName })}</HistoryEntry>
-      <HistoryEntry border css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
+      <HistoryEntry borderBottom css={winnerStyle}>{t('result.comp.winner', { player: winnerName })}</HistoryEntry>
+      <HistoryEntry css={endOfGameStyle}>{t('history.game.end')}</HistoryEntry>
     </>
   )
 }

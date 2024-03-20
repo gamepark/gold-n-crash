@@ -8,7 +8,8 @@ import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconCrack from '../../images/help/icons/discard/crack.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
-import { ActionHistory } from './ActionHistory'
+import { PictureHistoryEntry } from './PictureHistoryEntry'
+import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type CrackTheTreasureRuleHistoryProps = {} & MaterialHistoryProps
 
@@ -29,7 +30,7 @@ export const CrackTheTreasureRuleHistory: FC<CrackTheTreasureRuleHistoryProps> =
 
   if (opponent === playerId) {
     return (
-      <ActionHistory consequence picture={IconCrack} context={context}>
+      <PictureHistoryEntry depth={1} picture={IconCrack} backgroundColor={getFlagColor(actionPlayer)}>
         <Trans defaults={'history.crack-the-treasure.target.me'} values={{
           player: name,
           opponent: opponentName
@@ -37,12 +38,12 @@ export const CrackTheTreasureRuleHistory: FC<CrackTheTreasureRuleHistoryProps> =
           <strong/>
           <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, card)} local/>
         </Trans>
-      </ActionHistory>
+      </PictureHistoryEntry>
     )
   }
 
   return (
-    <ActionHistory consequence picture={IconCrack} context={context}>
+    <PictureHistoryEntry depth={1} picture={IconCrack} backgroundColor={getFlagColor(actionPlayer)}>
       <Trans defaults={itsMyAction ? 'history.crack-the-treasure.me' : 'history.crack-the-treasure'} values={{
         player: name,
         opponent: opponentName
@@ -50,6 +51,6 @@ export const CrackTheTreasureRuleHistory: FC<CrackTheTreasureRuleHistoryProps> =
         <strong/>
         <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, card)} local/>
       </Trans>
-    </ActionHistory>
+    </PictureHistoryEntry>
   )
 }
