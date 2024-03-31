@@ -5,12 +5,11 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { RuleId } from '@gamepark/gold-n-crash/rules/RuleId'
 import { linkButtonCss, MaterialHistoryProps } from '@gamepark/react-game'
-import { isMoveItemType, isStartPlayerTurn, isStartRule, MaterialGame, MaterialMove, MoveKind, RuleMoveType } from '@gamepark/rules-api'
+import { isMoveItemType, isStartPlayerTurn, isStartRule, MaterialGame, MaterialMove } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { BoardingRuleHistory } from './entry/BoardingRuleHistory'
 import { BombingRuleHistory } from './entry/BombingRuleHistory'
 import { CrackTheTreasureRuleHistory } from './entry/CrackTheTreasureRuleHistory'
-import { EndGameHistory } from './entry/EndGameHistory'
 import { FishingRuleHistory } from './entry/FishingRuleHistory'
 import { LootRuleHistory } from './entry/LootRuleHistory'
 import { ManoeuvreRuleHistory } from './entry/ManoeuvreRuleHistory'
@@ -82,10 +81,6 @@ export const GoldNCrashHistory: FC<MaterialHistoryProps<MaterialGame, MaterialMo
 
   if (game.rule?.id === RuleId.PlayerTurn) {
     return <PlayerTurnRuleHistory move={move} context={context} />
-  }
-
-  if (move.kind === MoveKind.RulesMove && move.type === RuleMoveType.EndGame) {
-    return <EndGameHistory move={move} context={context}/>
   }
 
   return <></>
