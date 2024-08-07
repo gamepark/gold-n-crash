@@ -10,6 +10,10 @@ export class FlagCardLocator extends ItemLocator {
 
     return { x: 33, y: -0, z: 0 }
   }
+
+  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
+    return (player ?? rules.game.players[0]) === item.id ? 90 : -90
+  }
 }
 
 export const flagCardLocator = new FlagCardLocator()

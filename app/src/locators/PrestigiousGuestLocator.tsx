@@ -20,6 +20,10 @@ export class PrestigiousGuestLocator extends ItemLocator {
       z: 0
     }
   }
+
+  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
+    return (player ?? rules.game.players[0]) === item.location.player ? 0 : 180
+  }
 }
 
 export const prestigiousGuestLocator = new PrestigiousGuestLocator()

@@ -1,17 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { CardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
-import PoulpirateZeppelin1 from '../images/zeppelin/poulpirate/PoulpirateZeppelin1.jpg'
-import PoulpirateZeppelin2 from '../images/zeppelin/poulpirate/PoulpirateZeppelin2.jpg'
-import PoulpirateZeppelin3 from '../images/zeppelin/poulpirate/PoulpirateZeppelin3.jpg'
-import PoulpirateZeppelinBack from '../images/zeppelin/poulpirate/PoulpirateZeppelinBack.jpg'
+import { Flag } from '@gamepark/gold-n-crash/material/Flag'
+import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
+import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api'
 import ChamouraiZeppelin1 from '../images/zeppelin/chamourai/ChamouraiZeppelin1.jpg'
 import ChamouraiZeppelin2 from '../images/zeppelin/chamourai/ChamouraiZeppelin2.jpg'
 import ChamouraiZeppelin3 from '../images/zeppelin/chamourai/ChamouraiZeppelin3.jpg'
 import ChamouraiZeppelinBack from '../images/zeppelin/chamourai/ChamouraiZeppelinBack.jpg'
-
-import { Flag } from '@gamepark/gold-n-crash/material/Flag'
-import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
-import { MaterialItem } from '@gamepark/rules-api'
+import PoulpirateZeppelin1 from '../images/zeppelin/poulpirate/PoulpirateZeppelin1.jpg'
+import PoulpirateZeppelin2 from '../images/zeppelin/poulpirate/PoulpirateZeppelin2.jpg'
+import PoulpirateZeppelin3 from '../images/zeppelin/poulpirate/PoulpirateZeppelin3.jpg'
+import PoulpirateZeppelinBack from '../images/zeppelin/poulpirate/PoulpirateZeppelinBack.jpg'
 import { ZeppelinCardHelp } from './help/ZeppelinCardHelp'
 
 export class ZeppelinCardDescription extends CardDescription {
@@ -45,11 +44,6 @@ export class ZeppelinCardDescription extends CardDescription {
     }
 
     return super.isFlipped(item, context)
-  }
-
-  getRotateZ(item: MaterialItem, context: ItemContext): number {
-    const { player, rules } = context
-    return (item.location.player === (player ?? rules.players[0]))? -90: 90
   }
 
   help = ZeppelinCardHelp

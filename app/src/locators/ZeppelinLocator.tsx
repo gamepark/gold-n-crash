@@ -17,7 +17,12 @@ export class ZeppelinLocator extends ItemLocator {
     return {
       x: baseX - ((zeppelinCardDescription.height + 1) * (location.id - 1)),
       y: -12.6,
-      z: 0 }
+      z: 0
+    }
+  }
+
+  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
+    return (player ?? rules.players[0]) === item.location.player ? -90 : 90
   }
 }
 

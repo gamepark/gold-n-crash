@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { Card, isPrestigiousGuest, PrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
+import { Card, PrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
-import { CardDescription, ItemContext } from '@gamepark/react-game'
+import { CardDescription } from '@gamepark/react-game'
 import ChamouraiBlueCrew1 from '../images/crew/chamourai/ChamouraiBlueCrew1.jpg'
 import ChamouraiBlueCrew2 from '../images/crew/chamourai/ChamouraiBlueCrew2.jpg'
 import ChamouraiBlueCrew3 from '../images/crew/chamourai/ChamouraiBlueCrew3.jpg'
@@ -38,6 +38,29 @@ import PoulpiratePurpleCrew3 from '../images/crew/poulpirate/PoulpiratePurpleCre
 import PoulpirateRedCrew1 from '../images/crew/poulpirate/PoulpirateRedCrew1.jpg'
 import PoulpirateRedCrew2 from '../images/crew/poulpirate/PoulpirateRedCrew2.jpg'
 import PoulpirateRedCrew3 from '../images/crew/poulpirate/PoulpirateRedCrew3.jpg'
+import CrackIcon from '../images/help/icons/discard/crack.jpg'
+import LootIcon from '../images/help/icons/discard/loot.jpg'
+import ManoeuvreIcon from '../images/help/icons/discard/manoeuvre.jpg'
+import ObserveIcon from '../images/help/icons/discard/observe.jpg'
+import RecallIcon from '../images/help/icons/discard/recall.jpg'
+import IconGold from '../images/help/icons/gold.png'
+import IconGuest1 from '../images/help/icons/guest/guest1.jpg'
+import IconGuest2 from '../images/help/icons/guest/guest2.jpg'
+import IconGuest3 from '../images/help/icons/guest/guest3.jpg'
+import IconGuest4 from '../images/help/icons/guest/guest4.jpg'
+import IconGuest5 from '../images/help/icons/guest/guest5.jpg'
+import IconGuest6 from '../images/help/icons/guest/guest6.jpg'
+import IconGuest7 from '../images/help/icons/guest/guest7.jpg'
+import IconGuest8 from '../images/help/icons/guest/guest8.jpg'
+import BoardingPlayIcon from '../images/help/icons/play/boarding.jpg'
+import BombardPlayIcon from '../images/help/icons/play/bombard.jpg'
+import FishingPlayIcon from '../images/help/icons/play/fishing.jpg'
+import GoldPlayIcon from '../images/help/icons/play/gold.jpg'
+import SecurePlayIcon from '../images/help/icons/play/secure.jpg'
+import StrengthenPlayIcon from '../images/help/icons/play/strengthen.jpg'
+import IconBoarding from '../images/help/icons/types/boarding.png'
+import IconBomb from '../images/help/icons/types/bomb.png'
+import IconStrengthen from '../images/help/icons/types/strength.png'
 import PrestigiousGuest1 from '../images/prestigious-guest/PrestigiousGuest1.jpg'
 import PrestigiousGuest2 from '../images/prestigious-guest/PrestigiousGuest2.jpg'
 import PrestigiousGuest3 from '../images/prestigious-guest/PrestigiousGuest3.jpg'
@@ -47,30 +70,6 @@ import PrestigiousGuest6 from '../images/prestigious-guest/PrestigiousGuest6.jpg
 import PrestigiousGuest7 from '../images/prestigious-guest/PrestigiousGuest7.jpg'
 import PrestigiousGuest8 from '../images/prestigious-guest/PrestigiousGuest8.jpg'
 import PrestigiousGuestBack from '../images/prestigious-guest/PrestigiousGuestBack.jpg'
-import BombardPlayIcon from '../images/help/icons/play/bombard.jpg'
-import BoardingPlayIcon from '../images/help/icons/play/boarding.jpg'
-import FishingPlayIcon from '../images/help/icons/play/fishing.jpg'
-import SecurePlayIcon from '../images/help/icons/play/secure.jpg'
-import StrengthenPlayIcon from '../images/help/icons/play/strengthen.jpg'
-import GoldPlayIcon from '../images/help/icons/play/gold.jpg'
-import CrackIcon from '../images/help/icons/discard/crack.jpg'
-import ManoeuvreIcon from '../images/help/icons/discard/manoeuvre.jpg'
-import RecallIcon from '../images/help/icons/discard/recall.jpg'
-import ObserveIcon from '../images/help/icons/discard/observe.jpg'
-import LootIcon from '../images/help/icons/discard/loot.jpg'
-import IconGuest1 from '../images/help/icons/guest/guest1.jpg'
-import IconGuest2 from '../images/help/icons/guest/guest2.jpg'
-import IconGuest3 from '../images/help/icons/guest/guest3.jpg'
-import IconGuest4 from '../images/help/icons/guest/guest4.jpg'
-import IconGuest5 from '../images/help/icons/guest/guest5.jpg'
-import IconGuest6 from '../images/help/icons/guest/guest6.jpg'
-import IconGuest7 from '../images/help/icons/guest/guest7.jpg'
-import IconGuest8 from '../images/help/icons/guest/guest8.jpg'
-import IconGold from '../images/help/icons/gold.png'
-import IconBomb from '../images/help/icons/types/bomb.png'
-import IconStrengthen from '../images/help/icons/types/strength.png'
-import IconBoarding from '../images/help/icons/types/boarding.png'
-import { MaterialItem } from '@gamepark/rules-api'
 import { GameCardHelp } from './help/GameCardHelp'
 
 export class GameCardDescription extends CardDescription {
@@ -126,13 +125,6 @@ export class GameCardDescription extends CardDescription {
     [Card.PrestigiousGuest6]: PrestigiousGuest6,
     [Card.PrestigiousGuest7]: PrestigiousGuest7,
     [Card.PrestigiousGuest8]: PrestigiousGuest8,
-  }
-
-  getRotateZ(item: MaterialItem, context: ItemContext): number {
-    if (!isPrestigiousGuest(item.id.front)) return super.getRotateZ(item, context)
-
-    const { player } = context
-    return player === item.location.player? 0: 180
   }
 
   help = GameCardHelp

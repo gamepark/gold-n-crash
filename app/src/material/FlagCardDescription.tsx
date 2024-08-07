@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { CardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
-import Poulpirate from '../images/flag/poulpirate/PoulpirateFlag.jpg'
-import Chamourai from '../images/flag/chamourai/ChamouraiFlag.jpg'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
-import { MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
+import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api'
+import Chamourai from '../images/flag/chamourai/ChamouraiFlag.jpg'
+import Poulpirate from '../images/flag/poulpirate/PoulpirateFlag.jpg'
 
 export class FlagCardDescription extends CardDescription {
   height = 8.89
@@ -23,11 +23,6 @@ export class FlagCardDescription extends CardDescription {
   images = {
     [Flag.Poulpirate]: Poulpirate,
     [Flag.Chamourai]: Chamourai
-  }
-
-  getRotateZ(item: MaterialItem, context: ItemContext): number {
-    const { player } = context
-    return player === item.id? 90: -90
   }
 }
 
