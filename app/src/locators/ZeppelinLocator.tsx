@@ -10,7 +10,7 @@ export class ZeppelinLocator extends Locator {
   }
 
   getRotateZ(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
-    return location.player === player ? -90 : 90
+    return location.player === player ? 0 : 180
   }
 }
 

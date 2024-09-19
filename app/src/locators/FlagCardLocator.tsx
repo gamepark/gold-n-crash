@@ -8,7 +8,7 @@ export class FlagCardLocator extends Locator {
   }
 
   getRotateZ(location: Location, { rules, player = rules.game.players[0] }: MaterialContext) {
-    return location.player === player ? 90 : -90
+    return location.player === player ? 0 : 180
   }
 }
 

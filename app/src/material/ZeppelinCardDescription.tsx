@@ -14,6 +14,9 @@ import PoulpirateZeppelinBack from '../images/zeppelin/poulpirate/PoulpirateZepp
 import { ZeppelinCardHelp } from './help/ZeppelinCardHelp'
 
 export class ZeppelinCardDescription extends CardDescription {
+  width = 8.8
+  height = 6.3
+
   backImages = {
     [Flag.Poulpirate]: PoulpirateZeppelinBack,
     [Flag.Chamourai]: ChamouraiZeppelinBack

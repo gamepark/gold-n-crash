@@ -6,6 +6,8 @@ import Chamourai from '../images/flag/chamourai/ChamouraiFlag.jpg'
 import Poulpirate from '../images/flag/poulpirate/PoulpirateFlag.jpg'
 
 export class FlagCardDescription extends CardDescription {
+  width = 8.8
+  height = 6.3
 
   getStaticItems({ rules: { players } }: MaterialContext) {
     return players.map(player => ({
