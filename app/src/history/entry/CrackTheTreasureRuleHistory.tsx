@@ -3,13 +3,14 @@ import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
-import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
+import { isMoveItemType, MaterialMoveBuilder } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconCrack from '../../images/help/icons/discard/crack.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
 import { PictureHistoryEntry } from './PictureHistoryEntry'
 import { getFlagColor } from './PlayerTurnRuleHIstory'
+import displayMaterialHelp = MaterialMoveBuilder.displayMaterialHelp
 
 export type CrackTheTreasureRuleHistoryProps = {} & MaterialHistoryProps
 

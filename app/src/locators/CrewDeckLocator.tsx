@@ -1,22 +1,14 @@
-import { DeckLocator, ItemContext } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api'
-import { gameCardDescription } from '../material/GameCardDescription'
+import { DeckLocator, MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 
 export class CrewDeckLocator extends DeckLocator {
 
-
-  delta = { x: -0.05, y: -0.05, z: gameCardDescription.thickness }
-    
-  getCoordinates({ location }: MaterialItem, { rules, player }: ItemContext) {
-    if (location.player === (player ?? rules.players[0])) {
-      return { x: -43, y: 0, z: 0 }
-    }
-
-    return { x: 43, y: -0, z: 0 }
+  getCoordinates(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
+    return { x: location.player === player ? -43 : 43 }
   }
 
-  getRotateZ({ location }: MaterialItem, { rules, player }: ItemContext): number {
-    return (location.player === (player ?? rules.players[0]))? 0: 180
+  getRotateZ(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
+    return location.player === player ? 0 : 180
   }
 }
 

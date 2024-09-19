@@ -1,18 +1,14 @@
-import { ItemContext, ItemLocator } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api'
+import { Locator, MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 
-export class FlagCardLocator extends ItemLocator {
+export class FlagCardLocator extends Locator {
 
-  getPosition(item: MaterialItem, { rules, player }: ItemContext) {
-    if (item.id === (player ?? rules.players[0])) {
-      return { x: -33, y: 0, z: 0 }
-    }
-
-    return { x: 33, y: -0, z: 0 }
+  getCoordinates(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
+    return { x: location.player === player ? -33 : 33 }
   }
 
-  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
-    return (player ?? rules.game.players[0]) === item.id ? 90 : -90
+  getRotateZ(location: Location, { rules, player = rules.game.players[0] }: MaterialContext) {
+    return location.player === player ? 90 : -90
   }
 }
 

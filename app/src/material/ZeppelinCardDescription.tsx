@@ -14,12 +14,9 @@ import PoulpirateZeppelinBack from '../images/zeppelin/poulpirate/PoulpirateZepp
 import { ZeppelinCardHelp } from './help/ZeppelinCardHelp'
 
 export class ZeppelinCardDescription extends CardDescription {
-  height = 8.89
-  borderRadius = 0.6
-
   backImages = {
     [Flag.Poulpirate]: PoulpirateZeppelinBack,
-    [Flag.Chamourai]: ChamouraiZeppelinBack,
+    [Flag.Chamourai]: ChamouraiZeppelinBack
   }
 
   images = {
@@ -28,7 +25,7 @@ export class ZeppelinCardDescription extends CardDescription {
     [Zeppelin.PoulpirateZeppelin3]: PoulpirateZeppelin3,
     [Zeppelin.ChamouraiZeppelin1]: ChamouraiZeppelin1,
     [Zeppelin.ChamouraiZeppelin2]: ChamouraiZeppelin2,
-    [Zeppelin.ChamouraiZeppelin3]: ChamouraiZeppelin3,
+    [Zeppelin.ChamouraiZeppelin3]: ChamouraiZeppelin3
   }
 
   isFlipped(item: Partial<MaterialItem>, context: MaterialContext): boolean {

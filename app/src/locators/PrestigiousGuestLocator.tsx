@@ -1,28 +1,24 @@
-import { ItemContext, ItemLocator } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api'
+import { ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
+import { Location, MaterialItem } from '@gamepark/rules-api'
 import { gameCardDescription } from '../material/GameCardDescription'
+import { zeppelinLocator } from './ZeppelinLocator'
 
-export class PrestigiousGuestLocator extends ItemLocator {
-  getPosition({ location }: MaterialItem, { rules, player }: ItemContext) {
-    const x = -18.8
-    if (location.player === (player ?? rules.players[0])) {
-      return {
-        x: x + ((gameCardDescription.height + 1) * location.id - 1),
-        y: gameCardDescription.height / 2 + 0.2,
-        z: 0
-      }
-    }
-
-    const baseX = x + (gameCardDescription.height * 3 + 2)
-    return {
-      x: baseX - ((gameCardDescription.height + 1) * (location.id - 1)),
-      y: -(gameCardDescription.height / 2 + 0.2),
-      z: 0
-    }
+export class PrestigiousGuestLocator extends Locator {
+  getCoordinates(location: Location, context: MaterialContext) {
+    const { x } = zeppelinLocator.getCoordinates(location, context)
+    const y = gameCardDescription.height / 2 + 0.2
+    const player = context.player ?? context.rules.players[0]
+    return location.player === player ? { x, y } : { x, y: -y }
   }
 
-  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
-    return (player ?? rules.game.players[0]) === item.location.player ? 0 : 180
+  getRotateZ(location: Location, { rules, player = rules.game.players[0] }: MaterialContext): number {
+    return location.player === player ? 0 : 180
+  }
+
+  getHoverTransform(item: MaterialItem, { rules, player = rules.players[0] }: ItemContext) {
+    const transform = ['translateZ(10em)', 'scale(2)']
+    if (item.location.player !== player) transform.push('rotateZ(180deg)')
+    return transform
   }
 }
 

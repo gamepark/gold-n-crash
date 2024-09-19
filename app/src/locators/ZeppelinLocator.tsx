@@ -1,28 +1,16 @@
-import { ItemContext, ItemLocator } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api'
-import { zeppelinCardDescription } from '../material/ZeppelinCardDescription'
+import { Locator, MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
+import { gameCardDescription } from '../material/GameCardDescription'
 
-export class ZeppelinLocator extends ItemLocator {
-  getPosition({ location }: MaterialItem, { rules, player }: ItemContext) {
-    const x = -18.8
-    if (location.player === (player ?? rules.players[0])) {
-      return {
-        x: x + ((zeppelinCardDescription.height + 1) * location.id - 1),
-        y: 12.6,
-        z: 0
-      }
-    }
-
-    const baseX = x + (zeppelinCardDescription.height * 3 + 2)
-    return {
-      x: baseX - ((zeppelinCardDescription.height + 1) * (location.id - 1)),
-      y: -12.6,
-      z: 0
-    }
+export class ZeppelinLocator extends Locator {
+  getCoordinates(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
+    const x = (gameCardDescription.height + 1) * (location.id - 2)
+    const y = 12.6
+    return location.player === player ? { x, y } : { x: -x, y: -y }
   }
 
-  getRotateZ(item: MaterialItem, { player, rules }: ItemContext): number {
-    return (player ?? rules.players[0]) === item.location.player ? -90 : 90
+  getRotateZ(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
+    return location.player === player ? -90 : 90
   }
 }
 

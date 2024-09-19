@@ -4,13 +4,14 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { HistoryEntry, MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
-import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
+import { isMoveItemType, MaterialMoveBuilder } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 import IconBomb from '../../images/help/icons/play/bombard.jpg'
 import { rulesLinkButton } from '../GoldNCrashHistory'
 import { PictureHistoryEntry } from './PictureHistoryEntry'
 import { getFlagColor } from './PlayerTurnRuleHIstory'
+import displayMaterialHelp = MaterialMoveBuilder.displayMaterialHelp
 
 export type BombingRuleHistoryProps = {} & MaterialHistoryProps
 

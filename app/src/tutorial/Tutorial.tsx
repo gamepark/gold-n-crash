@@ -13,7 +13,7 @@ const me = Flag.Chamourai
 const opponent = Flag.Poulpirate
 
 export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType> {
-  version = 3
+  version = 4
   options = { players: [{ id: me }, { id: opponent }] }
   setup = new TutorialSetup()
 
@@ -212,7 +212,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
             && game.items[MaterialType.Card]![move.itemIndex].id.front === Card.PoulpirateBrownCrew3
         }
       },
-      focus: (game) => this.steps[game.tutorialStep! - 1].focus!(game)
+      focus: (game) => this.steps[game.tutorial!.step - 1].focus!(game)
     },
     {
       popup: {

@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { Card, PrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
-import { CardDescription } from '@gamepark/react-game'
+import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { MaterialItem } from '../../../../rules-api'
 import ChamouraiBlueCrew1 from '../images/crew/chamourai/ChamouraiBlueCrew1.jpg'
 import ChamouraiBlueCrew2 from '../images/crew/chamourai/ChamouraiBlueCrew2.jpg'
 import ChamouraiBlueCrew3 from '../images/crew/chamourai/ChamouraiBlueCrew3.jpg'
@@ -73,9 +74,6 @@ import PrestigiousGuestBack from '../images/prestigious-guest/PrestigiousGuestBa
 import { GameCardHelp } from './help/GameCardHelp'
 
 export class GameCardDescription extends CardDescription {
-  height = 8.89
-  borderRadius = 0.6
-
   backImages = {
     [Flag.Poulpirate]: PoulpirateCrewBack,
     [Flag.Chamourai]: ChamouraiCrewBack,
@@ -124,7 +122,7 @@ export class GameCardDescription extends CardDescription {
     [Card.PrestigiousGuest5]: PrestigiousGuest5,
     [Card.PrestigiousGuest6]: PrestigiousGuest6,
     [Card.PrestigiousGuest7]: PrestigiousGuest7,
-    [Card.PrestigiousGuest8]: PrestigiousGuest8,
+    [Card.PrestigiousGuest8]: PrestigiousGuest8
   }
 
   help = GameCardHelp
@@ -155,6 +153,10 @@ export class GameCardDescription extends CardDescription {
     images.push(IconStrengthen)
     images.push(IconBoarding)
     return images
+  }
+
+  isFlippedOnTable(item: Partial<MaterialItem>, context: MaterialContext) {
+    return item.location?.rotation || super.isFlippedOnTable(item, context)
   }
 }
 

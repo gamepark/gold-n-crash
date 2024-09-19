@@ -4,12 +4,13 @@ import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { HistoryEntry, MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
-import { displayMaterialHelp, isMoveItemType } from '@gamepark/rules-api'
+import { isMoveItemType, MaterialMoveBuilder } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { playerColorCode } from '../../panels/PlayerPanels'
 import { getColorText } from '../../utils/color.utils'
 import { rulesLinkButton } from '../GoldNCrashHistory'
+import displayMaterialHelp = MaterialMoveBuilder.displayMaterialHelp
 
 export type PlayerTurnRuleHistoryProps = {} & MaterialHistoryProps
 
