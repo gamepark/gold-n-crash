@@ -28,19 +28,20 @@ export class ZeppelinCardDescription extends CardDescription {
     [Zeppelin.ChamouraiZeppelin3]: ChamouraiZeppelin3
   }
 
-  isFlipped(item: Partial<MaterialItem>, context: MaterialContext): boolean {
-    if (item.location?.rotation === true) return true
-
+  isFlipped(item: Partial<MaterialItem>, { player }: MaterialContext) {
     switch (item.location?.rotation) {
       case ZeppelinState.VISIBLE:
         return false
       case ZeppelinState.PENDING_REVELATION:
-        return !context.player || (context.player !== item.location?.player)
       case ZeppelinState.VISIBLE_BY_ME:
+        return player !== item.location?.player
+      default:
         return true
     }
+  }
 
-    return super.isFlipped(item, context)
+  isFlippedOnTable(item: Partial<MaterialItem>, context: MaterialContext) {
+    return item.location?.rotation === ZeppelinState.VISIBLE_BY_ME || super.isFlippedOnTable(item, context)
   }
 
   help = ZeppelinCardHelp
