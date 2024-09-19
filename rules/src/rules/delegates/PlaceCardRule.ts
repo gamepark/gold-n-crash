@@ -66,15 +66,15 @@ export class PlaceCardRule extends PlayerTurnRule {
     this.memorize(Memory.Column, move.location.id)
     this.incrementAction()
     this.incrementPlayedCard()
-    const card = this.material(MaterialType.Card).getItem(move.itemIndex)!.id.front
+    const card = this.material(MaterialType.Card).getItem(move.itemIndex).id.front
     const moves = []
     if (card) {
       const playEffect = getPlayEffect(card)
       if (playEffect) {
         this.memorize(Memory.NumberOfEffect, this.countCardOfType(card))
-        moves.push(this.rules().startRule(playEffect))
+        moves.push(this.startRule(playEffect))
       } else if (isGold(card)) {
-        moves.push(this.rules().startRule(RuleId.EndOfCardResolution))
+        moves.push(this.startRule(RuleId.EndOfCardResolution))
       }
     } else {
       console.error('Moving a card without front ?')

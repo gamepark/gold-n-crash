@@ -50,7 +50,7 @@ export class SecureRule extends PlayerTurnRule {
     if (this.times !== this.effectPlayed && this.getPlayerMoves().length > 0) return []
 
     return [
-      this.rules().startRule(RuleId.EndOfCardResolution)
+      this.startRule(RuleId.EndOfCardResolution)
     ]
   }
   get times() {

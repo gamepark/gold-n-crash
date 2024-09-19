@@ -1,4 +1,4 @@
-import { isEnumValue } from '@gamepark/rules-api'
+import { getEnumValues } from '@gamepark/rules-api'
 
 export enum PrestigiousGuest {
   PrestigiousGuest = 3
@@ -56,14 +56,16 @@ export const isPurple = (c: Card) => c % 100 > 30 && c % 100 <= 40
 export const isRed = (c: Card) => c % 100 > 40 && c % 100 <= 50
 export const isGold = (c: Card) => c % 100 > 50 && c % 100 <= 60
 
+const cards = getEnumValues(Card)
+
 export const isPoulpirateCrew = (c: Card) => c < Card.ChamouraiBlueCrew1
-export const poulpirateCrew = Object.values(Card).filter(isEnumValue).filter(isPoulpirateCrew)
+export const poulpirateCrew = cards.filter(isPoulpirateCrew)
 
 export const isChamouraiCrew = (c: Card) => c >= Card.ChamouraiBlueCrew1 && c < Card.PrestigiousGuest1
-export const chamouraiCrew = Object.values(Card).filter(isEnumValue).filter(isChamouraiCrew)
+export const chamouraiCrew = cards.filter(isChamouraiCrew)
 
 export const isPrestigiousGuest = (c: Card) => c >= Card.PrestigiousGuest1
-export const prestigiousGuests = Object.values(Card).filter(isEnumValue).filter(isPrestigiousGuest)
+export const prestigiousGuests = cards.filter(isPrestigiousGuest)
 
 export const PoulpirateDeck = {
   [Card.PoulpirateBlueCrew1]: 3,

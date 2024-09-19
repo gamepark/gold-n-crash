@@ -1,4 +1,4 @@
-import { isEnumValue } from '@gamepark/rules-api'
+import { getEnumValues } from '@gamepark/rules-api'
 
 export enum Zeppelin {
   PoulpirateZeppelin1 = 1,
@@ -10,8 +10,7 @@ export enum Zeppelin {
 }
 
 export enum ZeppelinState {
-  INVISIBLE = 1,
-  PENDING_REVELATION,
+  PENDING_REVELATION = 2,
   VISIBLE_BY_ME,
   VISIBLE
 }
@@ -21,6 +20,6 @@ export const getZeppelinStrength = (zeppelin: Zeppelin) => {
   return zeppelin % 50
 }
 
-export const poulpirateZeppelins = Object.values(Zeppelin).filter(isEnumValue).filter((zeppelin) => zeppelin < Zeppelin.ChamouraiZeppelin1)
-export const chamouraiZeppelins = Object.values(Zeppelin).filter(isEnumValue).filter((zeppelin) => zeppelin >= Zeppelin.ChamouraiZeppelin1  )
+export const poulpirateZeppelins = getEnumValues(Zeppelin).filter((zeppelin) => zeppelin < Zeppelin.ChamouraiZeppelin1)
+export const chamouraiZeppelins = getEnumValues(Zeppelin).filter((zeppelin) => zeppelin >= Zeppelin.ChamouraiZeppelin1)
 

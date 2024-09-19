@@ -20,7 +20,7 @@ export class LootRule extends PlayerTurnRule {
       })
     )
 
-    moves.push(this.rules().startRule(RuleId.PlayerTurn))
+    moves.push(this.startRule(RuleId.PlayerTurn))
     return moves
   }
 }

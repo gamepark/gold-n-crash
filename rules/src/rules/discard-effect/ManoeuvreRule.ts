@@ -40,7 +40,7 @@ export class ManoeuvreRule extends PlayerTurnRule {
     const moves: MaterialMove[] = []
     moves.push(...new PrestigiousGuestRule(this.game, move.location.id).secureGuestMoves)
     moves.push(...new DiscardColumn(this.game, move.location.id).discardMoves)
-    moves.push(this.rules().startRule(RuleId.PlayerTurn))
+    moves.push(this.startRule(RuleId.PlayerTurn))
 
     return moves
   }

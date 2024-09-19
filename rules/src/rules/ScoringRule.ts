@@ -6,7 +6,7 @@ export class ScoringRule extends MaterialRulesPart {
   onRuleStart() {
     return [
       this.material(MaterialType.Card).location(LocationType.Treasure).moveItemsAtOnce({ rotation: false }),
-      this.rules().endGame()
+      this.endGame()
     ]
   }
 }

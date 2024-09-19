@@ -38,11 +38,11 @@ export class DiscardCardRule extends PlayerTurnRule {
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.Card)(move)) return []
     this.memorize(Memory.Actions, (action) => (action ?? 0) + 1)
-    const item = this.material(MaterialType.Card).getItem(move.itemIndex)!
+    const item = this.material(MaterialType.Card).getItem(move.itemIndex)
     const discardRule =  getDiscardEffect(item.id.front)
     if (discardRule) {
       return [
-        this.rules().startRule(discardRule)
+        this.startRule(discardRule)
       ]
     }
     return []

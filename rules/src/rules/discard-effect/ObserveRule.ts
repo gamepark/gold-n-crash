@@ -27,7 +27,7 @@ export class ObserveRule extends PlayerTurnRule {
       .material(MaterialType.Card)
       .location(LocationType.Hand)
       .player(this.player)
-      .indexes(this.observations)
+      .index(this.observations)
 
     return [
       // BOTTOM
@@ -47,11 +47,11 @@ export class ObserveRule extends PlayerTurnRule {
 
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.Card)(move) || move.location.type !== LocationType.CrewDeck) return []
-    this.memorize(Memory.Observation, (observations) => observations.filter((observation: number) => observation !== move.itemIndex))
+    this.memorize<number[]>(Memory.Observation, observations => observations.filter(observation => observation !== move.itemIndex))
 
     if (!this.observations.length) {
       return [
-        this.rules().startRule(RuleId.PlayerTurn)
+        this.startRule(RuleId.PlayerTurn)
       ]
     }
 

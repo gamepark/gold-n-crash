@@ -28,7 +28,7 @@ export class RecallRule extends PlayerTurnRule {
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.Card)(move)) return []
     return [
-      this.rules().startRule(RuleId.PlayerTurn)
+      this.startRule(RuleId.PlayerTurn)
     ]
   }
 

@@ -9,7 +9,7 @@ export class EndOfCardResolutionRule extends PlayerTurnRule {
     const moves: MaterialMove[] = []
     moves.push(...new PrestigiousGuestRule(this.game, this.column).secureGuestMoves)
     moves.push(...new DiscardColumn(this.game, this.column).discardMoves)
-    moves.push(this.rules().startRule(RuleId.PlayerTurn))
+    moves.push(this.startRule(RuleId.PlayerTurn))
     return moves
   }
 

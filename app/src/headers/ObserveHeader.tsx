@@ -35,7 +35,7 @@ export const ObserveHeader = () => {
           <h2><Trans defaults="header.observe.me"><span/></Trans></h2>
           <ul css={observationListCss}>
           {cards.map((card) => {
-            const item = rules.material(MaterialType.Card).getItem(card)!
+            const item = rules.material(MaterialType.Card).getItem(card)
             return (
               <li key={card}>
                 <MaterialComponent css={css`font-size: 2em`} type={MaterialType.Card} itemId={item.id.front}/>
