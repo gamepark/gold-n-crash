@@ -1,8 +1,10 @@
-import { ItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
+import { DropAreaDescription, ItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem } from '@gamepark/rules-api'
 import { zeppelinLocator } from './ZeppelinLocator'
 
 export class ColumnLocator extends ListLocator {
+  locationDescription = new DropAreaDescription({ width: 6.5, height: 17.6, borderRadius: 0.4 })
+
   getGap(location: Location, { rules, player = rules.players[0] }: MaterialContext) {
     return { y: location.player === player ? 1.5 : -1.5 }
   }
