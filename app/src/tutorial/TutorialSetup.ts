@@ -1,11 +1,11 @@
 import { GoldNCashOptions } from '@gamepark/gold-n-crash/GoldNCashOptions'
 import { GoldNCashSetup } from '@gamepark/gold-n-crash/GoldNCashSetup'
-import { Card, prestigiousGuests } from '@gamepark/gold-n-crash/material/Card'
+import { Card, CardId, prestigiousGuests } from '@gamepark/gold-n-crash/material/Card'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { Zeppelin } from '@gamepark/gold-n-crash/material/Zeppelin'
-import shuffle from 'lodash/shuffle'
+import { shuffle } from 'es-toolkit'
 
 const me = Flag.Chamourai
 const myHand = [Card.ChamouraiGold4, Card.ChamouraiPurpleCrew1, Card.ChamouraiBrownCrew2, Card.ChamouraiGreenCrew2, Card.ChamouraiGreenCrew3]
@@ -20,7 +20,7 @@ export class TutorialSetup extends GoldNCashSetup {
 
       this.material(MaterialType.Card)
         .location(LocationType.CrewDeck)
-        .id((id: any) => id.front === Card.ChamouraiBlueCrew3)
+        .id((id: CardId) => id.front === Card.ChamouraiBlueCrew3)
         .moveItem({
           type: LocationType.CrewDeck,
           player: playerId
@@ -28,7 +28,7 @@ export class TutorialSetup extends GoldNCashSetup {
 
       this.material(MaterialType.Card)
         .location(LocationType.CrewDeck)
-        .id((id: any) => id.front === Card.ChamouraiRedCrew1)
+        .id((id: CardId) => id.front === Card.ChamouraiRedCrew1)
         .moveItem({
           type: LocationType.CrewDeck,
           player: playerId
@@ -69,7 +69,7 @@ export class TutorialSetup extends GoldNCashSetup {
         .material(MaterialType.Card)
         .location(LocationType.CrewDeck)
         .player(playerId)
-        .id((id: any) => id.front === card)
+        .id((id: CardId) => id.front === card)
         .moveItem({
           type: LocationType.Hand,
           player: playerId

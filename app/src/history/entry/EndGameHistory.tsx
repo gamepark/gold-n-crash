@@ -1,11 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
-import { HistoryEntry, MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { HistoryEntry, MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const EndGameHistory: FC<MaterialHistoryProps> = (props) => {
+export const EndGameHistory: FC<MaterialLogProps> = (props) => {
   const { move, context } = props
   const { t } = useTranslation()
   const playerId = usePlayerId()

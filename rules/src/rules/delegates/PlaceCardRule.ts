@@ -1,12 +1,12 @@
 import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { Card, isGold } from '../../material/Card'
+import { Card, CardId, isGold } from '../../material/Card'
 import { getCardColorFinder, getPlayEffect } from '../../material/CrewCard'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { Memory } from '../Memory'
 import { PlaceEffectRule } from '../play-effect/helper/PlaceEffectRule'
 import { RuleId } from '../RuleId'
-import max from 'lodash/max'
+import { max } from 'es-toolkit/compat'
 
 export class PlaceCardRule extends PlayerTurnRule {
   getPlayerMoves(): MaterialMove<number, number, number>[] {
@@ -17,7 +17,7 @@ export class PlaceCardRule extends PlayerTurnRule {
       const playCardRule = new PlaceEffectRule(this.game, id)
       moves.push(
         ...hand
-          .filter((item) => playCardRule.canPlace(item.id.front))
+          .filter<CardId>((item) => playCardRule.canPlace(item.id.front))
           .moveItems({
             type: LocationType.Column,
             id,
@@ -89,7 +89,7 @@ export class PlaceCardRule extends PlayerTurnRule {
       .location(LocationType.Column)
       .locationId(this.remind(Memory.Column))
       .player(this.player)
-      .filter((item) => getCardColorFinder(c)(item.id.front))
+      .filter<CardId>((item) => getCardColorFinder(c)(item.id.front))
       .length
 
   }

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 //import { css } from '@emotion/react'
 import { GameTable, GameTableNavigation, usePlayerId } from '@gamepark/react-game'
 import { FC } from 'react'

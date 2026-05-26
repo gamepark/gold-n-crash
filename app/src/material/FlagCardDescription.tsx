@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { CardDescription, MaterialContext } from '@gamepark/react-game'

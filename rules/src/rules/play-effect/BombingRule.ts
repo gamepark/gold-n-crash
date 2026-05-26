@@ -1,5 +1,5 @@
 import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { isRed } from '../../material/Card'
+import { CardId, isRed } from '../../material/Card'
 import { getOpponentColumnIndex } from '../../material/GetOpponentColumn'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
@@ -79,7 +79,7 @@ export class BombingRule extends PlayerTurnRule {
       .location(LocationType.Column)
       .locationId(this.column)
       .player(this.player)
-      .filter((item) => isRed(item.id.front))
+      .filter<CardId>((item) => isRed(item.id.front))
       .length
   }
 

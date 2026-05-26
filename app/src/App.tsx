@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css, Global } from '@emotion/react'
 import { FailuresDialog, FullscreenDialog, LoadingScreen, MaterialHeader, MaterialImageLoader, Menu, useGame } from '@gamepark/react-game'
 import { MaterialGame } from '@gamepark/rules-api'
@@ -17,7 +16,7 @@ export default function App() {
   return (
     <>
       { !!game && <GameDisplay players={game.players.length} /> }
-      <LoadingScreen display={loading} author="Antoine Bauza, Corentin Lebrat, Ludovic Maublanc et Théo Rivière" artist="Camille Chaussy et Valériane Holley" publisher="GRRRE GAMES" developer="Game Park"/>
+      <LoadingScreen display={loading}/>
       <MaterialHeader rulesStepsHeaders={Headers} loading={loading}/>
       <MaterialImageLoader onImagesLoad={() => setImagesLoading(false)}/>
       <Menu/>

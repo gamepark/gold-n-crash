@@ -1,6 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -10,7 +9,7 @@ import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type RecallRuleHistoryProps = {
 
-} & MaterialHistoryProps
+} & MaterialLogProps
 
 export const RecallRuleHistory: FC<RecallRuleHistoryProps> = (props) => {
   const { move, context } = props
@@ -20,10 +19,10 @@ export const RecallRuleHistory: FC<RecallRuleHistoryProps> = (props) => {
   const itsMyAction = playerId && actionPlayer === playerId
   const name = usePlayerName(actionPlayer)
   if (!isMoveItemType(MaterialType.Card)(move)) return null
-  const item = context.game.items[move.itemType][move.itemIndex]
+  const item = context.game.items[move.itemType]![move.itemIndex]
   return (
     <PictureHistoryEntry depth={1} picture={IconRecall} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.recall.me' : 'history.recall'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.recall.me' : 'history.recall'} values={{
         player: name,
         column: item.location.id
       }}>

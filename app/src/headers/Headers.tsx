@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { RuleId } from '@gamepark/gold-n-crash/rules/RuleId'
 import { ComponentType } from 'react'
 import { BoardingHeader } from './BoardingHeader'

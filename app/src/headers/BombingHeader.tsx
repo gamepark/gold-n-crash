@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { getOpponentColumnIndex } from '@gamepark/gold-n-crash/material/GetOpponentColumn'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
@@ -27,26 +26,26 @@ export const BombingHeader = () => {
 
   if (!playerId) {
     if (zeppelin.location.rotation === ZeppelinState.VISIBLE) {
-      return <Trans defaults="header.bombing.destroy" values={{ player: name, opponent: opponentName}}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.destroy" values={{ player: name, opponent: opponentName}}><strong /></Trans>
     } else {
-      return <Trans defaults="header.bombing.pending" values={{ player: name, opponent: opponentName}}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.pending" values={{ player: name, opponent: opponentName}}><strong /></Trans>
     }
   }
 
 
   if (!me) {
     if (zeppelin.location.rotation === ZeppelinState.VISIBLE) {
-      return <Trans defaults="header.bombing.destroy.target-me" values={{ player: name }}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.destroy.target-me" values={{ player: name }}><strong /></Trans>
     } else {
-      return <Trans defaults="header.bombing.pending.target-me" values={{ player: name }}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.pending.target-me" values={{ player: name }}><strong /></Trans>
     }
   }
 
   if (me) {
     if (zeppelin.location.rotation === ZeppelinState.VISIBLE) {
-      return <Trans defaults="header.bombing.destroy.me" values={{ player: opponentName }}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.destroy.me" values={{ player: opponentName }}><strong /></Trans>
     } else {
-      return <Trans defaults="header.bombing.pending.me" values={{ player: opponentName}}><strong /></Trans>
+      return <Trans i18nKey="header.bombing.pending.me" values={{ player: opponentName}}><strong /></Trans>
     }
   }
 

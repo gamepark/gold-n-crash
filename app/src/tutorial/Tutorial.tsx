@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { Card } from '@gamepark/gold-n-crash/material/Card'
+import { Card, CardId } from '@gamepark/gold-n-crash/material/Card'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
@@ -22,22 +21,22 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
   steps: TutorialStep[] = [
     {
       popup: {
-        text: () => <Trans defaults="tuto.welcome"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.welcome"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.goal.1"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.goal.1"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.goal.2"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.goal.2"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.you"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.you"><strong/></Trans>,
         position: { x: 0, y: 27 }
       },
       focus: () => ({
@@ -47,7 +46,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.deck"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.deck"><strong/></Trans>,
         position: { x: 14.5, y: 5 }
       },
       focus: (game) => ({
@@ -61,7 +60,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.discard"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.discard"><strong/></Trans>,
         position: { x: 0, y: 33 }
       },
       focus: (game) => ({
@@ -76,7 +75,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.hand"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.hand"><strong/></Trans>,
         position: { x: 0, y: 28 }
       },
       focus: (game) => ({
@@ -88,7 +87,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.zeppelin"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.zeppelin"><strong/></Trans>,
         position: { x: 0, y: 22 }
       },
       focus: (game) => ({
@@ -102,12 +101,12 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.actions"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.actions"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draw"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.draw"><strong/></Trans>,
         position: { x: 15, y: -15 }
       },
       focus: (game) => ({
@@ -130,7 +129,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.place"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.place"><strong/></Trans>,
         position: { x: -25, y: 30 }
       },
       focus: (game) => ({
@@ -138,7 +137,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
-            .id((id: any) => id.front === Card.ChamouraiGreenCrew3)
+            .id((id: CardId) => id.front === Card.ChamouraiGreenCrew3)
             .limit(1)
         ],
         locations: [this.location(LocationType.Column).id(1).player(me).location],
@@ -154,7 +153,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.effect"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.effect"><strong/></Trans>,
         position: { x: 0, y: 35 }
       },
       focus: (game) => ({
@@ -173,7 +172,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.1"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.opponent.1"><strong/></Trans>
       }
     },
     {
@@ -189,7 +188,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.action.1"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.opponent.action.1"><strong/></Trans>,
         position: { x: 0, y: 30 }
       },
       focus: (game) => ({
@@ -212,11 +211,11 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
             && game.items[MaterialType.Card]![move.itemIndex].id.front === Card.PoulpirateBrownCrew3
         }
       },
-      focus: (game) => this.steps[game.tutorial!.step - 1].focus!(game)
+      focus: (game, context) => this.steps[game.tutorial!.step - 1].focus!(game, context)
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.action.2"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.opponent.action.2"><strong/></Trans>,
         position: { x: 0, y: 30 }
       },
       focus: (game) => ({
@@ -242,7 +241,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.treasure"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.opponent.treasure"><strong/></Trans>,
         position: { x: 0, y: 27 }
       },
       focus: (game) => ({
@@ -256,7 +255,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.column.rule"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.column.rule"><strong/></Trans>,
         position: { x: -25, y: 35 }
       },
       focus: (game) => ({
@@ -264,7 +263,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
-            .id((id: any) => id.front === Card.ChamouraiRedCrew1)
+            .id((id: CardId) => id.front === Card.ChamouraiRedCrew1)
         ],
         locations: [this.location(LocationType.Column).player(me).id(2).location],
         margin: { left: 2, right: 2, top: 1 }
@@ -282,7 +281,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.bombard"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.bombard"><strong/></Trans>,
         position: { x: 0, y: 5 }
       },
       focus: (game) => ({
@@ -296,7 +295,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.zeppelin.value"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.zeppelin.value"><strong/></Trans>,
         position: { x: 0, y: 20 }
       },
       focus: (game) => ({
@@ -311,7 +310,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.zeppelin.destroy"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.zeppelin.destroy"><strong/></Trans>,
         position: { x: 0, y: 20 }
       },
       focus: (game) => ({
@@ -326,7 +325,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.purple"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.purple"><strong/></Trans>,
         position: { x: -10, y: 30 }
       },
       focus: (game) => ({
@@ -334,7 +333,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
-            .id((id: any) => id.front === Card.ChamouraiPurpleCrew1)
+            .id((id: CardId) => id.front === Card.ChamouraiPurpleCrew1)
         ],
         locations: [this.location(LocationType.Column).player(me).id(3).location],
         margin: { left: 1, right: 3 }
@@ -351,14 +350,14 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.discard.get"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.discard.get"><strong/></Trans>
       },
       focus: (game) => ({
         materials: [
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Column)
-            .id((id: any) => id.front === Card.ChamouraiPurpleCrew1),
+            .id((id: CardId) => id.front === Card.ChamouraiPurpleCrew1),
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
@@ -369,7 +368,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.2"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.opponent.2"><strong/></Trans>
       }
     },
     {
@@ -394,12 +393,12 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.draw"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.opponent.draw"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.green"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.green"><strong/></Trans>,
         position: { x: -10, y: 30 }
       },
       focus: (game) => ({
@@ -407,7 +406,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
           this.material(game, MaterialType.Card)
             .player(me)
             .location(LocationType.Hand)
-            .id((id: any) => id.front === Card.ChamouraiGreenCrew2)
+            .id((id: CardId) => id.front === Card.ChamouraiGreenCrew2)
         ],
         locations: [this.location(LocationType.Column).player(me).id(1).location],
         margin: { left: 3, right: 3 }
@@ -425,22 +424,22 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draw.2"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.draw.2"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.discard.3"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.discard.3"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.guest"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest.condition"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.guest.condition"><strong/></Trans>
       },
       focus: (game) => ({
         materials: [
@@ -451,21 +450,21 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest.secure"><strong/></Trans>,
+        text: () => <Trans i18nKey="tuto.guest.secure"><strong/></Trans>,
         position: { x: 15, y: 0 }
       },
       focus: (game) => ({
         materials: [
           this.material(game, MaterialType.Card)
             .location(LocationType.PrestigiousGuests)
-            .id((id: any) => id.front === Card.PrestigiousGuest3)
+            .id((id: CardId) => id.front === Card.PrestigiousGuest3)
         ],
         margin: { right: 18 }
       })
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest.treasure"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.guest.treasure"><strong/></Trans>
       },
       focus: (game) => ({
         materials: [
@@ -476,7 +475,7 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.guest.lost"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.guest.lost"><strong/></Trans>
       },
       focus: (game) => ({
         materials: [
@@ -487,17 +486,17 @@ export class Tutorial extends MaterialTutorial<Flag, MaterialType, LocationType>
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.end.condition"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.end.condition"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.click"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.click"><strong/></Trans>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.go"><strong/></Trans>
+        text: () => <Trans i18nKey="tuto.go"><strong/></Trans>
       }
     }
   ]

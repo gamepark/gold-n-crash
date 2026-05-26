@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
@@ -17,7 +16,7 @@ export const ZeppelinCardHelp: FC<MaterialHelpProps> = (props) => {
       <h2>{t('help.zeppelin.title')}</h2>
       <p>
         <Trans
-          defaults={me? 'help.zeppelin.text.me': 'help.zeppelin.text'}
+          i18nKey={me? 'help.zeppelin.text.me': 'help.zeppelin.text'}
           values={{ owner }}
         >
           <strong />
@@ -28,7 +27,7 @@ export const ZeppelinCardHelp: FC<MaterialHelpProps> = (props) => {
           <hr />
           <p css={alertMessage}>
             <Trans
-              defaults="help.zeppelin.destroyed">
+              i18nKey="help.zeppelin.destroyed">
               <strong />
             </Trans>
 

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
@@ -6,7 +5,7 @@ import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { Memory } from '@gamepark/gold-n-crash/rules/Memory'
 import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useGame, useLegalMoves, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isMoveItemType, MaterialGame, MaterialRules, MoveItem } from '@gamepark/rules-api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 export const ObserveHeader = () => {
@@ -17,22 +16,20 @@ export const ObserveHeader = () => {
   const legalMoves = useLegalMoves<MoveItem>(isMoveItemType(MaterialType.Card))
   const cards = rules.remind<number[]>(Memory.Observation) ?? []
   const playerName = usePlayerName(game.rule!.player!)
-  const [dialogOpen, setDialogOpen] = useState(false)
-  useEffect(() => {
-    if (legalMoves.length > 0) {
-      setDialogOpen(true)
-    }
-  }, [legalMoves.length > 0])
+  // The dialog opens automatically as soon as observation moves are available,
+  // and stays closed once the player dismisses it.
+  const [manuallyClosed, setManuallyClosed] = useState(false)
+  const dialogOpen = legalMoves.length > 0 && !manuallyClosed
 
   if (player && rules.getActivePlayer() === player) {
     return <>
-      <Trans defaults="header.observe.me">
+      <Trans i18nKey="header.observe.me">
         <strong />
-        <ThemeButton onClick={() => setDialogOpen(true)}/>
+        <ThemeButton onClick={() => setManuallyClosed(false)}/>
       </Trans>
-      <RulesDialog open={dialogOpen} close={() => setDialogOpen(false)}>
+      <RulesDialog open={dialogOpen} close={() => setManuallyClosed(true)}>
         <div css={rulesCss}>
-          <h2><Trans defaults="header.observe.me"><span/></Trans></h2>
+          <h2><Trans i18nKey="header.observe.me"><span/></Trans></h2>
           <ul css={observationListCss}>
           {cards.map((card) => {
             const item = rules.material(MaterialType.Card).getItem(card)
@@ -54,7 +51,7 @@ export const ObserveHeader = () => {
       </>
   } else {
     return (
-      <Trans defaults="header.observe" values={{ player: playerName}}>
+      <Trans i18nKey="header.observe" values={{ player: playerName}}>
         <strong />
       </Trans>
 

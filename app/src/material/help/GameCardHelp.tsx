@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { PrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
 import { MaterialHelpProps } from '@gamepark/react-game'
 import { FC } from 'react'

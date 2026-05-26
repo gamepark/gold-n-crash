@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -11,7 +10,7 @@ import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type StrengthenRuleHistoryProps = {
 
-} & MaterialHistoryProps
+} & MaterialLogProps
 
 export const StrengthenRuleHistory: FC<StrengthenRuleHistoryProps> = (props) => {
   const { context } = props
@@ -28,7 +27,7 @@ export const StrengthenRuleHistory: FC<StrengthenRuleHistoryProps> = (props) => 
 
   return (
     <PictureHistoryEntry depth={1} picture={StrengthenPlayIcon} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.strengthen.me' : 'history.strengthen'} values={{ player: name, count: drawnCount }}>
+      <Trans i18nKey={itsMyAction ? 'history.strengthen.me' : 'history.strengthen'} values={{ player: name, count: drawnCount }}>
         <strong />
       </Trans>
     </PictureHistoryEntry>

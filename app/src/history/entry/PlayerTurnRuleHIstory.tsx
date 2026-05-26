@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { HistoryEntry, MaterialHistoryProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { HistoryEntry, MaterialLogProps, PlayMoveButton, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType, MaterialMoveBuilder } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -12,7 +11,7 @@ import { getColorText } from '../../utils/color.utils'
 import { rulesLinkButton } from '../GoldNCrashHistory'
 import displayMaterialHelp = MaterialMoveBuilder.displayMaterialHelp
 
-export type PlayerTurnRuleHistoryProps = {} & MaterialHistoryProps
+export type PlayerTurnRuleHistoryProps = {} & MaterialLogProps
 
 export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => {
   const { move, context } = props
@@ -26,14 +25,14 @@ export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => 
 
   if (isMoveItemType(MaterialType.Card)(move)) {
     const game = context.game
-    const item = game.items[MaterialType.Card]![move.itemIndex]
-    const itemId = item.id?.front ?? move.reveal?.id?.front
-    item.id = { ...item.id, front: itemId }
+    const playedItem = game.items[MaterialType.Card]![move.itemIndex]
+    const itemId = playedItem.id?.front ?? move.reveal?.id?.front
+    const item = { ...playedItem, id: { ...playedItem.id, front: itemId } }
 
     if (move.location.type === LocationType.Column) {
       return (
         <HistoryEntry player={actionPlayer} backgroundColor={getFlagColor(actionPlayer)}>
-          <Trans defaults={itsMe ? 'history.player-turn.place.me' : 'history.player-turn.place'}
+          <Trans i18nKey={itsMe ? 'history.player-turn.place.me' : 'history.player-turn.place'}
                  values={{ player: name, color: getColorText(t, itemId), column: move.location.id }}>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>
           </Trans>
@@ -44,7 +43,7 @@ export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => 
     if (move.location.type === LocationType.Discard) {
       return (
         <HistoryEntry player={actionPlayer} backgroundColor={getFlagColor(actionPlayer)}>
-          <Trans defaults={itsMe ? 'history.player-turn.discard.me' : 'history.player-turn.discard'} values={{ player: name, color: getColorText(t, itemId) }}>
+          <Trans i18nKey={itsMe ? 'history.player-turn.discard.me' : 'history.player-turn.discard'} values={{ player: name, color: getColorText(t, itemId) }}>
             <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>
           </Trans>
         </HistoryEntry>
@@ -54,7 +53,7 @@ export const PlayerTurnRuleHistory: FC<PlayerTurnRuleHistoryProps> = (props) => 
     if (move.location.type === LocationType.Hand) {
       return (
         <HistoryEntry player={actionPlayer} backgroundColor={getFlagColor(actionPlayer)}>
-          <Trans defaults={itsMe ? 'history.player-turn.draw.me' : itemId ? 'history.player-turn.draw.visible' : 'history.player-turn.draw'}
+          <Trans i18nKey={itsMe ? 'history.player-turn.draw.me' : itemId ? 'history.player-turn.draw.visible' : 'history.player-turn.draw'}
                  values={itemId ? { player: name, color: getColorText(t, itemId) } : { player: name }}>
             {itemId && <PlayMoveButton css={rulesLinkButton} move={displayMaterialHelp(MaterialType.Card, item)} local/>}
           </Trans>

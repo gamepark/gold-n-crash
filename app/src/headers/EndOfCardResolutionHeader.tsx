@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { DiscardColumn } from '@gamepark/gold-n-crash/rules/helper/DiscardColumn'
 import { Memory } from '@gamepark/gold-n-crash/rules/Memory'
 import { PrestigiousGuestRule } from '@gamepark/gold-n-crash/rules/prestigious-guests/PrestigiousGuestRule'

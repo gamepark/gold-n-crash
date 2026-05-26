@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { Memory } from '@gamepark/gold-n-crash/rules/Memory'
@@ -24,16 +23,16 @@ export const PlayerTurnHeader: FC = () => {
   if (!me) return <>{t('header.player-turn.other', { player: name, action })}</>
 
   // IN RARE CASE, NO ACTION POSSIBLE
-  if (passMove) return <Trans defaults="header.play-turn.pass.me"><PlayMoveButton move={passMove}/></Trans>
+  if (passMove) return <Trans i18nKey="header.play-turn.pass.me"><PlayMoveButton move={passMove}/></Trans>
 
   // DRAW, DISCARD & PLACE
-  if (drawMove && discardMove && placeMove) return <Trans defaults="header.play-turn.all.me"><PlayMoveButton move={drawMove}/></Trans>
+  if (drawMove && discardMove && placeMove) return <Trans i18nKey="header.play-turn.all.me"><PlayMoveButton move={drawMove}/></Trans>
 
   // DRAW & DISCARD
-  if (drawMove && discardMove) return <Trans defaults="header.play-turn.draw-discard.me"><PlayMoveButton move={drawMove}/> </Trans>
+  if (drawMove && discardMove) return <Trans i18nKey="header.play-turn.draw-discard.me"><PlayMoveButton move={drawMove}/> </Trans>
 
   // DRAW & PLACE
-  if (drawMove && placeMove) return <Trans defaults="header.play-turn.draw-place.me"><PlayMoveButton move={drawMove}/></Trans>
+  if (drawMove && placeMove) return <Trans i18nKey="header.play-turn.draw-place.me"><PlayMoveButton move={drawMove}/></Trans>
 
   // DISCARD & PLACE
   if (discardMove && placeMove) return <>{t(me ? 'header.play-turn.discard-place.me' : 'header.play-turn.discard-place')}</>
@@ -42,7 +41,7 @@ export const PlayerTurnHeader: FC = () => {
   if (discardMove) return <>{t(me ? 'header.play-turn.discard.me' : 'header.play-turn.discard')}</>
 
   // ONLY DRAW
-  if (drawMove) return me ? <Trans defaults="header.play-turn.draw.me"><PlayMoveButton move={drawMove}/></Trans> : <>t('header.play-turn.draw')</>
+  if (drawMove) return me ? <Trans i18nKey="header.play-turn.draw.me"><PlayMoveButton move={drawMove}/></Trans> : <>t('header.play-turn.draw')</>
 
   // ONLY PLACE
   if (placeMove) return <>{t(me ? 'header.play-turn.place.me' : 'header.play-turn.place')}</>

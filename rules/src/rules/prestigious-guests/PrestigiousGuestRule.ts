@@ -1,5 +1,5 @@
 import { MaterialGame, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { Card } from '../../material/Card'
+import { Card, CardId } from '../../material/Card'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 import { PrestigiousGuest1Rule } from './PrestigiousGuest1Rule'
@@ -21,8 +21,8 @@ export class PrestigiousGuestRule extends PlayerTurnRule {
   get secureGuestMoves(): MaterialMove<number, number, number>[] {
     const guest = this.guest
     if (!guest.length) return []
-    const id = guest.getItem()!.id.front
-    return new this.guestRules[id](this.game, this.column).secureGuest()
+    const id = guest.getItem<CardId>()!.id.front
+    return new this.guestRules[id as keyof typeof this.guestRules](this.game, this.column).secureGuest()
   }
 
   get guest() {

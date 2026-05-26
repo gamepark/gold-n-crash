@@ -1,5 +1,6 @@
+import { CardId } from '../../material/Card'
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import sumBy from 'lodash/sumBy'
+import { sumBy } from 'es-toolkit'
 import { CardGold } from '../../material/CrewCard'
 import { Flag } from '../../material/Flag'
 import { LocationType } from '../../material/LocationType'
@@ -26,7 +27,7 @@ export class Score extends MaterialRulesPart {
       .location(LocationType.Treasure)
       .player(this.player)
       .rotation(false)
-      .getItems()
+      .getItems<CardId>()
     
     return sumBy(items, (item) => CardGold[item.id.front])
   }

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Card } from '@gamepark/gold-n-crash/material/Card'
 import { MaterialHelpProps, Picture } from '@gamepark/react-game'
@@ -33,7 +32,7 @@ export const PrestigiousGuestHelp: FC<MaterialHelpProps> = (props) => {
     <>
       <h2>{t('help.prestigious-guest.title')}</h2>
       <p>
-        <Trans defaults="help.prestigious-guest">
+        <Trans i18nKey="help.prestigious-guest">
           <strong/>
         </Trans>
       </p>
@@ -42,10 +41,10 @@ export const PrestigiousGuestHelp: FC<MaterialHelpProps> = (props) => {
           <h4 css={title}>{t('help.prestigious-guest.condition')}</h4>
           <div css={effectGrid}>
             <div css={image}>
-              <Picture src={GuestIcon[item.id.front]}/>
+              <Picture src={GuestIcon[item.id.front as keyof typeof GuestIcon]}/>
             </div>
             <div css={[description, alignIconText]}>
-              {GuestText[item.id.front]}
+              {GuestText[item.id.front as keyof typeof GuestText]}
             </div>
           </div>
         </>
@@ -80,17 +79,17 @@ const GuestIcon = {
 }
 
 const GuestText = {
-  [Card.PrestigiousGuest1]: <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest1}`}><strong/></Trans>,
-  [Card.PrestigiousGuest2]: <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest2}`}><strong/></Trans>,
+  [Card.PrestigiousGuest1]: <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest1}`}><strong/></Trans>,
+  [Card.PrestigiousGuest2]: <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest2}`}><strong/></Trans>,
   [Card.PrestigiousGuest3]: (
-    <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest3}`}>
+    <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest3}`}>
       <strong/>
       <div css={iconStyle(StrengthIcon)}/>
     </Trans>
   ),
-  [Card.PrestigiousGuest4]: <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest4}`}><strong/></Trans>,
+  [Card.PrestigiousGuest4]: <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest4}`}><strong/></Trans>,
   [Card.PrestigiousGuest5]: (
-    <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest5}`}>
+    <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest5}`}>
       <strong/>
       <div css={iconStyle(BombIcon)}/>
       <div css={iconStyle(SwordIcon)}/>
@@ -101,19 +100,19 @@ const GuestText = {
     </Trans>
   ),
   [Card.PrestigiousGuest6]: (
-    <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest6}`}>
+    <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest6}`}>
       <strong/>
       <div css={iconStyle(FishIcon)}/>
     </Trans>
   ),
   [Card.PrestigiousGuest7]: (
-    <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest7}`}>
+    <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest7}`}>
       <strong/>
       <div css={iconStyle(GoldIcon)}/>
     </Trans>
   ),
   [Card.PrestigiousGuest8]: (
-    <Trans defaults={`help.prestigious-guest.${Card.PrestigiousGuest8}`}>
+    <Trans i18nKey={`help.prestigious-guest.${Card.PrestigiousGuest8}`}>
       <strong/>
       <div css={iconStyle(SwordIcon)}/>
     </Trans>

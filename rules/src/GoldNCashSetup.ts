@@ -1,5 +1,5 @@
 import {MaterialGameSetup} from '@gamepark/rules-api'
-import shuffle from 'lodash/shuffle'
+import { shuffle } from 'es-toolkit'
 import {GoldNCashRules} from './GoldNCashRules'
 import {GoldNCashOptions} from './GoldNCashOptions'
 import {
@@ -43,7 +43,7 @@ export class GoldNCashSetup extends MaterialGameSetup<Flag, MaterialType, Locati
     const deck = playerId === Flag.Poulpirate ? PoulpirateDeck : ChamouraiDeck
     const cards = crews
       .flatMap((c) => Array
-        .from(Array(deck[c]))
+        .from(Array(deck[c]!))
         .map(() => ({
             id: {
               front: c,

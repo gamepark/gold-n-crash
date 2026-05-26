@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { isPrestigiousGuest } from '@gamepark/gold-n-crash/material/Card'
@@ -50,7 +49,7 @@ export const TreasureHelp: FC<MaterialLocationHelpProps> = (props) => {
 
   return (
     <div css={italic}>
-      <Trans defaults={me ? 'help.location.treasure.me' : 'help.location.treasure'} values={{ player: name, cards }}>
+      <Trans i18nKey={me ? 'help.location.treasure.me' : 'help.location.treasure'} values={{ player: name, cards }}>
         <strong/>
       </Trans>
       {isOver && <div css={goldIndicator}><p>{t(itsMine?'help.treasure.coins.me': 'help.treasure.coins', { player: name, coins: new Score(rules.game, item.location!.player!).gold })}</p></div>}
@@ -63,7 +62,7 @@ export const DiscardHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { me, name } = props
   return (
     <div css={italic}>
-      <Trans defaults={me ? 'help.location.discard.me' : 'help.location.discard'} values={{ player: name }}>
+      <Trans i18nKey={me ? 'help.location.discard.me' : 'help.location.discard'} values={{ player: name }}>
         <strong/>
       </Trans>
     </div>
@@ -79,7 +78,7 @@ export const CrewDeckHelp: FC<MaterialLocationHelpProps> = (props) => {
   return (
     <>
       <div css={italic}>
-        <Trans defaults={me ? 'help.location.crew-deck.me' : 'help.location.crew-deck'} values={{ player: name, cards }}>
+        <Trans i18nKey={me ? 'help.location.crew-deck.me' : 'help.location.crew-deck'} values={{ player: name, cards }}>
           <strong/>
         </Trans>
       </div>
@@ -97,7 +96,7 @@ export const HandHelp: FC<MaterialLocationHelpProps> = (props) => {
   return (
     <>
       <div css={italic}>
-        <Trans defaults={me ? 'help.location.hand.me' : 'help.location.hand'} values={{ player: name }}>
+        <Trans i18nKey={me ? 'help.location.hand.me' : 'help.location.hand'} values={{ player: name }}>
           <strong/>
         </Trans>
       </div>
@@ -129,7 +128,7 @@ export const ColumnHelp: FC<MaterialLocationHelpProps> = (props) => {
   return (
     <>
       <div css={italic}>
-        <Trans defaults={me ? 'help.location.column.me' : 'help.location.column'} values={{ player: name, column: item.location?.id }}>
+        <Trans i18nKey={me ? 'help.location.column.me' : 'help.location.column'} values={{ player: name, column: item.location?.id }}>
           <strong/>
         </Trans>
       </div>
@@ -144,7 +143,7 @@ export const PrestigiousHelp: FC<MaterialLocationHelpProps> = (props) => {
   const { me, name } = props
   return (
     <div css={italic}>
-      <Trans defaults={me ? 'help.location.prestigious.me' : 'help.location.prestigious'} values={{ player: name }}>
+      <Trans i18nKey={me ? 'help.location.prestigious.me' : 'help.location.prestigious'} values={{ player: name }}>
         <strong/>
       </Trans>
     </div>

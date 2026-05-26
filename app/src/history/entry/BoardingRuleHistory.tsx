@@ -1,8 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -12,7 +11,7 @@ import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type BoardingRuleHistoryProps = {
 
-} & MaterialHistoryProps
+} & MaterialLogProps
 
 export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
   const { context } = props
@@ -23,18 +22,18 @@ export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
   const name = usePlayerName(actionPlayer)
   const opponent = context.game.players.find((p: Flag) => p !== actionPlayer)!
   const opponentName = usePlayerName(opponent)
-  const discards: MoveItem[] = context.action.consequences
-    .filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location?.type === LocationType.Discard && move.location?.player === opponent)
+  const discards = context.action.consequences
+    .filter((move) => isMoveItemType(MaterialType.Card)(move) && move.location?.type === LocationType.Discard && move.location?.player === opponent) as MoveItem[]
 
   const discardCount = discards.length
   if (!discardCount) return null
   const imTheTarget = playerId && opponent === playerId
 
-  const firstDiscard = context.game.items[discards[0].itemType][discards[0].itemIndex]!
+  const firstDiscard = context.game.items[discards[0].itemType]![discards[0].itemIndex]!
   if (imTheTarget) {
     return (
       <PictureHistoryEntry depth={1} picture={IconBoarding} backgroundColor={getFlagColor(actionPlayer)}>
-        <Trans defaults="history.boarding.target.me" values={{
+        <Trans i18nKey="history.boarding.target.me" values={{
           player: name,
           count: discardCount,
           column: firstDiscard.location.id,
@@ -48,7 +47,7 @@ export const BoardingRuleHistory: FC<BoardingRuleHistoryProps> = (props) => {
 
   return (
     <PictureHistoryEntry depth={1} picture={IconBoarding} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.boarding.me' : 'history.boarding'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.boarding.me' : 'history.boarding'} values={{
         player: name,
         count: discardCount,
         column: firstDiscard.location.id,

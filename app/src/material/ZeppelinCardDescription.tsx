@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { Zeppelin, ZeppelinState } from '@gamepark/gold-n-crash/material/Zeppelin'
 import { CardDescription, MaterialContext } from '@gamepark/react-game'

@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -12,7 +11,7 @@ import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type LootRuleHistoryProps = {
 
-} & MaterialHistoryProps
+} & MaterialLogProps
 
 export const LootRuleHistory: FC<LootRuleHistoryProps> = (props) => {
   const { move, context } = props
@@ -28,7 +27,7 @@ export const LootRuleHistory: FC<LootRuleHistoryProps> = (props) => {
   if (opponent === playerId) {
     return (
       <PictureHistoryEntry depth={1} picture={IconCrack} backgroundColor={getFlagColor(actionPlayer)}>
-        <Trans defaults={'history.loot.target.me'} values={{
+        <Trans i18nKey={'history.loot.target.me'} values={{
           player: name,
           opponent: opponentName
         }}>
@@ -40,7 +39,7 @@ export const LootRuleHistory: FC<LootRuleHistoryProps> = (props) => {
 
   return (
     <PictureHistoryEntry depth={1} picture={IconLoot} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.loot.me' : 'history.loot'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.loot.me' : 'history.loot'} values={{
         player: name,
         opponent: opponentName
       }}>

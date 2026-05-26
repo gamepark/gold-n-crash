@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '@gamepark/gold-n-crash/material/Card'
 import { MaterialHelpProps, Picture } from '@gamepark/react-game'
@@ -37,7 +36,7 @@ const BombardHelp: FC<MaterialHelpProps> = () => {
           <Picture src={BombardIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.bombard">
+          <Trans i18nKey="help.play.bombard">
             <strong />
           </Trans>
         </div>
@@ -54,7 +53,7 @@ const BoardingHelp: FC<MaterialHelpProps> = () => {
           <Picture src={BoardingIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.boarding">
+          <Trans i18nKey="help.play.boarding">
             <strong />
           </Trans>
         </div>
@@ -71,7 +70,7 @@ const FishingHelp: FC<MaterialHelpProps> = () => {
           <Picture src={FishingIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.fishing">
+          <Trans i18nKey="help.play.fishing">
             <strong />
           </Trans>
         </div>
@@ -88,7 +87,7 @@ const StrengthenHelp: FC<MaterialHelpProps> = () => {
           <Picture src={StrengthenIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.strengthen">
+          <Trans i18nKey="help.play.strengthen">
             <strong />
           </Trans>
         </div>
@@ -104,7 +103,7 @@ const SecureHelp: FC<MaterialHelpProps> = () => {
           <Picture src={SecureIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.secure">
+          <Trans i18nKey="help.play.secure">
             <strong />
           </Trans>
         </div>
@@ -119,7 +118,7 @@ const GoldHelp: FC<MaterialHelpProps> = () => {
           <Picture src={GoldIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.play.gold">
+          <Trans i18nKey="help.play.gold">
             <strong />
           </Trans>
         </div>

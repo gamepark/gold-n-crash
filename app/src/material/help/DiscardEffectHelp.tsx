@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { isBlue, isBrown, isGold, isGreen, isPurple, isRed } from '@gamepark/gold-n-crash/material/Card'
 import { MaterialHelpProps, Picture } from '@gamepark/react-game'
@@ -37,7 +36,7 @@ const CrackTheChestHelp: FC<MaterialHelpProps> = () => {
           <Picture src={CrackIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.crack">
+          <Trans i18nKey="help.discard.crack">
             <strong />
           </Trans>
         </div>
@@ -54,7 +53,7 @@ const ManoeuvreHelp: FC<MaterialHelpProps> = () => {
           <Picture src={ManoeuvreIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.manoeuvre">
+          <Trans i18nKey="help.discard.manoeuvre">
             <strong />
           </Trans>
         </div>
@@ -71,7 +70,7 @@ const RecallHelp: FC<MaterialHelpProps> = () => {
           <Picture src={RecallIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.recall">
+          <Trans i18nKey="help.discard.recall">
             <strong />
           </Trans>
         </div>
@@ -88,7 +87,7 @@ const ObserveHelp: FC<MaterialHelpProps> = () => {
           <Picture src={ObserveIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.observe">
+          <Trans i18nKey="help.discard.observe">
             <strong />
           </Trans>
         </div>
@@ -105,7 +104,7 @@ const LootHelp: FC<MaterialHelpProps> = () => {
           <Picture src={LootIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.loot">
+          <Trans i18nKey="help.discard.loot">
             <strong />
           </Trans>
         </div>
@@ -122,7 +121,7 @@ const GoldHelp: FC<MaterialHelpProps> = () => {
           <Picture src={GoldIcon} />
         </div>
         <div css={description}>
-          <Trans defaults="help.discard.gold">
+          <Trans i18nKey="help.discard.gold">
             <strong />
           </Trans>
         </div>

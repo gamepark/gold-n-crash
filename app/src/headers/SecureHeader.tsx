@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { MaterialRules } from '@gamepark/rules-api'
 import { Trans } from 'react-i18next'
@@ -13,8 +12,8 @@ export const SecureHeader = () => {
 
 
   if (me) {
-    return <Trans defaults="header.secure.me"><strong /></Trans>
+    return <Trans i18nKey="header.secure.me"><strong /></Trans>
   }
 
-  return <Trans defaults="header.secure" values={{ player: name }}><strong /></Trans>
+  return <Trans i18nKey="header.secure" values={{ player: name }}><strong /></Trans>
 }

@@ -1,4 +1,5 @@
 import { getEnumValues } from '@gamepark/rules-api'
+import { Flag } from './Flag'
 
 export enum PrestigiousGuest {
   PrestigiousGuest = 3
@@ -49,6 +50,8 @@ export enum Card {
   PrestigiousGuest8,
 }
 
+export type CardId = { front: Card, back: Flag | PrestigiousGuest }
+
 export const isBlue = (c: Card) => c % 100 > 0 && c % 100 <= 10
 export const isGreen = (c: Card) => c % 100 > 10 && c % 100 <= 20
 export const isBrown = (c: Card) => c % 100 > 20 && c % 100 <= 30
@@ -67,7 +70,7 @@ export const chamouraiCrew = cards.filter(isChamouraiCrew)
 export const isPrestigiousGuest = (c: Card) => c >= Card.PrestigiousGuest1
 export const prestigiousGuests = cards.filter(isPrestigiousGuest)
 
-export const PoulpirateDeck = {
+export const PoulpirateDeck: Partial<Record<Card, number>> = {
   [Card.PoulpirateBlueCrew1]: 3,
   [Card.PoulpirateBlueCrew2]: 2,
   [Card.PoulpirateBlueCrew3]: 1,
@@ -86,7 +89,7 @@ export const PoulpirateDeck = {
   [Card.PoulpirateGold4]: 5,
   [Card.PoulpirateGold6]: 1
 }
-export const ChamouraiDeck = {
+export const ChamouraiDeck: Partial<Record<Card, number>> = {
   [Card.ChamouraiBlueCrew1]: 3,
   [Card.ChamouraiBlueCrew2]: 2,
   [Card.ChamouraiBlueCrew3]: 1,

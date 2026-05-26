@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
-import { MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -11,7 +10,7 @@ import { getFlagColor } from './PlayerTurnRuleHIstory'
 
 export type ManoeuvreRuleHistoryProps = {
 
-} & MaterialHistoryProps
+} & MaterialLogProps
 
 export const ManoeuvreRuleHistory: FC<ManoeuvreRuleHistoryProps> = (props) => {
   const { move, context } = props
@@ -23,11 +22,11 @@ export const ManoeuvreRuleHistory: FC<ManoeuvreRuleHistoryProps> = (props) => {
   const opponent = context.game.players.find((p: Flag) => p !== actionPlayer)
   const opponentName = usePlayerName(opponent)
   if (!isMoveItemType(MaterialType.Card)(move)) return null
-  const item = context.game.items[move.itemType][move.itemIndex]
+  const item = context.game.items[move.itemType]![move.itemIndex]
 
   return (
     <PictureHistoryEntry depth={1} picture={IconManoeuvre} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.manoeuvre.me' : 'history.manoeuvre'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.manoeuvre.me' : 'history.manoeuvre'} values={{
         player: name,
         opponent: opponentName,
         from: item.location.id,

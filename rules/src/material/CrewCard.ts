@@ -31,7 +31,7 @@ export const getDiscardEffect = (c: Card) => {
   return undefined
 }
 
-export const CardGold = {
+export const CardGold: Record<Card, number> = {
   [Card.PoulpirateBlueCrew1]: 1,
   [Card.PoulpirateBlueCrew2]: 2,
   [Card.PoulpirateBlueCrew3]: 3,

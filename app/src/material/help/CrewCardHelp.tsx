@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { MaterialHelpProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -20,7 +19,7 @@ export const HiddenCrewCardHelp: FC<MaterialHelpProps> = (props) => {
       <>
         <h2>{t('help.crew-card.hidden.title', { flag: t(`player.${item.id.back}`)})}</h2>
         <p>
-          <Trans defaults="help.crew-card.me" values={{ player: name }}>
+          <Trans i18nKey="help.crew-card.me" values={{ player: name }}>
             <strong />
           </Trans>
         </p>
@@ -34,7 +33,7 @@ export const HiddenCrewCardHelp: FC<MaterialHelpProps> = (props) => {
     <>
       <h2>{t('help.crew-card.hidden.title', { flag: t(`player.${item.id.back}`)})}</h2>
       <p>
-        <Trans defaults="help.crew-card" values={{ player: name }}>
+        <Trans i18nKey="help.crew-card" values={{ player: name }}>
           <strong />
         </Trans>
       </p>
@@ -58,7 +57,7 @@ export const CrewCardHelp: FC<MaterialHelpProps> = (props) => {
       <>
         <h2>{t('help.crew-card.title', { flag: t(`player.${item.id.back}`), color: color})}</h2>
         <p>
-          <Trans defaults="help.crew-card.me" values={{ player: name }}>
+          <Trans i18nKey="help.crew-card.me" values={{ player: name }}>
             <strong />
           </Trans>
         </p>
@@ -74,7 +73,7 @@ export const CrewCardHelp: FC<MaterialHelpProps> = (props) => {
     <>
       <h2>{t('help.crew-card.title', { flag: t(`player.${item.id.back}`), color: color})}</h2>
       <p>
-        <Trans defaults="help.crew-card" values={{ player: name }}>
+        <Trans i18nKey="help.crew-card" values={{ player: name }}>
           <strong />
         </Trans>
       </p>

@@ -1,20 +1,16 @@
-/** @jsxImportSource @emotion/react */
 import { GoldNCashOptionsSpec } from '@gamepark/gold-n-crash/GoldNCashOptions'
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { GoldNCashSetup } from '@gamepark/gold-n-crash/GoldNCashSetup'
-import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepark/react-game'
+import { GameProvider, MaterialGameAnimations } from '@gamepark/react-game'
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 import { GoldNCrashHistory } from './history/GoldNCrashHistory'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
-import translations from './translations.json'
 import { Tutorial } from './tutorial/Tutorial'
 
-setupTranslation(translations, { debug: false })
-
-ReactDOM.render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GameProvider
       game="gold-n-crash"
@@ -23,13 +19,13 @@ ReactDOM.render(
       GameSetup={GoldNCashSetup}
       material={Material}
       locators={Locators}
-      MaterialHistory={GoldNCrashHistory}
+      logs={new GoldNCrashHistory()}
       animations={new MaterialGameAnimations()}
       tutorial={new Tutorial()}
       theme={{
         root: {
           background: {
-            image: process.env.PUBLIC_URL + '/background.jpg',
+            image: '/background.jpg',
             overlay: 'rgba(0, 0, 0, 0.8)'
           }
         }
@@ -37,6 +33,5 @@ ReactDOM.render(
     >
       <App/>
     </GameProvider>
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 )

@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import { Flag } from '@gamepark/gold-n-crash/material/Flag'
 import { LocationType } from '@gamepark/gold-n-crash/material/LocationType'
 import { MaterialType } from '@gamepark/gold-n-crash/material/MaterialType'
 import { RuleId } from '@gamepark/gold-n-crash/rules/RuleId'
-import { HistoryEntry, MaterialHistoryProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { HistoryEntry, MaterialLogProps, usePlayerId, usePlayerName } from '@gamepark/react-game'
 import { isMoveItemType, isStartRule, MoveItem } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
@@ -11,7 +10,7 @@ import IconObserve from '../../images/help/icons/discard/observe.jpg'
 import { PictureHistoryEntry } from './PictureHistoryEntry'
 import { getFlagColor } from './PlayerTurnRuleHIstory'
 
-export type ObserveRuleHistoryProps = {} & MaterialHistoryProps
+export type ObserveRuleHistoryProps = {} & MaterialLogProps
 
 export const ObserveRuleHistory: FC<ObserveRuleHistoryProps> = (props) => {
   const { move, context } = props
@@ -49,7 +48,7 @@ const StartManoeuvreRuleHistory: FC<StartObserveRuleHistory> = (props) => {
 
   return (
     <PictureHistoryEntry depth={1} picture={IconObserve} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.observe.me' : 'history.observe'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.observe.me' : 'history.observe'} values={{
         player: playerName,
         count: action.consequences.filter((m) => isMoveItemType(MaterialType.Card)(m) && m.location.type === LocationType.Hand).length
       }}>
@@ -74,7 +73,7 @@ const PlaceOnTopHistory: FC<MoveItemHistoryProps> = (props) => {
 
   return (
     <HistoryEntry depth={1} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.observe.top.me' : 'history.observe.top'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.observe.top.me' : 'history.observe.top'} values={{
         player: playerName
       }}>
         <strong/>
@@ -92,7 +91,7 @@ const PlaceAtBottomHistory: FC<MoveItemHistoryProps> = (props) => {
 
   return (
     <HistoryEntry depth={2} backgroundColor={getFlagColor(actionPlayer)}>
-      <Trans defaults={itsMyAction ? 'history.observe.bottom.me' : 'history.observe.bottom'} values={{
+      <Trans i18nKey={itsMyAction ? 'history.observe.bottom.me' : 'history.observe.bottom'} values={{
         player: playerName
       }}>
         <strong/>
