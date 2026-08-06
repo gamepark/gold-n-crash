@@ -1,4 +1,4 @@
-import { GoldNCashOptionsSpec } from '@gamepark/gold-n-crash/GoldNCashOptions'
+import { GoldNCashOptionsSpecV2 } from '@gamepark/gold-n-crash/GoldNCashOptions'
 import { GoldNCashRules } from '@gamepark/gold-n-crash/GoldNCashRules'
 import { GoldNCashSetup } from '@gamepark/gold-n-crash/GoldNCashSetup'
 import { GameProvider, MaterialGameAnimations } from '@gamepark/react-game'
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <GameProvider
       game="gold-n-crash"
       Rules={GoldNCashRules}
-      optionsSpec={GoldNCashOptionsSpec}
+      optionsSpec={GoldNCashOptionsSpecV2}
       GameSetup={GoldNCashSetup}
       material={Material}
       locators={Locators}

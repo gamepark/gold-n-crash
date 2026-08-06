@@ -1,4 +1,4 @@
-import { OptionsSpec, TFunction } from '@gamepark/rules-api'
+import { OptionsSpecV2 } from '@gamepark/rules-api'
 import { Flag, flags } from './material/Flag'
 
 /**
@@ -15,15 +15,14 @@ export type GoldNCashOptions = {
 }
 
 /**
- * This object describes all the options a game can have, and will be used by GamePark website to create automatically forms for you game
- * (forms for friendly games, or forms for matchmaking preferences, for instance).
+ * The option space of gold-n-crash: structure only.
+ *
+ * Labels live in the game's presentation document, published beside its translations at
+ * `/options/<locale>.json` and keyed by convention. Subscription and competitive gates live in
+ * the platform database, so they can change without releasing the game again.
  */
-export const GoldNCashOptionsSpec: OptionsSpec<GoldNCashOptions> = {
-  players: {
-    id: {
-      label: (t: TFunction) => t('crew.choice'),
-      values: flags,
-      valueSpec: flag => ({ label: t => t(`player.${flag}`) })
-    }
-  }
+export const GoldNCashOptionsSpecV2: OptionsSpecV2 = {
+  specVersion: 2,
+  players: { min: 2, max: 2 },
+  identities: { values: flags }
 }
