@@ -76,8 +76,6 @@ export class PlaceCardRule extends PlayerTurnRule {
       } else if (isGold(card)) {
         moves.push(this.startRule(RuleId.EndOfCardResolution))
       }
-    } else {
-      console.error('Moving a card without front ?')
     }
 
     return moves
